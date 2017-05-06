@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "init": "lerna init",
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean --yes",
+    "coverage": "lerna run coverage",
+    "lint": "lerna run lint",
+    "lint+fix": "lerna run lint+fix",
+    "test": "lerna run test"
+  },
+  "devDependencies": {
+    "lerna": "^2.0.0-rc.4"
+  },
+  "dependencies": {
+    "lerna": "^2.0.0-rc.4"
+  },
+  "name": "monolith-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Or-Bit",
+  "license": "MIT",
+  "description": ""
+}
