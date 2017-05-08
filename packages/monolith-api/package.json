@@ -1,0 +1,16 @@
+{
+  "name": "monolith-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Or-Bit",
+  "license": "MIT",
+  "dependencies": {
+    "monolith-api-controller": "^1.0.0-0",
+    "monolith-api-model": "^1.0.0-0",
+    "monolith-api-view": "^1.0.0-0"
+  }
+}

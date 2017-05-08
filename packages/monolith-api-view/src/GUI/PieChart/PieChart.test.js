@@ -25,6 +25,8 @@ describe('PieChart test', () => {
             </PieChart>,
             );
 
-        expect(wrapper.find('.recharts-pie-sector').length).toEqual(data.length);
+        expect(
+          wrapper.find('.recharts-pie-sector').length
+        ).toEqual(data.length);
     });
 });

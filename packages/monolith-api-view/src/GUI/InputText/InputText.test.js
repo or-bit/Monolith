@@ -1,7 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { mount } from 'enzyme';
-
+import { shallow, mount } from 'enzyme';
 
 import InputText from './InputText';
 

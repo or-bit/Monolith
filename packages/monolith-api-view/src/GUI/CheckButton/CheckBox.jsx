@@ -18,7 +18,9 @@ export default class CheckBox extends Component {
         return (
             <div>
                 <input
-                  type="checkbox" name={this.props.name} value={this.props.value}
+                  type="checkbox"
+                  name={this.props.name}
+                  value={this.props.value}
                   checked={this.state.checked}
                   onClick={this.handleClick}
                   id={this.props.name}

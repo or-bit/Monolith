@@ -17,7 +17,9 @@ describe('RadioButton Unit Test', () => {
         expect(radio.text()).toEqual('test');
         const radioButtonId = RadioButton.idGenerator('test');
         expect(radio.find(`#${radioButtonId}`).length).toEqual(1);
-        expect(radio.find(`#${radioButtonId}`).props().defaultChecked).toEqual(undefined);
+        expect(
+          radio.find(`#${radioButtonId}`).props().defaultChecked
+        ).toEqual(undefined);
     });
     it('should render correctly even when no callback is passed', () => {
         const radio = shallow(
@@ -32,7 +34,9 @@ describe('RadioButton Unit Test', () => {
         radio.find('input').simulate('change');
         const radioButtonId = RadioButton.idGenerator('test');
         expect(radio.find(`#${radioButtonId}`).length).toEqual(1);
-        expect(radio.find(`#${radioButtonId}`).props().defaultChecked).toEqual(undefined);
+        expect(
+          radio.find(`#${radioButtonId}`).props().defaultChecked
+        ).toEqual(undefined);
     });
     it('should render a checked button', () => {
         const radio = shallow(
@@ -47,7 +51,9 @@ describe('RadioButton Unit Test', () => {
         );
         expect(radio.text()).toEqual('test');
         const radioButtonId = RadioButton.idGenerator('test');
-        expect(radio.find(`#${radioButtonId}`).props().defaultChecked).toEqual(true);
+        expect(
+          radio.find(`#${radioButtonId}`).props().defaultChecked
+        ).toEqual(true);
     });
     it('should change state', () => {
         let toChange = 'toChange';

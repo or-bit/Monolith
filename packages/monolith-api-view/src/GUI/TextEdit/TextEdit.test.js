@@ -17,7 +17,10 @@ describe('TextView', () => {
               onChange={onChangeCallback}
             />,
 );
-        textEdit.find('textarea').simulate('change', { target: { value: 'TextEdit changed' } });
+        textEdit.find('textarea').simulate(
+          'change',
+          { target: { value: 'TextEdit changed' } }
+        );
         expect(shouldChange).toBe('TextEdit changed');
     });
 });

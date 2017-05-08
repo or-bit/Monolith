@@ -25,8 +25,8 @@ describe('GUI Test Suite', () => {
         const dummyHOCInstance = dummyHOC.instance();
         expect(dummyHOCInstance).toBeInstanceOf(DummyHOC);
         const dummyReactShallowComponent = dummyHOC.dive();
-        const dummyReactComponentInstance = dummyReactShallowComponent.instance();
-        expect(dummyReactComponentInstance).toBeInstanceOf(DummyReactComponent);
+        const dummyComponentInstance = dummyReactShallowComponent.instance();
+        expect(dummyComponentInstance).toBeInstanceOf(DummyReactComponent);
         expect(dummyReactShallowComponent.text()).toEqual('Hello world!');
     });
 });

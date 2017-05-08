@@ -1,4 +1,12 @@
-import { BarChart as BarRechart, Bar, Legend, Tooltip, CartesianGrid, XAxis, YAxis } from 'recharts';
+import {
+    BarChart as BarRechart,
+    Bar,
+    Legend,
+    Tooltip,
+    CartesianGrid,
+    XAxis,
+    YAxis,
+} from 'recharts';
 
 class BarChart extends BarRechart {
     /**

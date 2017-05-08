@@ -18,7 +18,9 @@ describe('CheckBoxGroup Unit Test', () => {
                 label: 'test2',
             },
         ];
-        const checkGroup = shallow(<CheckBoxGroup name="test" label="test" buttons={buttons} />);
+        const checkGroup = shallow(
+            <CheckBoxGroup name="test" label="test" buttons={buttons} />
+        );
         const check = checkGroup.find('CheckBox');
         expect(check.length).toEqual(2);
         expect(check.first().props().value).toEqual('test1');

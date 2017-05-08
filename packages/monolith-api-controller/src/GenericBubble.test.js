@@ -4,11 +4,18 @@ import GenericBubble from './GenericBubble';
 
 class TestGenericBubble extends GenericBubble {
     aliveRender() {
+        console.log(this.state);
         return (<a href="url">test link</a>);
     }
 
     notAliveRender() {
-        return (<img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="test" />);
+        console.log(this.state);
+        return (
+            <img
+              src="https://www.w3schools.com/images/w3schools_green.jpg"
+              alt="test"
+            />
+        );
     }
 }
 
@@ -21,11 +28,11 @@ describe('GenericBubble Test Suite', () => {
         expect(rendered.prop('href')).toEqual('url');
     });
     it('should switch rendered elements if bubble gets toggled', () => {
-        const component = shallow(<TestGenericBubble time={5}/>);
+        const component = shallow(<TestGenericBubble time={5} />);
         expect(component.text()).toEqual('test link');
-        component.setState({alive: false}, () => {
-          component.update();
-          expect(component.text()).toEqual('');
+        component.setState({ alive: false }, () => {
+            component.update();
+            expect(component.text()).toEqual('');
         });
     });
 });
