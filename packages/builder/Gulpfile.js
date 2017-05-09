@@ -7,6 +7,7 @@ const debug = require('gulp-debug');
 const merge = require('merge-stream');
 
 const sources = './src/**/*.?(js|jsx)';
+const excludeTests = '!./src/**/*.test.?(js|jsx)';
 const package = './package.json';
 const dest = 'build';
 const del = require('del');
@@ -21,7 +22,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('build', () => {
-    return gulp.src(sources)
+    return gulp.src([ sources, excludeTests ])
         .pipe(debug())
         .pipe(through.obj( (file, enc, callback) => {
             const logFile = chalk.cyan(file.path);
