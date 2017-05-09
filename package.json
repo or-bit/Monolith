@@ -2,8 +2,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean --yes",
-    "cleantest": "node clean.js",
     "coverage": "lerna run coverage",
+    "compile": "lerna run compile",
     "lerna": "lerna",
     "init": "lerna init",
     "lint": "lerna run lint",
@@ -23,11 +23,12 @@
     "babel-preset-es2015": "^6.24.1",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "commander": "^2.9.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3"
+    "eslint-plugin-react": "^6.10.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
   }
 }

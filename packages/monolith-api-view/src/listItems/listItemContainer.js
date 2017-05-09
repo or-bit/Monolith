@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ListItem from './listItem';
 import Button from '../GUI/Button/Button';
-import ItemsStore from './../../model/itemsStore/ItemsStore';
+import ItemsStore from './../../Model/itemsStore/ItemsStore';
 import * as ListItemsActions from '../../../actions/listItemsActions'; // objectliteral
 
 export default class ListItemContainer extends Component {

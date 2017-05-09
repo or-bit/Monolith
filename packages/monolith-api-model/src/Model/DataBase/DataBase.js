@@ -1,5 +1,9 @@
 const MongoClient = require('mongodb');
 
+// private functions
+const connectionSuccessful = () => console.log('MongoDB connection established');
+const disconnectionSuccessful = () => console.log('MongoDB connection destroyed');
+
 /**
  * @class DataBase - Class that connects to the specified MongoDB server instance.
  * @property {string} mongoUrl
@@ -32,10 +36,11 @@ class DataBase {
         return new Promise((resolve, reject) => {
             this.connect().then((db, err) => {
                 if (db) {
-                    console.log('Connected correctly to server');
+                    connectionSuccessful();
                     db.collection(collectionName).findOne(filter).then(
                         (doc) => {
                             db.close();
+                            disconnectionSuccessful();
                             resolve(doc);
                         }).catch(readError => reject(readError));
                 } else {
@@ -56,10 +61,11 @@ class DataBase {
         return new Promise((resolve, reject) => {
             this.connect().then((db) => {
                 if (db) {
-                    console.log('Connected correctly to server');
+                    connectionSuccessful();
                     db.collection(collectionName).insertOne(element).then(
                         (data) => {
                             db.close();
+                            disconnectionSuccessful();
                             resolve(data);
                         }).catch(insertError => reject(insertError));
                 }
