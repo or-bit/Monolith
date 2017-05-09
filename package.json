@@ -13,7 +13,7 @@
   "dependencies": {
     "lerna": "^2.0.0-rc.4"
   },
-  "name": "monolith-api",
+  "name": "monolith",
   "version": "1.0.0",
   "author": "Or-Bit",
   "license": "MIT",
@@ -29,6 +29,7 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2"
+    "gulp-babel": "^6.1.2",
+    "json-loader": "^0.5.4"
   }
 }

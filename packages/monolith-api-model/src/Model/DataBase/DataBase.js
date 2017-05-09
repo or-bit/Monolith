@@ -5,7 +5,7 @@ const connectionSuccessful = () => console.log('MongoDB connection established')
 const disconnectionSuccessful = () => console.log('MongoDB connection destroyed');
 
 /**
- * @class DataBase - Class that connects to the specified MongoDB server instance.
+ * @class DataBase - Class that connects to the specified MongoDB Server instance.
  * @property {string} mongoUrl
  */
 class DataBase {

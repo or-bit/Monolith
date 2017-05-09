@@ -1,19 +1,22 @@
+// gulp related dependencies
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-const args = require('yargs').argv;
+const debug = require('gulp-debug');
+
+// utils
 const chalk = require('chalk');
 const through = require('through2');
-const debug = require('gulp-debug');
 const merge = require('merge-stream');
-
-const sources = './src/**/*.?(js|jsx)';
-const excludeTests = '!./src/**/*.test.?(js|jsx)';
-const package = './package.json';
-const dest = 'build';
 const del = require('del');
 
+// consts and globs
+const sources = './src/**/*.?(js|jsx)';
+const index = './index.js';
+const excludeTests = '!./src/**/*.test.?(js|jsx)';
+const dest = 'build';
+
 gulp.task('default', ['clean'], () => {
-    gulp.start(['build', 'copy-package']);
+    gulp.start(['build']);
 });
 
 gulp.task('clean', () => {
@@ -22,7 +25,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('build', () => {
-    return gulp.src([ sources, excludeTests ])
+    const jsStreams = gulp.src([ sources, excludeTests ], { base: '.' })
         .pipe(debug())
         .pipe(through.obj( (file, enc, callback) => {
             const logFile = chalk.cyan(file.path);
@@ -31,15 +34,16 @@ gulp.task('build', () => {
         }))
         .pipe(babel())
         .pipe(gulp.dest(dest));
-});
 
-gulp.task('copy-package', () => {
-    return gulp.src(package)
+    const indexStream = gulp.src([ index ], { base: '.' })
       .pipe(debug())
       .pipe(through.obj( (file, enc, callback) => {
         const logFile = chalk.cyan(file.path);
-        console.log(`Copying ${logFile}...`);
+        console.log(`Compiling ${logFile}...`);
         callback(null, file);
       }))
+      .pipe(babel())
       .pipe(gulp.dest(dest));
+
+    return merge(jsStreams, indexStream);
 });

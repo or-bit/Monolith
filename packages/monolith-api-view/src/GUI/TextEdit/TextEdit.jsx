@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './TextEdit.css';
 
 export default class TextEdit extends Component {
     constructor(props) {

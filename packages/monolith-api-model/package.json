@@ -2,7 +2,7 @@
   "name": "monolith-api-model",
   "version": "0.0.3",
   "description": "",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
     "compile": "build",
     "coverage": "nyc --reporter=html --reporter=text mocha --recursive src",
@@ -14,7 +14,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
-    "mongodb": "^2.2.26"
+    "express": "^4.15.2",
+    "mongodb": "^2.2.26",
+    "socket.io": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

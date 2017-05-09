@@ -15,7 +15,7 @@ describe('REST APIs Caller Test Suite', () => {
 
     describe('GET method', () => {
         before(() => {
-            // mock fake server
+            // mock fake Server
             nock(testUrl).get(okEndPoint).reply(200, { success: true });
             nock(testUrl).get(errorEndPoint).reply(500);
         });
@@ -29,7 +29,7 @@ describe('REST APIs Caller Test Suite', () => {
 
     describe('POST method', () => {
         before(() => {
-        // mock fake server
+        // mock fake Server
             nock(testUrl).post(okEndPoint).reply(200, { success: true });
             nock(testUrl).post(errorEndPoint).reply(500);
         });
@@ -43,7 +43,7 @@ describe('REST APIs Caller Test Suite', () => {
 
     describe('PUT method', () => {
         before(() => {
-        // mock fake server
+        // mock fake Server
             nock(testUrl).put(okEndPoint).reply(200, { success: true });
             nock(testUrl).put(errorEndPoint).reply(500);
         });
@@ -58,7 +58,7 @@ describe('REST APIs Caller Test Suite', () => {
 
     describe('DELETE method', () => {
         before(() => {
-        // mock fake server
+        // mock fake Server
             nock(testUrl).delete(okEndPoint).reply(200, { success: true });
             nock(testUrl).delete(errorEndPoint).reply(500);
         });
