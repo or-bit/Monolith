@@ -4,12 +4,16 @@ const DataBase = require('./src/Model/DataBase/DataBase');
 const REST = require('./src/Model/ExternalAPI/RESTAPI');
 const LifeCycle = require('./src/Model/LifeCycle/LifeCycle');
 const RegularExp = require('./src/Model/RegularExpr/RegularExprWrapper');
+const User = require('./src/Model/User/User');
+const Server = require('./src/Server/Server');
 
 module.exports = {
-    BubbleMemory,
     Action,
+    BubbleMemory,
     DataBase,
-    REST,
     LifeCycle,
     RegularExp,
+    REST,
+    Server,
+    User,
 };

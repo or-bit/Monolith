@@ -6,9 +6,9 @@
   "scripts": {
     "compile": "build",
     "coverage": "nyc --reporter=html --reporter=text mocha --recursive src",
-    "lint": "eslint **/*.js",
     "prepublish": "npm run compile",
-    "test": "mocha --recursive src"
+    "test": "mocha --recursive src",
+    "watch": "watch"
   },
   "author": "Or-Bit",
   "license": "MIT",
@@ -20,18 +20,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "builder": "^0.0.1",
+    "builder": "^0.1.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-mocha": "^4.9.0",
-    "eslint-plugin-react": "^6.10.3",
     "mocha": "^3.3.0",
     "mongo-in-memory": "0.0.5",
     "nock": "^9.0.13",
-    "nyc": "^10.3.0"
+    "nyc": "^10.3.0",
+    "socket.io-client": "^2.0.1",
+    "tcp-ping": "^0.1.1"
   }
 }

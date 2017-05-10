@@ -18,7 +18,10 @@ class Server {
   }
 
   register(event, functionToCall, functionArgs) {
-    this.socket.on(event, functionToCall(functionArgs));
+    console.log(event);
+    console.log(functionToCall);
+    console.log(functionArgs);
+    this.socket.on(event, (functionArgs) => functionToCall(functionArgs));
   }
 
   emit(event, payload) {
