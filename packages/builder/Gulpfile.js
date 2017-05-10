@@ -47,3 +47,8 @@ gulp.task('build', () => {
 
     return merge(jsStreams, indexStream);
 });
+
+gulp.task('build:watch', ['build'], () => {
+  gulp.watch([sources, index], ['build']);
+});
+

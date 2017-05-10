@@ -12,7 +12,8 @@
     "through2": "^2.0.3"
   },
   "bin": {
-    "build": "./bin/builder.js"
+    "build": "./bin/builder.js",
+    "watch": "./bin/watcher.js"
   },
   "scripts": {
     "test": "gulp"
