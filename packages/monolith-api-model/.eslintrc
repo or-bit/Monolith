@@ -2,8 +2,12 @@
   "extends": "airbnb",
   "env":{
     "node": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
   },
+  "plugins": [
+    "mocha"
+  ],
   "rules": {
     "comma-dangle": ["error", {
       "arrays": "always-multiline",

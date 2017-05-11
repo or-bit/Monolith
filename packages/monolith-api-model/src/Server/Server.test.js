@@ -1,40 +1,72 @@
 const assert = require('chai').assert;
-const server = require('./Server');
 const ping = require('tcp-ping');
+const spawn = require('child_process').spawn;
+const Server = require('./Server');
+const common = require('./common.test');
 
-const port = 3456;
+const port = common.port;
+const expectedAnswer = common.clientAnswer;
 
-describe('Basic Server functionalities', () => {
-  let testServer;
+describe('Server Test Suite', () => {
+    let server;
 
-  beforeEach(() => {
-    testServer = server.create();
-  });
-
-  afterEach(() => {
-    testServer.close();
-  });
-
-  it('beforeEach should create a new Server instance', () => {
-    assert.isNotNull(testServer);
-    assert.isDefined(testServer);
-  });
-
-  it('should listen correctly to port 3456', (done, fail) => {
-    testServer.open(port);
-    ping.ping({ port, attempts: 1 }, (err, data) => {
-      if (err) {
-        console.error(err);
-        fail();
-      }
-      assert.isDefined(data.avg);
-      assert.isNumber(data.avg);
-      done();
+    beforeEach(() => {
+        server = Server.create();
+        server.open(port);
     });
-  });
 
-  it('should return socket', () => {
-    assert.isDefined(testServer.getSocket());
-    assert.isNotNull(testServer.getSocket());
-  });
+    afterEach(() => {
+        server.close();
+    });
+
+    it('beforeEach should create a new Server instance', () => {
+        assert.isNotNull(server);
+        assert.isDefined(server);
+    });
+
+    it('should listen correctly to port 3456', (done, fail) => {
+        ping.ping({ port, attempts: 1 }, (err, data) => {
+            if (err) {
+                console.error(err);
+                fail();
+            }
+            assert.isDefined(data.avg);
+            assert.isNumber(data.avg);
+            done();
+        });
+    });
+
+    it('should return socket', () => {
+        assert.isDefined(server.getSocket());
+        assert.isNotNull(server.getSocket());
+    });
+
+    describe('client who wants to connect to the server', () => {
+        let testClient;
+
+        after(() => {
+            testClient.kill();
+        });
+
+        it('should be able to communicate with it', (done) => {
+            server.onConnection(() => {
+                server.emit('identityCheck');
+            });
+
+            server.register('myIdentity', (clientData) => {
+                assert.equal(clientData, expectedAnswer);
+                done();
+            });
+
+            testClient = spawn(
+              'node',
+              ['./Client.test.js'],
+              { cwd: __dirname }
+            );
+            testClient.stderr.on(
+              'data',
+              data => done(new Error(data.toString()))
+            );
+        });
+    });
 });

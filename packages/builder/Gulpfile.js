@@ -20,14 +20,14 @@ gulp.task('default', ['clean'], () => {
 });
 
 gulp.task('clean', () => {
-  console.log(chalk.yellow('Cleaning previous builds'));
-  return del([dest]);
+    console.log(chalk.yellow('Cleaning previous builds'));
+    return del([dest]);
 });
 
 gulp.task('build', () => {
-    const jsStreams = gulp.src([ sources, excludeTests ], { base: '.' })
+    const jsStreams = gulp.src([sources, excludeTests], { base: '.' })
         .pipe(debug())
-        .pipe(through.obj( (file, enc, callback) => {
+        .pipe(through.obj((file, enc, callback) => {
             const logFile = chalk.cyan(file.path);
             console.log(`Compiling ${logFile}...`);
             callback(null, file);
@@ -35,12 +35,12 @@ gulp.task('build', () => {
         .pipe(babel())
         .pipe(gulp.dest(dest));
 
-    const indexStream = gulp.src([ index ], { base: '.' })
+    const indexStream = gulp.src([index], { base: '.' })
       .pipe(debug())
-      .pipe(through.obj( (file, enc, callback) => {
-        const logFile = chalk.cyan(file.path);
-        console.log(`Compiling ${logFile}...`);
-        callback(null, file);
+      .pipe(through.obj((file, enc, callback) => {
+          const logFile = chalk.cyan(file.path);
+          console.log(`Compiling ${logFile}...`);
+          callback(null, file);
       }))
       .pipe(babel())
       .pipe(gulp.dest(dest));
@@ -49,6 +49,6 @@ gulp.task('build', () => {
 });
 
 gulp.task('build:watch', ['build'], () => {
-  gulp.watch([sources, index], ['build']);
+    gulp.watch([sources, index], ['build']);
 });
 

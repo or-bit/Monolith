@@ -3,35 +3,41 @@ const socketIO = require('socket.io');
 const http = require('http');
 
 class Server {
-  constructor() {
-    this.app = express();
-    this.server = http.createServer(this.app);
-    this.socket = socketIO(this.server);
-  }
+    constructor() {
+        this.app = express();
+        this.server = http.createServer(this.app);
+        this.socket = socketIO(this.server);
+    }
 
-  open(port) {
-    this.server.listen(port);
-  }
+    open(port) {
+        this.server.listen(port);
+    }
 
-  close() {
-    this.server.close();
-  }
+    close() {
+        this.server.close();
+    }
 
-  register(event, functionToCall, functionArgs) {
-    console.log(event);
-    console.log(functionToCall);
-    console.log(functionArgs);
-    this.socket.on(event, (functionArgs) => functionToCall(functionArgs));
-  }
+    onConnection(functionToCall, functionArgs) {
+        this.socket.on('connection', () => functionToCall(functionArgs));
+    }
 
-  emit(event, payload) {
-    this.socket.emit(event, payload);
-  }
+    register(event, functionToCall, broadcast) {
+        if (broadcast) {
+            this.socket.on(event, data => functionToCall(data));
+        } else {
+            this.socket.on('connection', (clientSocket) => {
+                clientSocket.on(event, data => functionToCall(data));
+            });
+        }
+    }
 
+    emit(event, payload) {
+        this.socket.emit(event, payload);
+    }
 
-  getSocket() {
-    return this.socket;
-  }
+    getSocket() {
+        return this.socket;
+    }
 }
 
 exports.create = () => new Server();

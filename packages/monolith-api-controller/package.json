@@ -1,6 +1,6 @@
 {
   "name": "monolith-api-controller",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "build/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "Or-Bit",
   "license": "MIT",
   "dependencies": {
-    "monolith-api-model": "^0.0.3",
+    "monolith-api-model": "^0.1.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"

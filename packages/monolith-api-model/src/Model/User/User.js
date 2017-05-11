@@ -1,16 +1,16 @@
 class User {
-  constructor(username, role) {
-    this._username = username;
-    this._role = role;
-  }
+    constructor(username, role) {
+        this.userName = username;
+        this.userRole = role;
+    }
 
-  get role() {
-    return this._role;
-  }
+    get role() {
+        return this.userRole;
+    }
 
-  get username() {
-    return this._username;
-  }
+    get username() {
+        return this.userName;
+    }
 }
 
 module.exports = User;

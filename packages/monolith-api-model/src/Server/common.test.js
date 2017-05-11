@@ -1,3 +1,7 @@
-/**
- * Created by nicdalm on 10/05/2017.
- */
+const port = 34568;
+
+module.exports = {
+    port,
+    url: `http://localhost:${port}`,
+    clientAnswer: 'admin',
+};
