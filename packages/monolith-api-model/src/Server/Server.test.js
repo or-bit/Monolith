@@ -1,8 +1,9 @@
 const assert = require('chai').assert;
+const expect = require('chai').expect;
 const ping = require('tcp-ping');
 const spawn = require('child_process').spawn;
 const Server = require('./Server');
-const common = require('./common.test');
+const common = require('./testsConfig');
 
 const port = common.port;
 const expectedAnswer = common.clientAnswer;
@@ -24,7 +25,7 @@ describe('Server Test Suite', () => {
         assert.isDefined(server);
     });
 
-    it('should listen correctly to port 3456', (done, fail) => {
+    it(`should listen correctly to port ${port}`, (done, fail) => {
         ping.ping({ port, attempts: 1 }, (err, data) => {
             if (err) {
                 console.error(err);
@@ -41,31 +42,104 @@ describe('Server Test Suite', () => {
         assert.isNotNull(server.getSocket());
     });
 
+    it('should respond to disconnection', () => {
+        let shouldBecomeTrue = false;
+        const fun = () => true;
+        server.onDisconnection(() => {
+            shouldBecomeTrue = fun();
+            assert.isTrue(shouldBecomeTrue);
+        });
+    });
+
+    it('should throw Error when not passing function', () => {
+        expect(() => server.register('fail1')).to.throw(Error);
+        expect(() => server.register('fail2', {})).to.throw(Error);
+    });
+
+    it('should throw Error when emitting to undefined client Socket', () => {
+        expect(() => server.emit('fail3')).to.throw(Error);
+    });
+
     describe('client who wants to connect to the server', () => {
-        let testClient;
+        let client;
 
         after(() => {
-            testClient.kill();
+            client.kill();
         });
 
         it('should be able to communicate with it', (done) => {
-            server.onConnection(() => {
-                server.emit('identityCheck');
+            server.onConnection((clientSocket) => {
+                server.register('myIdentity', (clientData) => {
+                    assert.equal(clientData, expectedAnswer);
+                    clientSocket.disconnect();
+                    done();
+                }, clientSocket);
+
+                server.emit('identityCheck', clientSocket);
             });
 
-            server.register('myIdentity', (clientData) => {
-                assert.equal(clientData, expectedAnswer);
-                done();
-            });
-
-            testClient = spawn(
-              'node',
-              ['./Client.test.js'],
-              { cwd: __dirname }
+            client = spawn(
+                'node',
+                ['./Client.test.js'],
+                { cwd: __dirname }
             );
-            testClient.stderr.on(
-              'data',
-              data => done(new Error(data.toString()))
+            client.stdout.on(
+                'data',
+                data => console.log(data.toString())
+            );
+            client.stderr.on(
+                'data',
+                data => done(new Error(data.toString()))
+            );
+        });
+    });
+
+    describe('clients who want to connect to the server', () => {
+        let testClient1;
+        let testClient2;
+
+        after(() => {
+            testClient1.kill();
+            testClient2.kill();
+        });
+
+        it('should be able to communicate with it', (done) => {
+            let thanksReceived = 0;
+            const expectedThanks = 2;
+            server.onConnection((clientSocket) => {
+                server.register('myIdentity', (clientData) => {
+                    assert.equal(clientData, expectedAnswer);
+                    server.broadcast('welcome', clientSocket.id);
+                }, clientSocket);
+
+                server.register('welcomeReply', (clientData) => {
+                    if (clientData.toString() === 'thanks') {
+                        thanksReceived += 1;
+                    }
+                    if (thanksReceived === expectedThanks) { done(); }
+                }, clientSocket);
+
+                server.emit('identityCheck', clientSocket);
+            });
+
+            testClient1 = spawn(
+                'node',
+                ['./Client.test.js'],
+                { cwd: __dirname }
+            );
+            testClient1.stderr.on(
+                'data',
+                data => done(new Error(data.toString()))
+            );
+
+            testClient2 = spawn(
+                'node',
+                ['./Client.test.js'],
+                { cwd: __dirname }
+            );
+            testClient2.stderr.on(
+                'data',
+                data => done(new Error(data.toString()))
             );
         });
     });

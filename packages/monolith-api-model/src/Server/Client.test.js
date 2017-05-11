@@ -1,17 +1,18 @@
-const socketClient = require('socket.io-client');
-const commonConfig = require('./common.test');
+const io = require('socket.io-client');
+const commonConfig = require('./testsConfig');
 
 const url = commonConfig.url;
 const expectedAnswer = commonConfig.clientAnswer;
 
-const client = socketClient.connect(url);
+const socket = io.connect(url);
 
-client.on('connect', () => {
-    console.log('connected');
-    console.log(client.id);
-    client.on('identityCheck', () => {
-        console.log('identityCheck received');
-        console.log('myIdentity emitting');
-        client.emit('myIdentity', expectedAnswer);
+socket.on('connect', () => {
+    socket.on('identityCheck', () => {
+        console.log('emitting myIdentity');
+        socket.emit('myIdentity', expectedAnswer);
+    });
+
+    socket.on('welcome', (socketId) => {
+        if (socketId === socket.id) { socket.emit('welcomeReply', 'thanks'); }
     });
 });

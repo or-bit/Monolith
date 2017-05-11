@@ -18,21 +18,52 @@ class Server {
     }
 
     onConnection(functionToCall, functionArgs) {
-        this.socket.on('connection', () => functionToCall(functionArgs));
+        this.socket.on(
+          'connection',
+          clientSocket => functionToCall(clientSocket, functionArgs)
+        );
     }
 
-    register(event, functionToCall, broadcast) {
-        if (broadcast) {
+    onDisconnection(functionToCall, functionArgs) {
+        this.socket.on(
+          'disconnect',
+          clientSocket => functionToCall(clientSocket, functionArgs)
+        );
+    }
+
+    register(event, functionToCall, clientSocket) {
+        if (typeof functionToCall !== 'function') {
+            /* eslint-disable max-len*/
+            throw new Error(`Expected function parameter, but received ${typeof functionToCall}`);
+        }
+        if (!clientSocket) {
             this.socket.on(event, data => functionToCall(data));
         } else {
-            this.socket.on('connection', (clientSocket) => {
-                clientSocket.on(event, data => functionToCall(data));
-            });
+            clientSocket.on(event, data => functionToCall(data));
         }
     }
 
-    emit(event, payload) {
-        this.socket.emit(event, payload);
+    /**
+     * Emit the specified event, with the specified payload, to the specified client
+     * @param event
+     * @param clientSocket Socket of the client to send the event
+     * @param payload
+     */
+    /* eslint-disable class-methods-use-this */
+    emit(event, clientSocket, payload) {
+        if (!clientSocket) {
+            throw new Error('Client Socket is undefined.');
+        }
+        clientSocket.emit(event, payload);
+    }
+
+  /**
+   * Emit the specified event, with the specified payload, to ALL connected clients.
+   * @param event
+   * @param payload
+   */
+    broadcast(event, payload) {
+        this.socket.sockets.emit(event, payload);
     }
 
     getSocket() {

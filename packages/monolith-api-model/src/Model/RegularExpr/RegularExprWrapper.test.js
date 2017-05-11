@@ -10,7 +10,6 @@ describe('RegularExp', () => {
             expect(expr).to.have.property('mod');
             expect(expr.toString()).to
                 .equal(RegularExp.defaultRegExp.toString());
-            console.log(expr.modifiers);
             expect(expr.modifiers.i)
             .to.equal(expr.modifiers.g)
             .to.equal(expr.modifiers.m)

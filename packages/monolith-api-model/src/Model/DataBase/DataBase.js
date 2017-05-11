@@ -1,11 +1,5 @@
 const MongoClient = require('mongodb');
 
-// private functions
-const connectionSuccessful = () =>
-  console.log('MongoDB connection established');
-const disconnectionSuccessful = () =>
-  console.log('MongoDB connection destroyed');
-
 /**
  * @class DataBase - Class that connects to the specified MongoDB Server instance.
  * @property {string} mongoUrl
@@ -36,18 +30,14 @@ class DataBase {
      */
     findOne(collectionName, filter) {
         return new Promise((resolve, reject) => {
-            this.connect().then((db, err) => {
-                if (db) {
-                    connectionSuccessful();
-                    db.collection(collectionName).findOne(filter).then(
+            this.connect().then((db) => {
+                db.collection(collectionName).findOne(filter)
+                    .then(
                         (doc) => {
                             db.close();
-                            disconnectionSuccessful();
                             resolve(doc);
-                        }).catch(readError => reject(readError));
-                } else {
-                    reject(err);
-                }
+                        })
+                    .catch(error => reject(error));
             }).catch(error => reject(error));
         });
     }
@@ -62,15 +52,28 @@ class DataBase {
     insertOne(collectionName, element) {
         return new Promise((resolve, reject) => {
             this.connect().then((db) => {
-                if (db) {
-                    connectionSuccessful();
-                    db.collection(collectionName).insertOne(element).then(
+                db.collection(collectionName).insertOne(element)
+                    .then(
                         (data) => {
                             db.close();
-                            disconnectionSuccessful();
                             resolve(data);
-                        }).catch(insertError => reject(insertError));
-                }
+                        })
+                  .catch(error => reject(error));
+            }).catch(error => reject(error));
+        });
+    }
+
+    updateOne(collectionName, element, newElement, upsert) {
+        return new Promise((resolve, reject) => {
+            this.connect().then((db) => {
+                db.collection(collectionName).findOneAndUpdate(
+                    element,
+                    newElement,
+                    { returnOriginal: false, upsert: upsert, returnNewDocument: true }
+                ).then(() => {
+                    db.close();
+                    resolve();
+                }).catch(error => reject(error));
             }).catch(error => reject(error));
         });
     }

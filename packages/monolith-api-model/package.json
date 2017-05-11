@@ -17,11 +17,12 @@
     "axios": "^0.16.1",
     "express": "^4.15.2",
     "mongodb": "^2.2.26",
+    "redux": "^3.6.0",
     "socket.io": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "builder": "^0.0.1",
+    "builder": "^0.1.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
     "eslint": "^3.19.0",
@@ -34,6 +35,7 @@
     "mongo-in-memory": "0.0.5",
     "nock": "^9.0.13",
     "nyc": "^10.3.0",
+    "sinon": "^2.2.0",
     "socket.io-client": "^2.0.1",
     "tcp-ping": "^0.1.1"
   }
