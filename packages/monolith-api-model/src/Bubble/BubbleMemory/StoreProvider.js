@@ -18,7 +18,15 @@ const StoreProvider = {
                         this.store = createStore(reducers, this.initialState);
                         this.persistStateToDB(db);
                         resolve(this.store);
-                    }).catch(warning => console.log(warning));
+                    }).catch((warning) => {
+                        console.warn(warning);
+                        this.store = createStore(reducers);
+                        resolve(this.store);
+                    });
+                } else {
+                    this.store = createStore(reducers, this.initialState);
+                    this.persistStateToDB(db);
+                    resolve(this.store);
                 }
             } else {
                 this.store = createStore(reducers, this.initialState);
@@ -27,21 +35,19 @@ const StoreProvider = {
         });
     },
 
+    // TODO move to "private" namespace
     persistStateToDB(db) {
-        if (db != null) {
-            this.store.subscribe(() => {
-                console.log(JSON.stringify(this.store.getState()));
-                db.updateOne(
-                  this.defaultStoreCollection,
-                  {},
-                  { $set: { state: this.store.getState() } },
-                  { returnOriginal: false, upsert: true }
-                ).then(() => console.log('State persisted to DB'))
-                  .catch((error) => {
-                      throw new Error(error);
-                  });
-            });
-        }
+        this.store.subscribe(() => {
+            // console.log(JSON.stringify(this.store.getState()));
+            db.updateOne(
+              this.defaultStoreCollection,
+              {},
+              { $set: { state: this.store.getState() } },
+              { returnOriginal: false, upsert: true }
+            ).then(() => console.log('State persisted to DB'))
+              .catch(error => console.warn('Could not persist state.\n', error)
+              );
+        });
     },
 
     fetchStateFromDB(db) {

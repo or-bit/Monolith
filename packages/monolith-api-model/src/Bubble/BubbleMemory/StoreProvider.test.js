@@ -42,18 +42,22 @@ describe('Redux Store Test Suite', () => {
 
     describe('testing persisted StoreProvider', () => {
         let stubbedDB;
+        let consoleSpy;
 
-        before(() => {
+        beforeEach(() => {
             const db = new DataBase('mongodb://localhost:7777');
             stubbedDB = {
                 findOne: sinon.stub(db, 'findOne'),
                 updateOne: sinon.stub(db, 'updateOne').resolves(),
             };
+            consoleSpy = sinon.spy(console, 'log');
         });
 
-        after(() => {
+        afterEach(() => {
             stubbedDB.findOne.restore();
             stubbedDB.updateOne.restore();
+            StoreProvider.resetStore();
+            consoleSpy.restore();
         });
 
         it('should load a persisted state', () => {
@@ -63,11 +67,65 @@ describe('Redux Store Test Suite', () => {
               .then(store => expect(store.getState()).to.eql(expectedState));
         });
 
+        /* eslint-disable max-len */
+        it('should not load a persisted state since we give it an initial state', () => {
+            const expectedState = { name: 'initialState ' };
+            stubbedDB.findOne.withArgs('store', {}).resolves(expectedState);
+            return StoreProvider.initStore(testReducer, {}, stubbedDB)
+              .then(store => expect(store.getState()).to.eql({}));
+        });
+
         it('should persist the state change', () => {
-            StoreProvider.getStore().dispatch({
-                type: 'change name',
+            stubbedDB.findOne.withArgs('store', {}).resolves();
+            StoreProvider.initStore(testReducer, undefined, stubbedDB)
+              .then(() => {
+                  StoreProvider.getStore().dispatch({
+                      type: 'change name',
+                  });
+                  sinon.assert.calledOnce(consoleSpy);
+              });
+        });
+    });
+
+    describe('testing failing persisted StoreProvider', () => {
+        let stubbedDB;
+        let db;
+
+        const error = 'unknown error';
+        const spy = sinon.spy(console, 'warn');
+
+        beforeEach(() => {
+            StoreProvider.resetStore();
+            db = new DataBase('mongodb://localhost:7777');
+        });
+
+        afterEach(() => {
+            stubbedDB.findOne.restore();
+            stubbedDB.updateOne.restore();
+        });
+
+        /* eslint-disable max-len */
+        it('should fail to load persisted store hence start with the reducer initial state', () => {
+            stubbedDB = {
+                findOne: sinon.stub(db, 'findOne').rejects(),
+                updateOne: sinon.stub(db, 'updateOne').rejects(error),
+            };
+            return StoreProvider.initStore(testReducer, undefined, stubbedDB)
+               .then(store => expect(store.getState()).to.eql({ name }));
+        });
+
+        it('should fail to persist state change', () => {
+            stubbedDB = {
+                findOne: sinon.stub(db, 'findOne').resolves(),
+                updateOne: sinon.stub(db, 'updateOne').rejects(error),
+            };
+            StoreProvider.initStore(testReducer, undefined, stubbedDB).then(() => {
+                StoreProvider.getStore().dispatch({
+                    type: 'change name',
+                });
             });
-            sinon.assert.called(stubbedDB.updateOne);
+            sinon.assert.calledOnce(spy);
+            spy.restore();
         });
     });
 });

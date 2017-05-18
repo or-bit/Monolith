@@ -1,4 +1,3 @@
-const ExtendableError = require('../../Error/ExtendableError');
+const ExtendableError = require('es6-error');
 
-// Already tested since it's an instance of ExtendableError
 module.exports = class UninitializedStoreError extends ExtendableError {};
