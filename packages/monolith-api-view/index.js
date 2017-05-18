@@ -1,24 +1,26 @@
-const GUIContainer = require('./src/GUIContainer');
-const gui = require('./src/GUI/GUI');
-const BarChart = require('./src/GUI/BarChart/BarChart');
-const Button = require('./src/GUI/Button/Button');
-const CheckButton = require('./src/GUI/CheckButton/CheckBoxGroup');
-const Image = require('./src/GUI/Image/Image');
-const InputFile = require('./src/GUI/InputFile/InputFile');
-const InputText = require('./src/GUI/InputText/InputText');
-const Label = require('./src/GUI/Label/Label');
-const PieChart = require('./src/GUI/PieChart/PieChart');
-const RadioButton = require('./src/GUI/RadioButton/RadioButton');
-const RadioButtonGroup = require('./src/GUI/RadioButton/RadioButtonGroup');
-const TextEdit = require('./src/GUI/TextEdit/TextEdit');
-const TextView = require('./src/GUI/TextView/TextView');
+import GUIContainer from './src/GUIContainer';
+import gui from './src/GUI/GUI';
+import { BarChart } from './src/GUI/BarChart/BarChart';
+import Button from './src/GUI/Button/Button';
+import CheckBox from './src/GUI/CheckButton/CheckBox';
+import CheckBoxGroup from './src/GUI/CheckButton/CheckBoxGroup';
+import Image from './src/GUI/Image/Image';
+import InputFile from './src/GUI/InputFile/InputFile';
+import InputText from './src/GUI/InputText/InputText';
+import Label from './src/GUI/Label/Label';
+import PieChart from './src/GUI/PieChart/PieChart';
+import RadioButton from './src/GUI/RadioButton/RadioButton';
+import RadioButtonGroup from './src/GUI/RadioButton/RadioButtonGroup';
+import TextEdit from './src/GUI/TextEdit/TextEdit';
+import TextView from './src/GUI/TextView/TextView';
 
-module.exports = {
+export {
     GUIContainer,
     gui,
     BarChart,
     Button,
-    CheckButton,
+    CheckBox,
+    CheckBoxGroup,
     Image,
     InputFile,
     InputText,
@@ -28,5 +30,4 @@ module.exports = {
     RadioButtonGroup,
     TextEdit,
     TextView,
-
 };

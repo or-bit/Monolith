@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from './CheckBox';
+import styles from './CheckBoxGroup.css';
 
 export default class CheckBoxGroup extends Component {
     // onCheckedChange(object) {
@@ -10,19 +11,21 @@ export default class CheckBoxGroup extends Component {
     processInput() {
         return this.props.buttons.map(
             ({ name, value, label, checked }) =>
-                <CheckBox
-                  key={name} name={name} value={value} checked={checked}
-                  label={label}
-                />,
+                <li>
+                    <CheckBox
+                        key={name} name={name} value={value} checked={checked}
+                        label={label}
+                    />
+                </li>
         );
     }
 
     render() {
         const buttons = this.processInput();
         return (
-            <div>
+            <ul className="{styles} ${this.props.classNames}">
                 {buttons}
-            </div>
+            </ul>
         );
     }
 }
