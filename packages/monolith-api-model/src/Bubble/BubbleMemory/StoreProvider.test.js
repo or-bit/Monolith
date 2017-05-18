@@ -7,72 +7,67 @@ const DataBase = require('../../Model/DataBase/DataBase');
 const name = 'myName';
 const changedName = 'yourName';
 
-const testReducer = (state = { name: name }, action) => {
-  if (action.type === 'change name') {
-    return Object.assign({}, state, { name: changedName });
-  }
-  return state;
+const testReducer = (state = { name }, action) => {
+    if (action.type === 'change name') {
+        return Object.assign({}, state, { name: changedName });
+    }
+    return state;
 };
 
 describe('Redux Store Test Suite', () => {
-  describe('failing attempt to use the Store', () => {
-    it('should throw UninitializedStoreError', () => {
-      expect(StoreProvider.getStore).to.throw(UninitializedStoreError);
-    });
-  });
-
-  describe('testing volatile StoreProvider', () => {
-    before(() => {
-      return StoreProvider.initStore(testReducer);
+    describe('failing attempt to use the Store', () => {
+        it('should throw UninitializedStoreError', () => {
+            expect(StoreProvider.getStore).to.throw(UninitializedStoreError);
+        });
     });
 
-    after(() => {
-      StoreProvider.resetStore();
+    describe('testing volatile StoreProvider', () => {
+        before(() => StoreProvider.initStore(testReducer));
+
+        after(() => StoreProvider.resetStore());
+
+        it('should contain the initial state', () => {
+            const state = StoreProvider.getStore().getState();
+            expect(state).to.deep.equal({ name });
+        });
+
+        it('should contain the initial state of the reducer', () => {
+            StoreProvider.getStore().dispatch({
+                type: 'change name',
+            });
+            const state = StoreProvider.getStore().getState();
+            expect(state).to.deep.equal({ name: changedName });
+        });
     });
 
-    it('should contain the initial state', () => {
-      const state = StoreProvider.getStore().getState();
-      expect(state).to.deep.equal({ name: name });
-    });
+    describe('testing persisted StoreProvider', () => {
+        let stubbedDB;
 
-    it('should contain the initial state of the reducer', () => {
-      StoreProvider.getStore().dispatch({
-        type: 'change name'
-      });
-      const state = StoreProvider.getStore().getState();
-      expect(state).to.deep.equal({ name: changedName });
-    });
-  });
+        before(() => {
+            const db = new DataBase('mongodb://localhost:7777');
+            stubbedDB = {
+                findOne: sinon.stub(db, 'findOne'),
+                updateOne: sinon.stub(db, 'updateOne').resolves(),
+            };
+        });
 
-  describe('testing persisted StoreProvider', () => {
-    let stubbedDB;
+        after(() => {
+            stubbedDB.findOne.restore();
+            stubbedDB.updateOne.restore();
+        });
 
-    before(() => {
-      const db = new DataBase(`mongodb://localhost:7777`);
-      stubbedDB = {
-        findOne: sinon.stub(db, 'findOne'),
-        updateOne: sinon.stub(db, 'updateOne').resolves(),
-      };
-    });
+        it('should load a persisted state', () => {
+            const expectedState = { name: 'initialState ' };
+            stubbedDB.findOne.withArgs('store', {}).resolves(expectedState);
+            return StoreProvider.initStore(testReducer, undefined, stubbedDB)
+              .then(store => expect(store.getState()).to.eql(expectedState));
+        });
 
-    after(() => {
-      stubbedDB.findOne.restore();
-      stubbedDB.updateOne.restore();
+        it('should persist the state change', () => {
+            StoreProvider.getStore().dispatch({
+                type: 'change name',
+            });
+            sinon.assert.called(stubbedDB.updateOne);
+        });
     });
-
-    it('should load a persisted state', () => {
-      const expectedState = { name: 'initialState ' };
-      stubbedDB.findOne.withArgs('store', {}).resolves(expectedState);
-      return StoreProvider.initStore(testReducer, undefined, stubbedDB).then(store => {
-        return expect(store.getState()).to.eql(expectedState);
-      });
-    });
-
-    it('should persist the state change', () => {
-      StoreProvider.getStore().dispatch({
-        type: 'change name'
-      });
-      sinon.assert.called(stubbedDB.updateOne);
-    });
-  });
 });

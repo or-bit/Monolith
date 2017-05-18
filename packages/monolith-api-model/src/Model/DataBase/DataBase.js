@@ -69,7 +69,11 @@ class DataBase {
                 db.collection(collectionName).findOneAndUpdate(
                     element,
                     newElement,
-                    { returnOriginal: false, upsert: upsert, returnNewDocument: true }
+                    {
+                        returnOriginal: false,
+                        upsert,
+                        returnNewDocument: true,
+                    }
                 ).then(() => {
                     db.close();
                     resolve();

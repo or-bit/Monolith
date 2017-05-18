@@ -4,7 +4,6 @@ const ExtendableError = require('./ExtendableError');
 class ExtendableTestError extends ExtendableError {}
 
 describe('ExtendableError Test Suite', () => {
-
     let error;
 
     before(() => {
