@@ -1,3 +1,5 @@
-/**
- * Created by nicdalm on 19/05/2017.
- */
+#!/usr/bin/env node
+const gulp = require('gulp');
+require('../Gulpfile');
+
+gulp.start('sass');

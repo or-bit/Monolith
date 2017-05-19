@@ -2,6 +2,7 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const debug = require('gulp-debug');
+const sass = require('gulp-sass');
 
 // utils
 const chalk = require('chalk');
@@ -12,6 +13,9 @@ const del = require('del');
 // consts and globs
 const sources = './src/**/*.?(js|jsx)';
 const index = './index.js';
+const stylesheetsFolder = './src/stylesheets';
+const stylesheetsFiles = `${stylesheetsFolder}/**/*.scss`;
+const mainStyleSheet = `${stylesheetsFolder}/main.scss`;
 const excludeTests = '!./src/**/*.test.?(js|jsx)';
 const dest = 'build';
 
@@ -24,7 +28,7 @@ gulp.task('clean', () => {
     return del([dest]);
 });
 
-gulp.task('build', () => {
+gulp.task('build', ['sass'], () => {
     const jsStreams = gulp.src([sources, excludeTests], { base: '.' })
         .pipe(debug())
         .pipe(through.obj((file, enc, callback) => {
@@ -46,9 +50,23 @@ gulp.task('build', () => {
       .pipe(gulp.dest(dest));
 
     return merge(jsStreams, indexStream);
+     // for JS concatenation
+     /*
+     .pipe(concat('bundle.js'))
+     .pipe(gulp.dest(dest));
+      */
 });
 
 gulp.task('build:watch', ['build'], () => {
-    gulp.watch([sources, index], ['build']);
+    gulp.watch([sources, index, stylesheetsFiles], ['build']);
 });
 
+gulp.task('sass', () =>
+    gulp.src([mainStyleSheet])
+      .pipe(sass().on('error', sass.logError))
+      .pipe(gulp.dest(`${dest}/css/`))
+);
+
+gulp.task('sass:watch',
+  () => gulp.watch([stylesheetsFiles], ['sass'])
+);
