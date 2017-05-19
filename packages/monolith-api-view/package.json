@@ -1,23 +1,22 @@
 {
   "name": "monolith-api-view",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "build/index.js",
   "scripts": {
     "compile": "build",
     "coverage": "jest --coverage",
-    "lint": "eslint **/*.js **/*.jsx",
+    "lint": "eslint **/*.js **/*.jsx && sass-lint .",
     "prepublish": "npm run compile",
+    "sass": "sass",
     "test": "jest",
     "watch": "watch"
   },
   "author": "Or-Bit",
   "license": "MIT",
   "dependencies": {
-    "hoist-non-react-statics": "^1.2.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
     "recharts": "^0.22.4",
     "shortid": "^2.2.8"
   },
@@ -25,7 +24,7 @@
     "babel-cli": "^6.24.1",
     "babel-jest": "^19.0.0",
     "babel-preset-react": "^6.24.1",
-    "builder": "^0.1.0",
+    "builder": "^0.2.0",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -34,7 +33,8 @@
     "eslint-plugin-react": "^6.10.3",
     "jest": "^19.0.2",
     "react-addons-test-utils": "^15.5.1",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.5.4",
+    "sass-lint": "^1.10.1"
   },
   "jest": {
     "moduleNameMapper": {

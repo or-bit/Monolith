@@ -1,0 +1,12 @@
+.monolith-button a:link, a:visited {
+    background-color: $mid-gray;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+.monolith-button a:hover, a:active {
+    background-color: $roman;
+}
