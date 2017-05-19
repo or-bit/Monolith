@@ -14,6 +14,9 @@ import RadioButtonGroup from './src/GUI/RadioButton/RadioButtonGroup';
 import TextEdit from './src/GUI/TextEdit/TextEdit';
 import TextView from './src/GUI/TextView/TextView';
 
+// require default css
+// require('./css/main.css');
+
 export {
     GUIContainer,
     gui,

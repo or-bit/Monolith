@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const Button = props => (
     props.url ? (
-        <a href={props.url} className={props.className}>
+        <a href={props.url} className={`monolith-button ${props.className}`}>
             {props.text}
         </a>
     ) : (
         <button
-          className={props.className}
+          className={`monolith-button ${props.className}`}
           onClick={props.callback}
         >
             {props.text}
