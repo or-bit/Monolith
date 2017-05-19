@@ -22,7 +22,7 @@ export default class CheckBoxGroup extends Component {
     render() {
         const buttons = this.processInput();
         return (
-            <ul className={`checkboxGroup ${this.props.classNames}`}>
+            <ul className={`monolith-group ${this.props.classNames}`}>
                 {buttons}
             </ul>
         );
