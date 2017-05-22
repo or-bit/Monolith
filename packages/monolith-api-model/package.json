@@ -2,7 +2,7 @@
   "name": "monolith-api-model",
   "version": "0.2.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "compile": "build",
     "coverage": "nyc --reporter=html --reporter=text mocha --recursive src",

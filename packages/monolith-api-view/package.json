@@ -2,7 +2,7 @@
   "name": "monolith-api-view",
   "version": "0.0.5",
   "description": "",
-  "main": "build/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "compile": "build",
     "coverage": "jest --coverage",

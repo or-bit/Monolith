@@ -17,7 +17,7 @@ const stylesheetsFolder = './src/stylesheets';
 const stylesheetsFiles = `${stylesheetsFolder}/**/*.scss`;
 const mainStyleSheet = `${stylesheetsFolder}/main.scss`;
 const excludeTests = '!./src/**/*.test.?(js|jsx)';
-const dest = 'build';
+const dest = 'dist';
 
 gulp.task('default', ['clean'], () => {
     gulp.start(['build']);
