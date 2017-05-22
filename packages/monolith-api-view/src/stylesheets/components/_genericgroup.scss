@@ -1,8 +1,11 @@
 ul.monolith-group {
   list-style-type: none;
-  text-align: left;
 }
 
 ul.monolith-group li {
-  display: inline;
+  display: inline-block;
+  text-align: left;
+  // qui starebbero bene delle mediaquery che regolano in base alla risoluzione dello schermo
+  margin-left: 5%;
+  margin-right: 5%;
 }
