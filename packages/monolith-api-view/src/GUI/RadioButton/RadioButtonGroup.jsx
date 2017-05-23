@@ -26,20 +26,25 @@ export default class RadioButtonsGroup extends Component {
     processInput() {
         return this.props.buttons.map(
             ({ value, label, checked }) => (
-                <RadioButton
-                  group={this} key={shortid.generate()} value={value}
-                  label={label} groupName={this.props.groupName}
-                  checked={checked}
-                  onChange={newSelected => this.onCheckedChange(newSelected)}
-                />
+                <li key={value}>
+                    <RadioButton
+                      group={this} key={shortid.generate()} value={value}
+                      label={label} groupName={this.props.groupName}
+                      checked={checked}
+                      onChange={
+                          newSelected => this.onCheckedChange(newSelected)
+                      }
+                    />
+                </li>
             ));
     }
 
     render() {
+        const buttons = this.processInput();
         return (
-            <div>
-                {this.processInput()}
-            </div>
+            <ul className={`monolith-group ${this.props.classNames}`}>
+                {buttons}
+            </ul>
         );
     }
 }
@@ -47,9 +52,11 @@ export default class RadioButtonsGroup extends Component {
 RadioButtonsGroup.propTypes = {
     buttons: PropTypes.arrayOf(PropTypes.object).isRequired,
     groupName: PropTypes.string.isRequired,
+    classNames: PropTypes.string,
 };
 
 RadioButtonsGroup.defaultProps = {
     buttons: [],
     groupName: 'RadioButtons',
+    classNames: '',
 };

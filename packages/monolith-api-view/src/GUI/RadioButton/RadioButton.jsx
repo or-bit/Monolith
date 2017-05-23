@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Image from '../Image/Image';
 import { PropTypes } from 'prop-types';
 
 export default class RadioButton extends Component {
@@ -46,7 +47,7 @@ RadioButton.propTypes = {
     onChangeCallback: PropTypes.func,
     value: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.image,
+        PropTypes.instanceOf(Image),
     ]).isRequired,
     groupName: PropTypes.string.isRequired,
     checked: PropTypes.bool,
