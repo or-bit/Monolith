@@ -22,7 +22,7 @@ export default class CheckBoxGroup extends Component {
     render() {
         const buttons = this.processInput();
         return (
-            <ul className={`monolith-group ${this.props.classNames}`}>
+            <ul className={this.props.classNames}>
                 {buttons}
             </ul>
         );
@@ -36,5 +36,5 @@ CheckBoxGroup.propTypes = {
 
 CheckBoxGroup.defaultProps = {
     buttons: [],
-    classNames: '',
+    classNames: 'monolith-group',
 };

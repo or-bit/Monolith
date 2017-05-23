@@ -42,7 +42,7 @@ export default class RadioButtonsGroup extends Component {
     render() {
         const buttons = this.processInput();
         return (
-            <ul className={`monolith-group ${this.props.classNames}`}>
+            <ul className={this.props.classNames}>
                 {buttons}
             </ul>
         );
@@ -58,5 +58,5 @@ RadioButtonsGroup.propTypes = {
 RadioButtonsGroup.defaultProps = {
     buttons: [],
     groupName: 'RadioButtons',
-    classNames: '',
+    classNames: 'monolith-group',
 };

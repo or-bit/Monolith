@@ -8,13 +8,14 @@ export default class TextEdit extends Component {
             value: props.value,
         };
     }
+
     handleChange(event) {
         this.setState({ value: event.target.value });
         this.props.onChange(event);
     }
     render() {
         return (
-            <div className="input-textedit">
+            <div className={this.props.classNames}>
                 <label htmlFor={this.props.name}>{this.props.label}</label>
                 <textarea
                   name={this.props.name}
@@ -32,10 +33,12 @@ TextEdit.propTypes = {
     value: PropTypes.string,
     label: PropTypes.string,
     onChange: PropTypes.func,
+    classNames: PropTypes.string,
 };
 
 TextEdit.defaultProps = {
     value: 'Default value',
     label: 'Default value',
     onChange: () => {},
+    classNames: 'monolith-textedit',
 };
