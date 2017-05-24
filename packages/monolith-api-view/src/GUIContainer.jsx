@@ -4,7 +4,7 @@ import GUI from './GUI/GUI';
 
 export default function GUIContainer(props) {
     return (
-        <div>
+        <div className={props.classNames}>
             {props.children}
         </div>
     );
@@ -15,8 +15,10 @@ GUIContainer.propTypes = {
         PropTypes.instanceOf(GUI),
         PropTypes.element,
     ])),
+    classNames: PropTypes.string,
 };
 
 GUIContainer.defaultProps = {
     children: [],
+    classNames: 'monolith-container',
 };
