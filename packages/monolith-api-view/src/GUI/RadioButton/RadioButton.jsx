@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Image from '../Image/Image';
 import { PropTypes } from 'prop-types';
+
+import Image from '../Image/Image';
 
 export default class RadioButton extends Component {
     constructor(props) {
