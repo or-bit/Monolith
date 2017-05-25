@@ -1,0 +1,22 @@
+.monolith-error {
+  border-radius: 35px 35px 35px 35px;
+  -moz-border-radius: 35px 35px 35px 35px;
+  -webkit-border-radius: 35px 35px 35px 35px;
+  border: 4px inset $roman;
+  background: lighten( $roman, 20% );
+  width: 80%;
+  margin: 1em auto;
+}
+
+.monolith-error p {
+  opacity: 1;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.monolith-error pre {
+  background: beige;
+  margin: 2em;
+  text-align: justify;
+  padding: 2em;
+}

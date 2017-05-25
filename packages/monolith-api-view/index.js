@@ -4,6 +4,8 @@ import { BarChart } from './src/GUI/BarChart/BarChart';
 import Button from './src/GUI/Button/Button';
 import CheckBox from './src/GUI/CheckButton/CheckBox';
 import CheckBoxGroup from './src/GUI/CheckButton/CheckBoxGroup';
+import DropDownList from './src/GUI/DropDownList/DropDownList';
+import Error from './src/GUI/Error/GenericError';
 import Image from './src/GUI/Image/Image';
 import InputFile from './src/GUI/InputFile/InputFile';
 import InputText from './src/GUI/InputText/InputText';
@@ -14,6 +16,7 @@ import RadioButtonGroup from './src/GUI/RadioButton/RadioButtonGroup';
 import TextEdit from './src/GUI/TextEdit/TextEdit';
 import TextView from './src/GUI/TextView/TextView';
 
+
 export {
     GUIContainer,
     gui,
@@ -21,6 +24,8 @@ export {
     Button,
     CheckBox,
     CheckBoxGroup,
+    DropDownList,
+    Error,
     Image,
     InputFile,
     InputText,
