@@ -11,7 +11,7 @@ export default class TextEdit extends Component {
 
     handleChange(event) {
         this.setState({ value: event.target.value });
-        this.props.onChange(event);
+        this.props.onTextChange(event.target.value, event);
     }
     render() {
         return (
@@ -32,13 +32,13 @@ TextEdit.propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.string,
     label: PropTypes.string,
-    onChange: PropTypes.func,
+    onTextChange: PropTypes.func,
     classNames: PropTypes.string,
 };
 
 TextEdit.defaultProps = {
     value: 'Default value',
     label: 'Default value',
-    onChange: () => {},
+    onTextChange: () => {},
     classNames: 'monolith-textedit',
 };

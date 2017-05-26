@@ -5,7 +5,7 @@ import InputText from './InputText';
 
 describe('InputText', () => {
     it('should contain an input tag', () => {
-        const component = shallow(<InputText id={'mioid'} value={'myvalue'} />);
+        const component = shallow(<InputText id={'myId'} value={'myvalue'} />);
         expect(component.find('input').length).toEqual(1);
     });
 
@@ -17,5 +17,15 @@ describe('InputText', () => {
     it('should have value', () => {
         const component = mount(<InputText id={'myid'} value={'myvalue'} />);
         expect(component.props().value).toEqual('myvalue');
+    });
+
+    it('should be able to change its value', () => {
+        const component = mount(<InputText id="myId" />);
+        expect(component.find('input').props().value).toEqual('');
+        component.find('input').simulate(
+          'change',
+          { target: { value: 'test' } }
+        );
+        expect(component.find('input').props().value).toEqual('test');
     });
 });

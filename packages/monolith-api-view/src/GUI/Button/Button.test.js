@@ -9,6 +9,12 @@ describe('Button Unit Test', () => {
         expect(button.text()).toEqual('press me!');
     });
 
+    it('should be rendered as an anchor', () => {
+        const button = shallow(<Button text="press me!" url="test" />);
+        button.find('a').simulate('click');
+        expect(button.text()).toEqual('press me!');
+    });
+
     it('should call function that changes an external var', () => {
         let change = 'not changed';
         const button = shallow(

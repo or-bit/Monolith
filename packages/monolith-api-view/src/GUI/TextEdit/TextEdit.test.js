@@ -2,9 +2,20 @@ import React from 'react';
 import { shallow, render } from 'enzyme';
 import TextEdit from './TextEdit';
 
-describe('TextView', () => {
+describe('TextEdit', () => {
     it('renders without crashing', () => {
-        render(<TextEdit text="This is a textView" name="test" />);
+        render(<TextEdit text="This is a TextEdit" name="test" />);
+    });
+
+    it('should render the TextEdit and react to input change', () => {
+        const textEdit = shallow(<TextEdit name="test" />);
+        textEdit.find('textarea').simulate(
+          'change',
+          { target: { value: 'TextEdit changed' } }
+        );
+        expect(
+          textEdit.find('textarea').props().value
+        ).toEqual('TextEdit changed');
     });
 
     it('should render the TextEdit and change an external var', () => {
@@ -14,7 +25,9 @@ describe('TextView', () => {
             <TextEdit
               name="test"
               text="This is a textEdit"
-              onChange={onChangeCallback}
+              onTextChange={(value, event) => {
+                  onChangeCallback(event);
+              }}
             />,
 );
         textEdit.find('textarea').simulate(

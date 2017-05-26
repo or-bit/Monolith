@@ -11,10 +11,14 @@ export default function GUIContainer(props) {
 }
 
 GUIContainer.propTypes = {
-    children: PropTypes.arrayOf(PropTypes.oneOfType([
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.oneOfType([
+            PropTypes.instanceOf(GUI),
+            PropTypes.element,
+        ])),
         PropTypes.instanceOf(GUI),
         PropTypes.element,
-    ])),
+    ]),
     classNames: PropTypes.string,
 };
 

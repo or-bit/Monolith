@@ -34,7 +34,7 @@ describe('Error Unit Test', () => {
             expect(errorPre).toHaveLength(1);
             expect(
               errorPre.render().text()
-            ).toEqual(JSON.stringify(testObj, null, '\t'));
+            ).toEqual(JSON.stringify(testObj, null, Error.jsonIndentation));
         });
     });
 });

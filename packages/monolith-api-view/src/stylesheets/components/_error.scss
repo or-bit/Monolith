@@ -1,7 +1,7 @@
 .monolith-error {
-  border-radius: 35px 35px 35px 35px;
-  -moz-border-radius: 35px 35px 35px 35px;
-  -webkit-border-radius: 35px 35px 35px 35px;
+  border-radius: 35px;
+  -moz-border-radius: 35px;
+  -webkit-border-radius: 35px;
   border: 4px inset $roman;
   background: lighten( $roman, 20% );
   width: 80%;
@@ -15,8 +15,16 @@
 }
 
 .monolith-error pre {
+  display:block;
   background: beige;
+  border: 1px dashed black;
+  border-radius: 10px;
   margin: 2em;
   text-align: justify;
-  padding: 2em;
+  line-height: 1.5em;
+  padding: 1.5em;
+  /* Line wrapping behaviour */
+  white-space: pre-wrap;                 /* CSS3 browsers  */
+  white-space: -moz-pre-wrap !important; /* 1999+ Mozilla  */
+  white-space: -o-pre-wrap;              /* Opera 7 and up */
 }

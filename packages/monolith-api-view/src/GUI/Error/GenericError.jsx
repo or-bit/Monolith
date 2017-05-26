@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 
 export default function Error(props) {
     let pre;
+
     if (props.input) {
-        pre = <pre>{JSON.stringify(props.input, null, '\t')}</pre>;
+        pre = (
+            <pre>
+                <code>
+                    {JSON.stringify(props.input, null, Error.jsonIndentation)}
+                </code>
+            </pre>
+        );
     }
     return (
         <div className={props.classNames}>
@@ -29,3 +36,5 @@ Error.defaultProps = {
     classNames: 'monolith-error',
     input: undefined,
 };
+
+Error.jsonIndentation = '  ';

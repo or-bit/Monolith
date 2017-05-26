@@ -12,10 +12,9 @@ export default class RadioButtonsGroup extends Component {
     }
 
     componentWillMount() {
-        let selected = null;
         const checkedButtons = this.props.buttons.filter(
             ({ checked }) => checked === true);
-        selected = checkedButtons[checkedButtons.length - 1].value;
+        const selected = checkedButtons[checkedButtons.length - 1].value;
         this.setState({ selected });
     }
 
