@@ -1,14 +1,16 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended"
+    ],
   "env":{
     "node": true,
     "es6": true,
     "browser": true,
-    "jest": true,
-    "mocha": true
+    "jest": true
   },
   "plugins": [
-    "mocha",
+    "jest",
     "react"
   ],
   "rules": {

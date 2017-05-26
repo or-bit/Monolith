@@ -1,5 +1,5 @@
 import React from 'react';
-import BarChart from './BarChart/BarChart';
+import BarChart from './Charts/BarChart/BarChart';
 import Button from './Button/Button';
 import CheckBox from './CheckButton/CheckBox';
 import CheckBoxGroup from './CheckButton/CheckBoxGroup';
@@ -7,7 +7,7 @@ import Image from './Image/Image';
 import InputText from './InputText/InputText';
 import InputFile from './InputFile/InputFile';
 import Label from './Label/Label';
-import PieChart from './PieChart/PieChart';
+import PieChart from './Charts/PieChart/PieChart';
 import RadioButton from './RadioButton/RadioButton';
 import RadioButtonGroup from './RadioButton/RadioButtonGroup';
 import TextEdit from './TextEdit/TextEdit';

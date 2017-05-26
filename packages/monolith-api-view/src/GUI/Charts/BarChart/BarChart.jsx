@@ -1,5 +1,5 @@
 import {
-    BarChart as BarRechart,
+    BarChart as BarReChart,
     Bar,
     Legend,
     Tooltip,
@@ -8,7 +8,7 @@ import {
     YAxis,
 } from 'recharts';
 
-class BarChart extends BarRechart {
+class BarChart extends BarReChart {
     /**
      * For the documentation and examples go to http://recharts.org
      */
@@ -16,5 +16,8 @@ class BarChart extends BarRechart {
         return super.render();
     }
 }
+
+BarChart.defaultWidth = 400;
+BarChart.defaultHeight = 300;
 
 export { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar };
