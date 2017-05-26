@@ -10,8 +10,9 @@ export default class TextEdit extends Component {
     }
 
     handleChange(event) {
-        this.setState({ value: event.target.value });
-        this.props.onTextChange(event.target.value, event);
+        const newValue = event.target.value;
+        this.setState({ value: newValue });
+        this.props.onTextChange(newValue, event);
     }
     render() {
         return (

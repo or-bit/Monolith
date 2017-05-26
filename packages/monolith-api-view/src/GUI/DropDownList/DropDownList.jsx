@@ -17,6 +17,15 @@ export default class DropDownList extends Component {
             optionValue: 'value2'
         }
      */
+    constructor(props) {
+        super(props);
+
+        const selectedItem = props.values.find(value => value.selected);
+
+        this.state = {
+            selected: selectedItem.optionValue,
+        };
+    }
 
     hasDuplicateValues() {
         const input = this.props.values;
@@ -28,29 +37,22 @@ export default class DropDownList extends Component {
 
     processInput() {
         const input = this.props.values;
-        return input.map(
-          ({ label, optionValue, selected }) => {
-              if (selected) {
-                  return (
-                      <option
-                        key={optionValue}
-                        value={optionValue}
-                        selected
-                      >
-                          {label}
-                      </option>
-                  );
-              }
-              return (
-                  <option
-                    key={optionValue}
-                    value={optionValue}
-                  >
-                      {label}
-                  </option>
-              );
-          }
-        );
+        return input.map(({ label, optionValue }) => (
+            <option
+              key={optionValue}
+              value={optionValue}
+            >
+                {label}
+            </option>
+            ));
+    }
+
+    handleChange(event) {
+        const newValue = event.target.value;
+        this.setState({
+            selected: newValue,
+        });
+        this.props.onSelectionChange(newValue, event);
     }
 
     render() {
@@ -69,7 +71,11 @@ export default class DropDownList extends Component {
         }
 
         return (
-            <select className={this.props.classNames}>
+            <select
+              className={this.props.classNames}
+              value={this.state.selected}
+              onChange={event => this.handleChange(event)}
+            >
                 {this.processInput(input)}
             </select>
         );
@@ -80,9 +86,11 @@ DropDownList.propTypes = {
     values: PropTypes.arrayOf(PropTypes.object).isRequired,
     classNames: PropTypes.string,
     errorClassNames: PropTypes.string,
+    onSelectionChange: PropTypes.func,
 };
 
 DropDownList.defaultProps = {
     classNames: 'monolith-droplist',
     errorClassNames: 'monolith-error',
+    onSelectionChange: () => {},
 };

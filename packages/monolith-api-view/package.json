@@ -6,9 +6,11 @@
   "scripts": {
     "compile": "build",
     "coverage": "jest --coverage",
-    "lint": "eslint **/*.js **/*.jsx && sass-lint .",
+    "eslint": "eslint **/*.js **/*.jsx",
+    "lint": "npm run eslint && npm run sasslint",
     "prepublish": "npm run compile",
     "sass": "sass",
+    "sasslint": "sass-lint .",
     "test": "jest",
     "watch": "watch"
   },

@@ -34,9 +34,42 @@ describe('DropDownList Unit Test', () => {
             expect(select).toHaveLength(1);
             const options = select.children();
             expect(options).toHaveLength(4);
-            expect(select.childAt(2).props().selected).toEqual(true);
+            // the first selected element "wins"
+            expect(
+              select.props().value
+            ).toEqual(listValues[1].optionValue);
         });
     });
+
+    describe('when changing selection', () => {
+        it('should update accordingly', () => {
+            const listValues = [
+                {
+                    label: 'Ananas',
+                    optionValue: 'ananas',
+                },
+                {
+                    label: 'Banana',
+                    optionValue: 'banana',
+                    selected: true,
+                },
+            ];
+            const list = mount(
+                <DropDownList values={listValues} />
+            );
+            const select = list.find('select');
+            expect(
+              select.props().value
+            ).toEqual(listValues[1].optionValue);
+
+            select.simulate('change', { target: { value: 'ananas' } });
+            list.update();
+            expect(
+              select.props().value
+            ).toEqual(listValues[0].optionValue);
+        });
+    });
+
     describe('when data contains duplicated entries', () => {
         const listValues = [
             {
