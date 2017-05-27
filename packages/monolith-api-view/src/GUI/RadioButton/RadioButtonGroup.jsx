@@ -27,8 +27,11 @@ export default class RadioButtonsGroup extends Component {
             ({ value, label, checked }) => (
                 <li key={value}>
                     <RadioButton
-                      group={this} key={shortid.generate()} value={value}
-                      label={label} groupName={this.props.groupName}
+                      group={this}
+                      key={shortid.generate()}
+                      value={value}
+                      label={label}
+                      groupName={this.props.groupName}
                       checked={checked}
                       onChange={
                           newSelected => this.onCheckedChange(newSelected)
