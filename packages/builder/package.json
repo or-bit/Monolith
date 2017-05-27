@@ -25,6 +25,7 @@
     "sass": "./bin/sass.js"
   },
   "scripts": {
+    "coverage": "echo \"Coverage not available for builder module.\" && exit 0",
     "gulp": "gulp",
     "lint": "eslint **/*.js"
   }
