@@ -14,11 +14,15 @@ install:
 
 script:
   - npm run lint
-  - npm run coverage
-  
+  - npm test
+
 after_success:
+  - npm run coverage
   - ./scripts/merge-coverage-reports.sh
   - codecov --file coverage/lcov.info --disable search
-  
+
+deploy:
+  skip_cleanup: true
+
 notifications:
   slack: or-bitteam:ct3w556dbQOxCawmYkHD8Lwa
