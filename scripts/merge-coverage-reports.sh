@@ -7,4 +7,4 @@ rm -rf "$COVERAGE_DIR"
 
 mkdir "$COVERAGE_DIR"
 
-find ../packages -name "lcov.info" -exec cat {} > "$COVERAGE_DIR"/lcov.info \;
+find "$REPO_ROOT"/packages -name "lcov.info" -exec cat {} > "$COVERAGE_DIR"/lcov.info \;
