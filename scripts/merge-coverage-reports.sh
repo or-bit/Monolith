@@ -1,4 +1,4 @@
-#|/bin/bash
+#!/bin/bash
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
 COVERAGE_DIR="$REPO_ROOT"/coverage
