@@ -1,6 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
-const LifeCycle = require('monolith-api-model').LifeCycle;
+const LifeCycle = require('monolith-backend').LifeCycle;
 
 class GenericBubble extends React.Component {
     constructor(props) {
