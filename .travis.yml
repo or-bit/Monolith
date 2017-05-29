@@ -1,16 +1,24 @@
 language: node_js
 node_js:
   - "7"
-  
+
 cache:
   directories:
     - "node_modules"
+
+before_install:
+  - pip install --user codecov
 
 install:
   - 'npm i'
 
 script:
-  - 'npm test'
+  - npm run lint
+  - npm run coverage
+  
+after_success:
+  - ./scripts/merge-coverage-reports.sh
+  - codecov --file coverage/lcov.info --disable search
   
 notifications:
   slack: or-bitteam:ct3w556dbQOxCawmYkHD8Lwa
