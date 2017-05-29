@@ -1,12 +1,21 @@
 {
   "name": "builder",
   "version": "0.2.0",
+  "description": "Builder module for the monolith framework.",
+  "private": true,
+  "author": "Or-Bit",
+  "license": "MIT",
+  "keywords": [
+    "framework",
+    "interactive bubbles",
+    "monolith-builder",
+    "rocket.chat"
+  ],
   "dependencies": {
     "chalk": "^1.1.3",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-concat": "^2.6.1",
     "gulp-debug": "^3.1.0",
     "gulp-sass": "^3.1.0",
     "merge-stream": "^1.0.1",

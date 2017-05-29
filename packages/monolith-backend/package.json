@@ -3,6 +3,14 @@
   "version": "0.3.0",
   "description": "",
   "main": "dist/index.js",
+  "author": "Or-Bit",
+  "license": "MIT",
+  "keywords": [
+    "framework",
+    "interactive bubbles",
+    "monolith-backend",
+    "rocket.chat"
+  ],
   "scripts": {
     "compile": "build",
     "coverage": "nyc --reporter=html --reporter=text mocha --recursive src",
@@ -11,8 +19,6 @@
     "test": "mocha --recursive src",
     "watch": "watch"
   },
-  "author": "Or-Bit",
-  "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
     "es6-error": "^4.0.2",

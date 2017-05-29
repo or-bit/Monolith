@@ -6,7 +6,7 @@ This is the [monorepo](<https://github.com/babel/babel/blob/master/doc/design/mo
 0.  Install Node JS (TODO other deps)
 1.  Clone this repo
 2.  `npm i`
-3.  `npm run bootstrap`
+3.  `npm run bootstrap` (should be done automatically after npm i, added here just in case)
 4.  `npm test`
 
 ### Project's commands
@@ -16,13 +16,9 @@ This is the [monorepo](<https://github.com/babel/babel/blob/master/doc/design/mo
 The following paragraphs present the list of submodules that compose the framework.
 ### builder
 
-### monolith-api
+### monolith-backend
 
-### monolith-api-controller
-
-### monolith-api-model
-
-### monolith-api-view
+### monolith-frontend
 
 ### monolith-bubble-examples???
 

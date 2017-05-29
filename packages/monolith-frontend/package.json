@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
+  "author": "Or-Bit",
+  "license": "MIT",
+  "keywords": [
+    "framework",
+    "interactive bubbles",
+    "monolith-frontend",
+    "rocket.chat"
+  ],
   "scripts": {
     "compile": "build",
     "coverage": "jest --coverage",
@@ -14,8 +22,6 @@
     "test": "jest",
     "watch": "watch"
   },
-  "author": "Or-Bit",
-  "license": "MIT",
   "dependencies": {
     "monolith-backend": "^0.3.0",
     "prop-types": "^15.5.8",

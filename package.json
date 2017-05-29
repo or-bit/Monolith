@@ -1,4 +1,16 @@
 {
+  "name": "monolith",
+  "version": "1.0.0",
+  "author": "Or-Bit",
+  "license": "MIT",
+  "description": "",
+  "keywords": [
+    "framework",
+    "interactive bubbles",
+    "monolith",
+    "rocket.chat"
+  ],
+  "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean --yes",
@@ -13,11 +25,6 @@
   "dependencies": {
     "lerna": "^2.0.0-rc.4"
   },
-  "name": "monolith",
-  "version": "1.0.0",
-  "author": "Or-Bit",
-  "license": "MIT",
-  "description": "",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
