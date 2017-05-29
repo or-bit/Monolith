@@ -14,6 +14,7 @@ import RadioButton from './src/GUI/RadioButton/RadioButton';
 import RadioButtonGroup from './src/GUI/RadioButton/RadioButtonGroup';
 import TextEdit from './src/GUI/TextEdit/TextEdit';
 import TextView from './src/GUI/TextView/TextView';
+import GenericBubble from './src/Bubble/GenericBubble';
 
 
 export {
@@ -25,6 +26,7 @@ export {
     CheckBoxGroup,
     DropDownList,
     Error,
+    GenericBubble,
     Image,
     InputFile,
     InputText,

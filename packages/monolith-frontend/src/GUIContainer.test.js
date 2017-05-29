@@ -13,7 +13,7 @@ describe('GUIContainer Test Suite', () => {
         const childButtonText = 'a button';
         const childButtonComponent = () => (
             <div>
-                <input type="button" value={childButtonText} />
+                <p>{childButtonText}</p>
             </div>
            );
         const GUIContainerShallow = shallow(

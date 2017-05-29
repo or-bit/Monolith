@@ -17,6 +17,7 @@
   "author": "Or-Bit",
   "license": "MIT",
   "dependencies": {
+    "monolith-backend": "^0.3.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "recharts": "^0.22.4",
@@ -36,6 +37,7 @@
     "eslint-plugin-react": "^6.10.3",
     "jest": "^19.0.2",
     "react-addons-test-utils": "^15.5.1",
+    "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4",
     "regenerator-runtime": "^0.10.5",
     "sass-lint": "^1.10.1"
