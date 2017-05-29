@@ -11,3 +11,6 @@ install:
 
 script:
   - 'npm test'
+  
+notifications:
+  slack: or-bitteam:ct3w556dbQOxCawmYkHD8Lwa
