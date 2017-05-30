@@ -14,7 +14,12 @@ const StoreProvider = {
             if (db != null) {
                 if (this.initialState == null) {
                     this.fetchStateFromDB(db).then((state) => {
-                        this.initialState = state;
+                        if (state != null) {
+                            this.initialState = state;
+                        } else {
+                            // state never persisted on db
+                            this.initialState = {};
+                        }
                         this.store = createStore(reducers, this.initialState);
                         this.persistStateToDB(db);
                         resolve(this.store);
@@ -38,7 +43,7 @@ const StoreProvider = {
     // TODO move to "private" namespace
     persistStateToDB(db) {
         this.store.subscribe(() => {
-            // console.log(JSON.stringify(this.store.getState()));
+            //  console.log(JSON.stringify(this.store.getState()));
             db.updateOne(
               this.defaultStoreCollection,
               {},
