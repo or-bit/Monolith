@@ -1,5 +1,5 @@
 const io = require('socket.io-client');
-const commonConfig = require('./testsConfig');
+const commonConfig = require('./Server.config.test');
 
 const url = commonConfig.url;
 const expectedAnswer = commonConfig.clientAnswer;

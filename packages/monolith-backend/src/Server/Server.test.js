@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 const ping = require('tcp-ping');
 const spawn = require('child_process').spawn;
 const Server = require('./Server');
-const common = require('./testsConfig');
+const common = require('./Server.config.test');
 
 const port = common.port;
 const expectedAnswer = common.clientAnswer;
