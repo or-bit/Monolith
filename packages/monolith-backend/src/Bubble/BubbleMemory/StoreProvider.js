@@ -47,8 +47,8 @@ const StoreProvider = {
             db.updateOne(
               this.defaultStoreCollection,
               {},
-              { $set: { state: this.store.getState() } },
-              { returnOriginal: false, upsert: true }
+              { $set: this.store.getState() },
+              true,
             ).then(() => console.log('State persisted to DB'))
               .catch(error => console.warn('Could not persist state.\n', error)
               );
