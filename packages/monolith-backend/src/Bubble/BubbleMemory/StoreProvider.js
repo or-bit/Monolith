@@ -1,4 +1,9 @@
-const createStore = require('redux').createStore;
+const redux = require('redux');
+const createStore = redux.createStore;
+const applyMiddleware = redux.applyMiddleware;
+const subscribeMiddleware = require('redux-subscribe');
+const subscribe = subscribeMiddleware.subscribe;
+const unsubscribe = subscribeMiddleware.unsubscribe;
 const UninitializedStoreError = require('./UninitializedStoreError');
 
 // Singleton pattern alike: ref http://2ality.com/2011/04/singleton-pattern-in-javascript-not.html
@@ -8,6 +13,9 @@ const StoreProvider = {
 
     initStore(reducers, initialState, db) {
         return new Promise((resolve) => {
+            const create =
+              () => applyMiddleware(subscribeMiddleware.default)(createStore)(reducers, this.initialState);
+
             this.initialState = initialState;
             // check for both null and undefined
             // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness
@@ -20,16 +28,16 @@ const StoreProvider = {
                             // state never persisted on db
                             this.initialState = {};
                         }
-                        this.store = createStore(reducers, this.initialState);
+                        this.store = create();
                         this.persistStateToDB(db);
                         resolve(this.store);
                     }).catch((warning) => {
                         console.warn(warning);
-                        this.store = createStore(reducers);
+                        this.store = create();
                         resolve(this.store);
                     });
                 } else {
-                    this.store = createStore(reducers, this.initialState);
+                    this.store = create();
                     this.persistStateToDB(db);
                     resolve(this.store);
                 }

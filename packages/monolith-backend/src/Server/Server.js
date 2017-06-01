@@ -14,6 +14,7 @@ class Server {
     }
 
     close() {
+        this.socket.close();
         this.server.close();
     }
 
