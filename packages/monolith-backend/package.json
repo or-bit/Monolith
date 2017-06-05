@@ -25,6 +25,7 @@
     "express": "^4.15.2",
     "mongodb": "^2.2.26",
     "redux": "^3.6.0",
+    "redux-subscribe": "^1.0.2",
     "socket.io": "^2.0.1"
   },
   "devDependencies": {
