@@ -42,7 +42,7 @@
     "mongo-in-memory": "0.0.5",
     "nock": "^9.0.13",
     "nyc": "^10.3.0",
-    "sinon": "^2.2.0",
+    "sinon": "^2.3.2",
     "socket.io-client": "^2.0.1",
     "tcp-ping": "^0.1.1"
   }
