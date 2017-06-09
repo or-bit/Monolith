@@ -14,19 +14,19 @@ const IDGenerator = (function idGenerator() {
 
     const createRandomIdAsString = () => createRandomId().toHexString();
 
-        return {
-            /**
-             * Returns a new ObjectID instance. Can be used directly for object/document persistence (mongodb).
-             * @return {ObjectID} Random unique id.
-             */
-            createRandomId,
+    return {
+        /**
+         * Returns a new ObjectID instance. Can be used directly for object/document persistence (mongodb).
+         * @return {ObjectID} Random unique id.
+         */
+        createRandomId,
 
-            /**
-             * Returns a string based on a new ObjectID instance. It's always 24 characters long.
-             * @return {string} Random unique id.
-             */
-            createRandomIdAsString,
-        };
+        /**
+         * Returns a string based on a new ObjectID instance. It's always 24 characters long.
+         * @return {string} Random unique id.
+         */
+        createRandomIdAsString,
+    };
 }());
 
 module.exports = IDGenerator;
