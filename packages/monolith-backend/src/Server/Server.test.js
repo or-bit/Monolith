@@ -2,14 +2,39 @@ const assert = require('chai').assert;
 const expect = require('chai').expect;
 const ping = require('tcp-ping');
 const spawn = require('child_process').spawn;
+const sinon = require('sinon');
+const consts = require('monolith-consts');
 const Server = require('./Server');
 const common = require('./Server.config.test');
+const LifeCycle = require('../Model/LifeCycle/LifeCycle');
+
+const sandbox = sinon.sandbox.create();
 
 const port = common.port;
 const expectedAnswer = common.clientAnswer;
 
 describe('Server Test Suite', () => {
     let server;
+
+    const createFakeClients = (clientScript, args) => {
+        const client = spawn(
+            'node',
+            [clientScript, args],
+            { cwd: __dirname }
+        );
+
+        client.stdout.on(
+            'data',
+            data => console.log(data.toString())
+        );
+
+        client.stderr.on(
+            'data',
+            data => new Error(data.toString())
+        );
+
+        return client;
+    };
 
     beforeEach(() => {
         server = Server.create();
@@ -78,19 +103,7 @@ describe('Server Test Suite', () => {
                 server.emit('identityCheck', clientSocket);
             });
 
-            client = spawn(
-                'node',
-                ['./Client.test.js'],
-                { cwd: __dirname }
-            );
-            client.stdout.on(
-                'data',
-                data => console.log(data.toString())
-            );
-            client.stderr.on(
-                'data',
-                data => done(new Error(data.toString()))
-            );
+            client = createFakeClients('./Client.test.js');
         });
     });
 
@@ -122,25 +135,83 @@ describe('Server Test Suite', () => {
                 server.emit('identityCheck', clientSocket);
             });
 
-            testClient1 = spawn(
-                'node',
-                ['./Client.test.js'],
-                { cwd: __dirname }
-            );
-            testClient1.stderr.on(
-                'data',
-                data => done(new Error(data.toString()))
-            );
+            testClient1 = createFakeClients('./Client.test.js');
+            testClient2 = createFakeClients('./Client.test.js');
+        });
+    });
 
-            testClient2 = spawn(
-                'node',
-                ['./Client.test.js'],
-                { cwd: __dirname }
-            );
-            testClient2.stderr.on(
-                'data',
-                data => done(new Error(data.toString()))
-            );
+    describe('fake bubble who wants to connect to the server', () => {
+        describe('with correct lifecycle params', () => {
+            let client;
+
+            beforeEach(() => {
+                sandbox.stub(LifeCycle.prototype, 'start').resolves();
+            });
+
+            afterEach(() => {
+                sandbox.restore();
+                client.kill();
+            });
+
+            it('should be able to communicate with it', (done) => {
+                const bubbleRoom = server.getSocket().of(consts.BUBBLE_ROOM);
+                bubbleRoom.on('connect', (clientSocket) => {
+                    clientSocket.on(
+                        common.lifeCycleOk, () => done());
+                });
+
+
+                client = createFakeClients('./Bubble.test.js', 1);
+            });
+        });
+
+        describe('with wrong lifecycle params', () => {
+            let client;
+
+            beforeEach(() => {
+                sandbox.stub(LifeCycle.prototype, 'start').resolves();
+            });
+
+            afterEach(() => {
+                sandbox.restore();
+                client.kill();
+            });
+
+            it('should be able to communicate with it', (done) => {
+                const bubbleRoom = server.getSocket().of(consts.BUBBLE_ROOM);
+                bubbleRoom.on('connect', (clientSocket) => {
+                    clientSocket.on(
+                        common.lifeCycleOk, () => done());
+                });
+
+                server.onDisconnection(() => console.log('disconnected'));
+
+                client = createFakeClients('./Bubble.test.js', 0);
+            });
+        });
+
+        describe('with failing lifecycle', () => {
+            let client;
+
+            beforeEach(() => {
+                sandbox.stub(LifeCycle.prototype, 'start').rejects();
+            });
+
+            afterEach(() => {
+                sandbox.restore();
+                client.kill();
+            });
+
+            it('should be able to communicate with it', (done) => {
+                const bubbleRoom = server.getSocket().of(consts.BUBBLE_ROOM);
+                bubbleRoom.on('connect', (clientSocket) => {
+                    clientSocket.on(
+                        common.lifeCycleOk, () => done());
+                });
+
+
+                client = createFakeClients('./Bubble.test.js', 1);
+            });
         });
     });
 });

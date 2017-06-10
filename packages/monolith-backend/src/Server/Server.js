@@ -1,6 +1,8 @@
 const express = require('express');
 const socketIO = require('socket.io');
 const http = require('http');
+const LifeCycle = require('../Model/LifeCycle/LifeCycle');
+const consts = require('monolith-consts');
 
 class Server {
     constructor() {
@@ -11,6 +13,26 @@ class Server {
 
     open(port) {
         this.server.listen(port);
+        const room = this.socket.of(consts.BUBBLE_ROOM);
+        room.on('connection', (clientSocket) => {
+            console.log('bubble connected');
+            clientSocket.on(consts.LIFECYCLE_EVENT, (time) => {
+                if (time > 0) {
+                    new LifeCycle(time).start().then(() => {
+                        console.log('bubble lifecycle completed... ');
+                        console.log('emitting event to bubble');
+                        clientSocket.emit(consts.LIFECYCLE_EVENT_DONE);
+                    }).catch((error) => {
+                        console.error(error);
+                        clientSocket.emit(consts.LIFECYCLE_EVENT_FAILED, error);
+                    });
+                } else {
+                    const error = 'Invalid time interval';
+                    console.error(error);
+                    clientSocket.emit(consts.LIFECYCLE_EVENT_FAILED, error);
+                }
+            });
+        });
     }
 
     close() {
@@ -26,22 +48,22 @@ class Server {
     }
 
     onDisconnection(functionToCall, functionArgs) {
-        this.socket.on(
-          'disconnect',
-          clientSocket => functionToCall(clientSocket, functionArgs)
-        );
+        this.socket.on('connection', (clientSocket) => {
+            clientSocket.on(
+                'disconnect',
+                () => functionToCall(clientSocket, functionArgs)
+            );
+        });
     }
 
-    register(event, functionToCall, clientSocket) {
+    register(event, functionToCall) {
         if (typeof functionToCall !== 'function') {
             /* eslint-disable max-len*/
             throw new Error(`Expected function parameter, but received ${typeof functionToCall}`);
         }
-        if (!clientSocket) {
-            this.socket.on(event, data => functionToCall(data));
-        } else {
+        this.socket.on('connection', (clientSocket) => {
             clientSocket.on(event, data => functionToCall(data));
-        }
+        });
     }
 
     /**
