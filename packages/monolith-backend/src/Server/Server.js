@@ -92,6 +92,10 @@ class Server {
     getSocket() {
         return this.socket;
     }
+
+    serveStaticFiles(dir) {
+        this.app.use(express.static(dir));
+    }
 }
 
 exports.create = () => new Server();
