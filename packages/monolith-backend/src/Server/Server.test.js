@@ -137,7 +137,7 @@ describe('Server Test Suite', () => {
 
             testClient1 = createFakeClients('./Client.test.js');
             testClient2 = createFakeClients('./Client.test.js');
-        });
+        }).timeout(5000);
     });
 
     describe('fake bubble who wants to connect to the server', () => {
@@ -187,7 +187,7 @@ describe('Server Test Suite', () => {
                 server.onDisconnection(() => console.log('disconnected'));
 
                 client = createFakeClients('./Bubble.test.js', 0);
-            });
+            }).timeout(5000);
         });
 
         describe('with failing lifecycle', () => {
