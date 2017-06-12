@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const expect = require('chai').expect;
 const ping = require('tcp-ping');
-const spawn = require('child_process').spawn;
+const spawn = require('cross-spawn');
 const sinon = require('sinon');
 const consts = require('monolith-consts');
 const Server = require('./Server');
@@ -20,17 +20,7 @@ describe('Server Test Suite', () => {
         const client = spawn(
             'node',
             [clientScript, args],
-            { cwd: __dirname }
-        );
-
-        client.stdout.on(
-            'data',
-            data => console.log(data.toString())
-        );
-
-        client.stderr.on(
-            'data',
-            data => new Error(data.toString())
+            { cwd: __dirname, stdio: 'inherit' }
         );
 
         return client;
@@ -46,8 +36,9 @@ describe('Server Test Suite', () => {
     });
 
     it('beforeEach should create a new Server instance', () => {
-        assert.isNotNull(server);
         assert.isDefined(server);
+        assert.isDefined(server.getExpress());
+        assert.isDefined(server.getHTTPServer());
     });
 
     it(`should listen correctly to port ${port}`, (done, fail) => {
@@ -85,6 +76,18 @@ describe('Server Test Suite', () => {
         expect(() => server.emit('fail3')).to.throw(Error);
     });
 
+    describe('when invoking serveStaticBundle', () => {
+        afterEach(() => {
+            sandbox.restore();
+        });
+
+        it('should call express app.use()', () => {
+            const spy = sandbox.spy(server.getExpress(), 'use');
+            server.serveStaticFiles('*', '/');
+            return expect(spy.calledOnce).to.be.true;
+        });
+    });
+
     describe('client who wants to connect to the server', () => {
         let client;
 
@@ -94,18 +97,18 @@ describe('Server Test Suite', () => {
 
         it('should be able to communicate with it', (done) => {
             server.onConnection((clientSocket) => {
-                server.register('myIdentity', (clientData) => {
+                clientSocket.on('myIdentity', (clientData) => {
                     assert.equal(clientData, expectedAnswer);
                     clientSocket.disconnect();
                     done();
-                }, clientSocket);
+                });
 
-                server.emit('identityCheck', clientSocket);
+                clientSocket.emit('identityCheck');
             });
 
             client = createFakeClients('./Client.test.js');
         });
-    });
+    }).timeout(5000);
 
     describe('clients who want to connect to the server', () => {
         let testClient1;
@@ -120,19 +123,19 @@ describe('Server Test Suite', () => {
             let thanksReceived = 0;
             const expectedThanks = 2;
             server.onConnection((clientSocket) => {
-                server.register('myIdentity', (clientData) => {
+                clientSocket.on('myIdentity', (clientData) => {
                     assert.equal(clientData, expectedAnswer);
                     server.broadcast('welcome', clientSocket.id);
-                }, clientSocket);
+                });
 
-                server.register('welcomeReply', (clientData) => {
+                clientSocket.on('welcomeReply', (clientData) => {
                     if (clientData.toString() === 'thanks') {
                         thanksReceived += 1;
                     }
                     if (thanksReceived === expectedThanks) { done(); }
-                }, clientSocket);
+                });
 
-                server.emit('identityCheck', clientSocket);
+                clientSocket.emit('identityCheck');
             });
 
             testClient1 = createFakeClients('./Client.test.js');
@@ -160,9 +163,8 @@ describe('Server Test Suite', () => {
                         common.lifeCycleOk, () => done());
                 });
 
-
                 client = createFakeClients('./Bubble.test.js', 1);
-            });
+            }).timeout(5000);
         });
 
         describe('with wrong lifecycle params', () => {
@@ -185,6 +187,24 @@ describe('Server Test Suite', () => {
                 });
 
                 server.onDisconnection(() => console.log('disconnected'));
+
+                client = createFakeClients('./Bubble.test.js', -10);
+            }).timeout(5000);
+        });
+
+        describe('with disabled lifecycle param', () => {
+            let client;
+
+            afterEach(() => {
+                client.kill();
+            });
+
+            it('should be return the warning', (done) => {
+                const bubbleRoom = server.getSocket().of(consts.BUBBLE_ROOM);
+                bubbleRoom.on('connect', (clientSocket) => {
+                    clientSocket.on(
+                        common.lifeCycleOk, () => done());
+                });
 
                 client = createFakeClients('./Bubble.test.js', 0);
             }).timeout(5000);
@@ -211,7 +231,7 @@ describe('Server Test Suite', () => {
 
 
                 client = createFakeClients('./Bubble.test.js', 1);
-            });
+            }).timeout(5000);
         });
     });
 });

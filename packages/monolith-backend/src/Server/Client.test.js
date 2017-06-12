@@ -13,6 +13,9 @@ socket.on('connect', () => {
     });
 
     socket.on('welcome', (socketId) => {
-        if (socketId === socket.id) { socket.emit('welcomeReply', 'thanks'); }
+        if (socketId === socket.id) {
+            socket.emit('welcomeReply', 'thanks');
+            socket.disconnect();
+        }
     });
 });
