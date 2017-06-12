@@ -1,6 +1,7 @@
 const express = require('express');
 const socketIO = require('socket.io');
 const http = require('http');
+
 const LifeCycle = require('../Model/LifeCycle/LifeCycle');
 const consts = require('monolith-consts');
 
@@ -17,8 +18,9 @@ class Server {
         room.on('connection', (clientSocket) => {
             console.log('bubble connected');
             clientSocket.on(consts.LIFECYCLE_EVENT, (time) => {
-                if (time > 0) {
-                    new LifeCycle(time).start().then(() => {
+                const timeNumber = Number(time);
+                if (timeNumber > 0) {
+                    new LifeCycle(timeNumber).start().then(() => {
                         console.log('bubble lifecycle completed... ');
                         console.log('emitting event to bubble');
                         clientSocket.emit(consts.LIFECYCLE_EVENT_DONE);
@@ -27,9 +29,17 @@ class Server {
                         clientSocket.emit(consts.LIFECYCLE_EVENT_FAILED, error);
                     });
                 } else {
-                    const error = 'Invalid time interval';
-                    console.error(error);
-                    clientSocket.emit(consts.LIFECYCLE_EVENT_FAILED, error);
+                    let returnMessage;
+                    if (timeNumber === 0) {
+                        returnMessage = 'Warning: Bubble lifetime disabled';
+                    } else {
+                        returnMessage = 'Invalid time interval';
+                    }
+                    console.error(returnMessage);
+                    clientSocket.emit(
+                        consts.LIFECYCLE_EVENT_FAILED,
+                        returnMessage
+                    );
                 }
             });
         });
@@ -56,35 +66,11 @@ class Server {
         });
     }
 
-    register(event, functionToCall) {
-        if (typeof functionToCall !== 'function') {
-            /* eslint-disable max-len*/
-            throw new Error(`Expected function parameter, but received ${typeof functionToCall}`);
-        }
-        this.socket.on('connection', (clientSocket) => {
-            clientSocket.on(event, data => functionToCall(data));
-        });
-    }
-
-    /**
-     * Emit the specified event, with the specified payload, to the specified client
-     * @param event
-     * @param clientSocket Socket of the client to send the event
-     * @param payload
-     */
-    /* eslint-disable class-methods-use-this */
-    emit(event, clientSocket, payload) {
-        if (!clientSocket) {
-            throw new Error('Client Socket is undefined.');
-        }
-        clientSocket.emit(event, payload);
-    }
-
-  /**
-   * Emit the specified event, with the specified payload, to ALL connected clients.
-   * @param event
-   * @param payload
-   */
+   /**
+    * Emit the specified event, with the specified payload, to ALL connected clients.
+    * @param event
+    * @param payload
+    */
     broadcast(event, payload) {
         this.socket.sockets.emit(event, payload);
     }
@@ -93,8 +79,16 @@ class Server {
         return this.socket;
     }
 
-    serveStaticFiles(dir) {
-        this.app.use(express.static(dir));
+    getExpress() {
+        return this.app;
+    }
+
+    getHTTPServer() {
+        return this.server;
+    }
+
+    serveStaticFiles(path, dir) {
+        this.app.use(path, express.static(dir));
     }
 }
 

@@ -1,5 +1,5 @@
 const chai = require('chai');
-const RegularExp = require('./RegularExprWrapper');
+const RegularExp = require('./RegExWrapper');
 
 const expect = chai.expect;
 

@@ -2,8 +2,7 @@ const io = require('socket.io-client');
 const commonConfig = require('./Server.config.test');
 const consts = require('monolith-consts');
 
-// const url = commonConfig.url;
-const url = "https://cryptic-headland-97852.herokuapp.com:3456/";
+const url = commonConfig.url;
 
 const socket = io.connect(`${url}/${consts.BUBBLE_ROOM}`);
 

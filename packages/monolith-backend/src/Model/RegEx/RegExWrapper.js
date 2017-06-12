@@ -1,14 +1,14 @@
 const defaultRegExp = /(?:)/;
 
 /**
- * @class RegularExprWrapper - Class for representing regular expression.
+ * @class RegExWrapper - Class for representing regular expression.
  * @extends RegExp
  * @property {Object} modifiers
  * @property {boolean} modifiers.caseInsensitive
  * @property {boolean} modifiers.global
  * @property {boolean} modifiers.multiline
  */
-class RegularExprWrapper extends RegExp {
+class RegExWrapper extends RegExp {
     /**
      * Create a regular expression.
      * @param {string | RegExp} [expr] - Regular expression as a RegExp or a string.
@@ -75,10 +75,10 @@ class RegularExprWrapper extends RegExp {
             re = '';
         }
         let rExpr = `${re}${openBracket}${string}${closeBracket}`;
-        if (RegularExprWrapper.prefixQuantifiers.indexOf(quantifier) !== -1) {
+        if (RegExWrapper.prefixQuantifiers.indexOf(quantifier) !== -1) {
             rExpr = quantifier + rExpr;
         } else if (
-            RegularExprWrapper.suffixQuantifiers.indexOf(quantifier) !== -1
+            RegExWrapper.suffixQuantifiers.indexOf(quantifier) !== -1
       || /{[1-9]+(,[1-9]*)?}/.test(quantifier)) {
             rExpr += quantifier;
         }
@@ -135,21 +135,21 @@ class RegularExprWrapper extends RegExp {
      * @param {string | string[]} string - The string or the array of sequence of
      * characters to search.
      * @param {string} quantifier - The quantifier for the regular expression.
-     * @returns {RegularExprWrapper} - A matchRegularExpr
+     * @returns {RegExWrapper} - A matchRegularExpr
      */
     findAnyOf(string, quantifier) {
         if (Array.isArray(string)) {
             for (let i = 0; i < string.length; i += 1) {
-                this.regExp = RegularExprWrapper.compose(
-                    RegularExprWrapper.quote(string[i]),
+                this.regExp = RegExWrapper.compose(
+                    RegExWrapper.quote(string[i]),
                     quantifier,
                     '[',
                     ']',
                     this.regExp);
             }
         } else {
-            this.regExp = RegularExprWrapper.compose(
-                RegularExprWrapper.quote(string),
+            this.regExp = RegExWrapper.compose(
+                RegExWrapper.quote(string),
                 quantifier,
                 '[',
                 ']',
@@ -163,21 +163,21 @@ class RegularExprWrapper extends RegExp {
      * @param {string | string[]} string - The string to search or the array that contains
      * a sequence of characters.
      * @param {string} quantifier - The quantifier for the regular expression.
-     * @returns {RegularExprWrapper}
+     * @returns {RegExWrapper}
      */
     findAnyNotOf(string, quantifier) {
         if (Array.isArray(string)) {
             for (let i = 0; i < string.length; i += 1) {
-                this.regExp = RegularExprWrapper.compose(
-                    RegularExprWrapper.quote(string[i]),
+                this.regExp = RegExWrapper.compose(
+                    RegExWrapper.quote(string[i]),
                     quantifier,
                     '[^',
                     ']',
                     this.regExp);
             }
         } else {
-            this.regExp = RegularExprWrapper.compose(
-                RegularExprWrapper.quote(string),
+            this.regExp = RegExWrapper.compose(
+                RegExWrapper.quote(string),
                 quantifier,
                 '[^',
                 ']',
@@ -191,12 +191,12 @@ class RegularExprWrapper extends RegExp {
      * @param {string | number} from - The character from which digit the search starts.
      * @param {string} to - The character to which digit the search ends.
      * @param {string} quantifier - The quantifier for the regular expression.
-     * @returns {RegularExprWrapper}
+     * @returns {RegExWrapper}
      */
     findAnyBetween(from, to, quantifier) {
-        const fromRegEx = RegularExprWrapper.quote(from);
-        const toRegEx = RegularExprWrapper.quote(to);
-        this.regExp = RegularExprWrapper.compose(
+        const fromRegEx = RegExWrapper.quote(from);
+        const toRegEx = RegExWrapper.quote(to);
+        this.regExp = RegExWrapper.compose(
             `${fromRegEx}-${toRegEx}`,
             quantifier,
             '[',
@@ -210,12 +210,12 @@ class RegularExprWrapper extends RegExp {
      * @param {string | number} from - The character from which digit the search starts.
      * @param {string | number } to - The character to which digit the search ends.
      * @param {string} quantifier - The quantifier for the regular expression.
-     * @returns {RegularExprWrapper}
+     * @returns {RegExWrapper}
      */
     findAnyNotBetween(from, to, quantifier) {
-        const fromRegEx = RegularExprWrapper.quote(from);
-        const toRegEx = RegularExprWrapper.quote(to);
-        this.regExp = RegularExprWrapper.compose(
+        const fromRegEx = RegExWrapper.quote(from);
+        const toRegEx = RegExWrapper.quote(to);
+        this.regExp = RegExWrapper.compose(
             `${fromRegEx}-${toRegEx}`,
             quantifier,
             '[^',
@@ -228,11 +228,11 @@ class RegularExprWrapper extends RegExp {
      * Find any of the alternatives specified.
      * @param {string[]} alternatives - An array with all the alternatives.
      * @param {string} quantifier - The quantifier for the regular expression.
-     * @returns {RegularExprWrapper}
+     * @returns {RegExWrapper}
      */
     findAnyAlternative(alternatives, quantifier) {
-        alternatives.every(item => RegularExprWrapper.quote(item));
-        this.regExp = RegularExprWrapper.compose(
+        alternatives.every(item => RegExWrapper.quote(item));
+        this.regExp = RegExWrapper.compose(
             alternatives.join('|'),
             quantifier,
             '(',
@@ -248,16 +248,16 @@ class RegularExprWrapper extends RegExp {
     findAllOf(strings) {
         if (Array.isArray(strings)) {
             for (let i = 0; i < strings.length; i += 1) {
-                this.regExp = RegularExprWrapper.compose(
-                    RegularExprWrapper.quote(strings[i]),
+                this.regExp = RegExWrapper.compose(
+                    RegExWrapper.quote(strings[i]),
                     '+',
                     '(',
                     ')',
                     this.regExp);
             }
         } else {
-            this.regExp = RegularExprWrapper.compose(
-                RegularExprWrapper.quote(strings),
+            this.regExp = RegExWrapper.compose(
+                RegExWrapper.quote(strings),
                 '+',
                 '(',
                 ')',
@@ -298,4 +298,4 @@ class RegularExprWrapper extends RegExp {
     }
 }
 
-module.exports = RegularExprWrapper;
+module.exports = RegExWrapper;
