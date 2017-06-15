@@ -1,5 +1,5 @@
 class RouteObject {
-    constructor({ user, command, operandType, route }) {
+    constructor({ user, command, route }) {
         this.user = user;
         this.command = command;
         this.route = route;
