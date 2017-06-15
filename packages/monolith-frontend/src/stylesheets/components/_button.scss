@@ -8,6 +8,6 @@ button.monolith-button, .monolith-button:link, .monolith-button:visited {
     display: inline-block;
   }
 
-.monolith-button:hover, .monolith-button:active {
+.monolith-button:hover, .monolith-button:focus, .monolith-button:active {
     background-color: $roman;
 }
