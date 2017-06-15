@@ -32,16 +32,26 @@ describe('WebNotification Test Suite', () => {
                 delete global.Notification;
             });
 
-            it('should request for permission', () => {
+            it('should request for permission and receive grants', () => {
                 Notification.permission = 'denied';
-                const spy = sinon.spy(Notification, 'requestPermission');
+                const stub = sinon.stub(Notification, 'requestPermission')
+                    .resolves('granted');
                 new WebNotification().notify();
-                sinon.assert.calledOnce(spy);
+                sinon.assert.calledOnce(stub);
+                Notification.requestPermission.restore();
+            });
+
+            it('should request for permission but not receiving grants', () => {
+                Notification.permission = 'denied';
+                const stub = sinon.stub(Notification, 'requestPermission')
+                    .resolves('denied');
+                new WebNotification().notify();
+                sinon.assert.calledOnce(stub);
                 Notification.requestPermission.restore();
             });
 
             it('should invoke notification', () => {
-                MockNotification.permission = 'granted';
+                Notification.permission = 'granted';
                 const spy = sinon.spy(Notification.prototype, 'foo');
                 new WebNotification().notify();
                 sinon.assert.calledOnce(spy);
