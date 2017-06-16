@@ -5,7 +5,7 @@ ul.monolith-group {
 ul.monolith-group li {
   display: inline-block;
   text-align: left;
-  // qui starebbero bene delle mediaquery che regolano in base alla risoluzione dello schermo
+  // here we should use media queries that takes in account display resolution
   margin-left: 5%;
   margin-right: 5%;
 }
