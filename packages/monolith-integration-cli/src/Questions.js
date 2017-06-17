@@ -25,14 +25,6 @@ const questions = (() => {
         when: answers => answers.defineUser,
     };
 
-    const operandTypeQuestion = {
-        type: 'list',
-        name: 'operandType',
-        message: 'Enter operand type',
-        choices: ['Equals', 'Like'],
-        when: answers => answers.defineUser,
-    };
-
     const addRouteQuestion = {
         type: 'confirm',
         name: 'otherRoutes',
@@ -50,7 +42,6 @@ const questions = (() => {
         commandQuestion,
         defineUserQuestion,
         userRegexQuestion,
-        operandTypeQuestion,
         addRouteQuestion,
         pathQuestion,
         allQuestions: [
@@ -58,7 +49,6 @@ const questions = (() => {
             commandQuestion,
             defineUserQuestion,
             userRegexQuestion,
-            operandTypeQuestion,
             addRouteQuestion,
         ],
     };

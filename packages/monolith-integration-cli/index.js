@@ -13,6 +13,14 @@ const welcomeEnding = 'configuration command-line wizard';
 
 const routesCollection = new RoutesCollection();
 
+let homePath;
+if (process.platform === 'win32') {
+    homePath = process.env.HOMEPATH;
+} else {
+    homePath = process.env.HOME;
+}
+process.chdir(homePath);
+
 console.log(chalk.cyan(welcome),
   chalk.bold.underline.red(monolithBrand),
   chalk.cyan(welcomeEnding));
