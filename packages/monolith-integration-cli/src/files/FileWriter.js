@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const FileWriter = (function iife() {
     const fileProperties = {
@@ -11,7 +12,9 @@ const FileWriter = (function iife() {
               if (error) {
                   reject(error);
               } else {
-                  logger('File written successfully');
+                  logger(`File written successfully at: ${
+                      path.resolve(filePath)
+                  }`);
                   resolve();
               }
           });

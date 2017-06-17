@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "create-routes": "./bin/index"
+    "create-routes": "./bin/index.js"
   },
   "scripts": {
     "coverage": "nyc --reporter=html --reporter=lcov --reporter=text mocha --recursive src",
