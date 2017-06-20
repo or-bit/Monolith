@@ -1,6 +1,6 @@
 {
   "name": "monolith-routing-utils",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Routing utils for monolith-framework",
   "main": "index.js",
   "scripts": {
