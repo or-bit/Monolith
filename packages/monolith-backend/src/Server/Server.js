@@ -2,7 +2,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const http = require('http');
 
-const LifeCycle = require('../Model/LifeCycle/LifeCycle');
+const LifeCycle = require('../LifeCycle/LifeCycle');
 const consts = require('monolith-consts');
 
 class Server {

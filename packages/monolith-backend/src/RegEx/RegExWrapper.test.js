@@ -10,6 +10,11 @@ describe('RegularExp', () => {
             expect(expr).to.have.property('mod');
             expect(expr.toString()).to
                 .equal(RegularExp.defaultRegExp.toString());
+            expect(expr.modifiers).to.deep.equal({
+                g: false,
+                i: false,
+                m: false,
+            });
             expect(expr.modifiers.i)
             .to.equal(expr.modifiers.g)
             .to.equal(expr.modifiers.m)
@@ -49,8 +54,11 @@ describe('RegularExp', () => {
         describe('#findAnyNotOf()', () => {
             it('should return a RegEx like [^string] with quantifier', () => {
                 const res = expr.findAnyNotOf('abc', '*');
-                expect(res).to.be.instanceOf(RegularExp);
                 expect(res.toString()).to.equal('[^abc]*');
+            });
+            it('should return a RegEx like [^string] with quantifier', () => {
+                const res = expr.findAnyNotOf(['ab', 'cd'], '*');
+                expect(res.toString()).to.equal('[^ab]*[^cd]*');
             });
         });
         describe('#findAnyBetween()', () => {
@@ -80,6 +88,10 @@ describe('RegularExp', () => {
                 expect(res).to.be.instanceOf(RegularExp);
                 expect(res.toString()).to.equal('(ab)+(be)+(ci)+');
             });
+            it('should return a RegEx like (s1)+(sN)+ with quantifier', () => {
+                const res = expr.findAllOf('ab');
+                expect(res.toString()).to.equal('(ab)+');
+            });
         });
         describe('a find method with wrong quantifier', () => {
             it('should return a RegEx without quantifier', () => {
@@ -92,11 +104,11 @@ describe('RegularExp', () => {
     describe('#execMatch()', () => {
         it('should return an array if there is a match', () => {
             let expr = new RegularExp();
-            expr.modifiers = { i: true };
+            expr.modifiers = { g: true, i: true, m: true };
             expr = expr.findAnyAlternative(['a', 'b', 'c'], '')
                 .findAnyOf('aeiou', '*');
             expect(expr.toString()).to.equal('(a|b|c)[aeiou]*');
-            expect(expr.modifiersToString()).to.equal('i');
+            expect(expr.modifiersToString()).to.equal('igm');
 
             let array = expr.execMatch('Ciao');
             expect(array[0]).to.equal('Ciao');
@@ -109,7 +121,6 @@ describe('RegularExp', () => {
     describe('#testMatch()', () => {
         it('should return true if there is a match, otherwise false', () => {
             let expr = new RegularExp();
-            expr.modifiers = { i: true };
             expr = expr.findAnyAlternative(['a', 'b', 'c'], '')
                 .findAnyOf('aeiou', '*');
 
@@ -120,6 +131,19 @@ describe('RegularExp', () => {
             res = expr.execMatch('Word');
             console.log(res);
             expect(res).to.not.equal(true);
+        });
+    });
+    describe('testing modifiers setter', () => {
+        it('should be work as designed', () => {
+            const expr = new RegularExp();
+            expr.modifiers = { i: true };
+            expect(expr.modifiers.caseInsensitive).to.equal(true);
+            expr.modifiers = { m: true };
+            expect(expr.modifiers.caseInsensitive).to.equal(false);
+            expect(expr.modifiers.multiline).to.equal(true);
+            expr.modifiers = { g: true };
+            expect(expr.modifiers.multiline).to.equal(false);
+            expect(expr.modifiers.global).to.equal(true);
         });
     });
 });

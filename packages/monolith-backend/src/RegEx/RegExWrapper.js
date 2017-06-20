@@ -31,9 +31,9 @@ class RegExWrapper extends RegExp {
             super(expr);
             this.regExp = (expr !== undefined) ? expr : defaultRegExp;
             this.mod = {
-                i: i !== undefined ? i : false,
-                g: g !== undefined ? g : false,
-                m: m !== undefined ? m : false,
+                i,
+                g,
+                m,
             };
         }
     }
@@ -112,12 +112,18 @@ class RegExWrapper extends RegExp {
     set modifiers({ i = false, g = false, m = false }) {
         if (i) {
             this.modifiers.caseInsensitive = true;
+        } else {
+            this.modifiers.caseInsensitive = false;
         }
         if (g) {
             this.modifiers.global = true;
+        } else {
+            this.modifiers.global = false;
         }
         if (m) {
             this.modifiers.multiline = true;
+        } else {
+            this.modifiers.multiline = false;
         }
     }
 

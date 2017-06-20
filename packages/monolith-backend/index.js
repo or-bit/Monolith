@@ -1,13 +1,13 @@
-const Action = require('./src/Model/Actions/Action');
+const Action = require('./src/Actions/Action');
 const BubbleMemory = require('./src/Bubble/BubbleMemory/BubbleMemory');
-const DataBase = require('./src/Model/DataBase/DataBase');
+const DataBase = require('./src/DataBase/DataBase');
 const IDGenerator = require('./src/IDGenerator/IdGenerator');
-const LifeCycle = require('./src/Model/LifeCycle/LifeCycle');
-const RegularExp = require('./src/Model/RegEx/RegExWrapper');
-const REST = require('./src/Model/ExternalAPI/RESTAPI');
+const LifeCycle = require('./src/LifeCycle/LifeCycle');
+const RegularExp = require('./src/RegEx/RegExWrapper');
+const REST = require('./src/ExternalAPI/RESTAPI');
 const Server = require('./src/Server/Server');
 const StoreProvider = require('./src/Bubble/BubbleMemory/StoreProvider');
-const User = require('./src/Model/User/User');
+const User = require('./src/User/User');
 
 module.exports = {
     Action,

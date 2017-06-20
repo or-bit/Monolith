@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const StoreProvider = require('./StoreProvider');
 const sinon = require('sinon');
 const UninitializedStoreError = require('./UninitializedStoreError');
-const DataBase = require('../../Model/DataBase/DataBase');
+const DataBase = require('../../DataBase/DataBase');
 
 const name = 'myName';
 const changedName = 'yourName';

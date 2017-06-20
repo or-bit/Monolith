@@ -6,7 +6,7 @@ const sinon = require('sinon');
 const consts = require('monolith-consts');
 const Server = require('./Server');
 const common = require('./Server.config.test');
-const LifeCycle = require('../Model/LifeCycle/LifeCycle');
+const LifeCycle = require('../LifeCycle/LifeCycle');
 
 const sandbox = sinon.sandbox.create();
 
