@@ -7,12 +7,12 @@ import GenericBubble from './GenericBubble';
 
 class TestGenericBubble extends GenericBubble {
     aliveRender() {
-        console.log(this.state);
+        super.aliveRender();
         return (<a href="url">test link</a>);
     }
 
     notAliveRender() {
-        console.log(this.state);
+        super.notAliveRender();
         return (
             <img
               src="https://www.w3schools.com/images/w3schools_green.jpg"
