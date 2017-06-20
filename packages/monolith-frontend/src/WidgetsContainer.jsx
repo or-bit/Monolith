@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GUI from './GUI/GUI';
 
-export default function GUIContainer(props) {
+export default function WidgetsContainer(props) {
     return (
         <div className={props.classNames}>
             {props.children}
@@ -10,19 +9,15 @@ export default function GUIContainer(props) {
     );
 }
 
-GUIContainer.propTypes = {
+WidgetsContainer.propTypes = {
     children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.oneOfType([
-            PropTypes.instanceOf(GUI),
-            PropTypes.element,
-        ])),
-        PropTypes.instanceOf(GUI),
+        PropTypes.arrayOf(PropTypes.element),
         PropTypes.element,
     ]),
     classNames: PropTypes.string,
 };
 
-GUIContainer.defaultProps = {
+WidgetsContainer.defaultProps = {
     children: [],
     classNames: 'monolith-container',
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import GUIContainer from './GUIContainer';
+import WidgetsContainer from './WidgetsContainer';
 
-describe('GUIContainer Test Suite', () => {
+describe('WidgetsContainer Test Suite', () => {
     it('should render', () => {
         const childText = 'Some text';
         const childTextComponent = () => (
@@ -17,10 +17,10 @@ describe('GUIContainer Test Suite', () => {
             </div>
            );
         const GUIContainerShallow = shallow(
-            <GUIContainer>
+            <WidgetsContainer>
                 {childButtonComponent()}
                 {childTextComponent()}
-            </GUIContainer>,
+            </WidgetsContainer>,
 );
         const expectedText = `${childButtonText}${childText}`;
         expect(GUIContainerShallow.text()).toEqual(expectedText);

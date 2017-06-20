@@ -1,25 +1,22 @@
-import GUIContainer from './src/GUIContainer';
-import gui from './src/GUI/GUI';
-import * as Charts from './src/GUI/Charts';
-import Button from './src/GUI/Button/Button';
-import CheckBox from './src/GUI/CheckButton/CheckBox';
-import CheckBoxGroup from './src/GUI/CheckButton/CheckBoxGroup';
-import DropDownList from './src/GUI/DropDownList/DropDownList';
-import Error from './src/GUI/Error/GenericError';
+import WidgetsContainer from './src/WidgetsContainer';
+import * as Charts from './src/Widgets/Charts';
+import Button from './src/Widgets/Button/Button';
+import CheckBox from './src/Widgets/CheckButton/CheckBox';
+import CheckBoxGroup from './src/Widgets/CheckButton/CheckBoxGroup';
+import DropDownList from './src/Widgets/DropDownList/DropDownList';
+import Error from './src/Widgets/Error/GenericError';
 import GenericBubble from './src/Bubble/GenericBubble';
-import Image from './src/GUI/Image/Image';
-import InputFile from './src/GUI/InputFile/InputFile';
-import InputText from './src/GUI/InputText/InputText';
-import Label from './src/GUI/Label/Label';
-import RadioButton from './src/GUI/RadioButton/RadioButton';
-import RadioButtonGroup from './src/GUI/RadioButton/RadioButtonGroup';
-import TextEdit from './src/GUI/TextEdit/TextEdit';
-import TextView from './src/GUI/TextView/TextView';
+import Image from './src/Widgets/Image/Image';
+import InputFile from './src/Widgets/InputFile/InputFile';
+import InputText from './src/Widgets/InputText/InputText';
+import Label from './src/Widgets/Label/Label';
+import RadioButton from './src/Widgets/RadioButton/RadioButton';
+import RadioButtonGroup from './src/Widgets/RadioButton/RadioButtonGroup';
+import TextEdit from './src/Widgets/TextEdit/TextEdit';
+import TextView from './src/Widgets/TextView/TextView';
 import WebNotification from './src/Notification/WebNotification';
 
 export {
-    GUIContainer,
-    gui,
     Button,
     Charts,
     CheckBox,
@@ -36,4 +33,5 @@ export {
     TextEdit,
     TextView,
     WebNotification,
+    WidgetsContainer,
 };
