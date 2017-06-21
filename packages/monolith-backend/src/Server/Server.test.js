@@ -163,7 +163,7 @@ describe('Server Test Suite', () => {
                         common.lifeCycleOk, () => done());
                 });
 
-                client = createFakeClients('./Store.test.js', 1);
+                client = createFakeClients('./Bubble.test.js', 1);
             }).timeout(5000);
         });
 
@@ -188,7 +188,7 @@ describe('Server Test Suite', () => {
 
                 server.onDisconnection(() => console.log('disconnected'));
 
-                client = createFakeClients('./Store.test.js', -10);
+                client = createFakeClients('./Bubble.test.js', -10);
             }).timeout(5000);
         });
 
@@ -206,7 +206,7 @@ describe('Server Test Suite', () => {
                         common.lifeCycleOk, () => done());
                 });
 
-                client = createFakeClients('./Store.test.js', 0);
+                client = createFakeClients('./Bubble.test.js', 0);
             }).timeout(5000);
         });
 
@@ -230,7 +230,7 @@ describe('Server Test Suite', () => {
                 });
 
 
-                client = createFakeClients('./Store.test.js', 1);
+                client = createFakeClients('./Bubble.test.js', 1);
             }).timeout(5000);
         });
     });
