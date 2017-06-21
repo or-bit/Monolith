@@ -31,7 +31,7 @@ class Server {
                 } else {
                     let returnMessage;
                     if (timeNumber === 0) {
-                        returnMessage = 'Warning: Bubble lifetime disabled';
+                        returnMessage = 'Warning: Store lifetime disabled';
                     } else {
                         returnMessage = 'Invalid time interval';
                     }
