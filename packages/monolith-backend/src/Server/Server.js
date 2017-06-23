@@ -5,13 +5,29 @@ const http = require('http');
 const LifeCycle = require('../LifeCycle/LifeCycle');
 const consts = require('monolith-consts');
 
+/**
+ * @class Server - Manage the app and the socket connection.
+ * @property {Object} App
+ * @property {Object} server
+ * @property {Object} socket
+ */
 class Server {
+    /**
+     * Create a server.
+     * @property {Object} App - Create an express app.
+     * @property {Object} server - Create an http server associated with the express app.
+     * @property {Object} socket - Enable web socket request.
+     */
     constructor() {
         this.app = express();
         this.server = http.createServer(this.app);
         this.socket = socketIO(this.server);
     }
 
+    /**
+     * Enable server function giving the assigned port.
+     * @param port - Server port.
+     */
     open(port) {
         this.server.listen(port);
         const room = this.socket.of(consts.BUBBLE_ROOM);
@@ -45,11 +61,19 @@ class Server {
         });
     }
 
+    /**
+     * Close server.
+     */
     close() {
         this.socket.close();
         this.server.close();
     }
 
+    /**
+     * Manage the connection.
+     * @param functionToCall - Specify function to call in connection.
+     * @param functionArgs - Define argument of fanction.
+     */
     onConnection(functionToCall, functionArgs) {
         this.socket.on(
           'connection',
@@ -57,6 +81,11 @@ class Server {
         );
     }
 
+    /**
+     * Manage the disconnection.
+     * @param functionToCall - Specify function to call in disconnection.
+     * @param functionArgs - Define argument of fanction.
+     */
     onDisconnection(functionToCall, functionArgs) {
         this.socket.on('connection', (clientSocket) => {
             clientSocket.on(
@@ -75,18 +104,32 @@ class Server {
         this.socket.sockets.emit(event, payload);
     }
 
+    /**
+     * Return socket value.
+     */
     getSocket() {
         return this.socket;
     }
 
+    /**
+     * Return express app .
+     */
     getExpress() {
         return this.app;
     }
 
+    /**
+     * Return http server.
+     */
     getHTTPServer() {
         return this.server;
     }
 
+    /**
+     * set server directory from path.
+     * @param path
+     * @param dir
+     */
     serveStaticFiles(path, dir) {
         this.app.use(path, express.static(dir));
     }

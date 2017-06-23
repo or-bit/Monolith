@@ -8,6 +8,10 @@ import {
     YAxis,
 } from 'recharts';
 
+/**
+ * @class BarChart - Defines a bar chart graphic.
+ * @extends BarReChart
+ */
 class BarChart extends BarReChart {
     /**
      * For the documentation and examples go to http://recharts.org

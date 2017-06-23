@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @module Error - Manage default error.
+ * @param props
+ * @returns {XML}
+ * @constructor
+ */
 export default function Error(props) {
     let pre;
 

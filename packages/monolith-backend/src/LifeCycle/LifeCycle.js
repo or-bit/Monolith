@@ -1,9 +1,21 @@
+/**
+ * @class LifeCycle - Class that defines in second bubble's lifetime.
+ * @property {Object} timer
+ * @property {float} timeout
+ */
 class LifeCycle {
+    /**
+     * Create a life cycle.
+     * @param {sec} - Time in seconds.
+     */
     constructor(sec = null) {
         this.tm = sec * 1000;
         this.timer = null;
     }
 
+    /**
+     * Start LyfeCycle's timer.
+     */
     start() {
         return new Promise((resolve, reject) => {
             if (this.timer === null) {
@@ -14,10 +26,16 @@ class LifeCycle {
         });
     }
 
+    /**
+     * Get timeout value.
+     */
     get timeout() {
         return this.tm;
     }
 
+    /**
+     * Set timeout value.
+     */
     set timeout(sec) {
         this.tm = sec;
     }

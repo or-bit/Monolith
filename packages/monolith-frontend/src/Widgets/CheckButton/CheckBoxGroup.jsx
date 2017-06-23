@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CheckBox from './CheckBox';
 
+/**
+ * @class CheckBoxGroup - Defines a group of check box graphic element.
+ * @extends Component
+ * @property {Object} bottons
+ * @property {string} className
+ */
 export default class CheckBoxGroup extends Component {
     // onCheckedChange(object) {
     //     console.log(object);
     // }
 
+    /**
+     * Returns a group of buttons ordered in array.
+     * @returns {Array}
+     */
     processInput() {
         return this.props.buttons.map(
             ({ name, value, label, checked }) =>
@@ -24,6 +34,10 @@ export default class CheckBoxGroup extends Component {
           );
     }
 
+    /**
+     * Render a check box group.
+     * @returns {XML}
+     */
     render() {
         const buttons = this.processInput();
         return (

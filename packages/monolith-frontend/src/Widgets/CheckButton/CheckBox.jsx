@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @class CheckBox - Defines a check box graphic element.
+ * @extends Component
+ * @property {Object} props
+ * @property {string} props.name
+ * @property {string} props.value
+ * @property {boolean} props.checked
+ * @property {string} props.label
+ */
 export default class CheckBox extends Component {
+    /**
+     *Create a check box element.
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -9,11 +22,20 @@ export default class CheckBox extends Component {
             checked: props.checked,
         };
     }
+
+    /**
+     * Manage click event.
+     */
     handleClick() {
         this.setState({
             checked: !this.state.checked,
         });
     }
+
+    /**
+     * Render check box.
+     * @returns {XML}
+     */
     render() {
         return (
             <div>

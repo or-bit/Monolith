@@ -3,6 +3,15 @@ import PropTypes from 'prop-types';
 
 import Error from '../Error/GenericError';
 
+/**
+ * @class DropDownList - Defines a drop down list.
+ * @extends Component
+ * @property {Object} props
+ * @property {Object} props.values
+ * @property {string} props.className
+ * @property {string} props.errorClassName
+ * @property {Object} props.onSelectionChange
+ */
 export default class DropDownList extends Component {
     // expected data: label and optionValue are required, selected is not required (default false)
     /*
@@ -17,6 +26,11 @@ export default class DropDownList extends Component {
             optionValue: 'value2'
         }
      */
+
+    /**
+     * Create a drop down list.
+     * @param props
+     */
     constructor(props) {
         super(props);
 
@@ -27,6 +41,10 @@ export default class DropDownList extends Component {
         };
     }
 
+    /**
+     * Check if list has duplicate values.
+     * @returns {boolean}
+     */
     hasDuplicateValues() {
         const input = this.props.values;
         const helperSet = new Set();
@@ -35,6 +53,10 @@ export default class DropDownList extends Component {
           helperSet.size === helperSet.add(optionValue).size);
     }
 
+    /**
+     * Return an array of label with values.
+     * @returns {Array}
+     */
     processInput() {
         const input = this.props.values;
         return input.map(({ label, optionValue }) => (
@@ -47,6 +69,10 @@ export default class DropDownList extends Component {
             ));
     }
 
+    /**
+     * Manage the change event.
+     * @param event
+     */
     handleChange(event) {
         const newValue = event.target.value;
         this.setState({
@@ -55,6 +81,10 @@ export default class DropDownList extends Component {
         this.props.onSelectionChange(newValue, event);
     }
 
+    /**
+     * Renders drop down list.
+     * @returns {XML}
+     */
     render() {
         const input = this.props.values;
         const errorMessage =

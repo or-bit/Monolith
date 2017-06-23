@@ -1,11 +1,23 @@
 const createStore = require('redux').createStore;
 const UninitializedStoreError = require('./UninitializedStoreError');
 
+/**
+ * This module creates store provider.
+ * @module monolith-backend/StoreProvider
+ */
+
 // Singleton pattern alike: ref http://2ality.com/2011/04/singleton-pattern-in-javascript-not.html
 const StoreProvider = {
 
     defaultStoreCollection: 'store',
 
+    /**
+     * Initializes store giving reducer and initial state and database
+     * @param reducers
+     * @param initialState
+     * @param db
+     * @returns {Promise}
+     */
     initStore(reducers, initialState, db) {
         return new Promise((resolve) => {
             const create =
@@ -43,6 +55,10 @@ const StoreProvider = {
         });
     },
 
+    /**
+     * Update databases.
+     * @param db
+     */
     // TODO move to "private" namespace
     persistStateToDB(db) {
         this.store.subscribe(() => {
@@ -58,6 +74,11 @@ const StoreProvider = {
         });
     },
 
+    /**
+     * Recover state from Database.
+     * @param db
+     * @returns {Promise}
+     */
     fetchStateFromDB(db) {
         return new Promise((resolve, reject) => {
             db.findOne(this.defaultStoreCollection, {})
@@ -70,6 +91,10 @@ const StoreProvider = {
         });
     },
 
+    /**
+     * Return store.
+     * @returns {store}
+     */
     getStore() {
         if (!this.store) {
             throw new UninitializedStoreError();
@@ -77,6 +102,9 @@ const StoreProvider = {
         return this.store;
     },
 
+    /**
+     * Reset Store.
+     */
     resetStore() {
         this.store = null;
     },

@@ -3,13 +3,26 @@ const PropTypes = require('prop-types');
 const consts = require('monolith-consts');
 const io = require('socket.io-client');
 
+/**
+ * @class GenericBubble - Defines an empty generic bubble.
+ * @extends React.Component
+ * @property {Object} props
+ */
 class GenericBubble extends React.Component {
+
+    /**
+     * Create an empty bubble defines life cycle and set state on active.
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.handleLifeCycle();
         this.state = { alive: true };
     }
 
+    /**
+     * Manage bubble's life cycle.
+     */
     handleLifeCycle() {
         if (this.props.url) {
             const { url, time } = this.props;
@@ -35,6 +48,10 @@ class GenericBubble extends React.Component {
     // eslint-disable-next-line class-methods-use-this
     notAliveRender() {}
 
+    /**
+     * Renders bubble if state is alive.
+     * @returns {*}
+     */
     render() {
         if (this.state.alive) {
             return this.aliveRender();

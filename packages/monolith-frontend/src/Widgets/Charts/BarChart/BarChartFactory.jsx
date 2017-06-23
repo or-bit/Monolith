@@ -14,6 +14,11 @@ import Error from '../../Error/GenericError';
 
 import ChartUtils from '../ChartUtils';
 
+/**
+ * This module creates istances of bar chart.
+ * @module monolith-frontend/Widgets/Charts/BarChart/BarChartFactory
+ * @type {{validateColors, validateKeys, validateSize, validateData, createBarChart}}
+ */
 // IIFE used as Revealing module pattern
 const BarChartFactory = (function iife() {
     const validateData = array => ChartUtils.isArrayOfObjects(array);

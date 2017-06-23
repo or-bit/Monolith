@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @class TextEdit - Defines a text edit element.
+ * @extends Component
+ * @property {Object} props
+ * @property {string} props.name
+ * @property {string} props.value
+ * @property {string} props.label
+ * @property {Object} props.OnTextChange
+ * @property {string} props.className
+ */
 export default class TextEdit extends Component {
+    /**
+     * Create a text edit element.
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -9,11 +23,20 @@ export default class TextEdit extends Component {
         };
     }
 
+    /**
+     * Manage changing event.
+     * @param event
+     */
     handleChange(event) {
         const newValue = event.target.value;
         this.setState({ value: newValue });
         this.props.onTextChange(newValue, event);
     }
+
+    /**
+     * Renders a text edit element.
+     * @returns {XML}
+     */
     render() {
         return (
             <div className={this.props.classNames}>

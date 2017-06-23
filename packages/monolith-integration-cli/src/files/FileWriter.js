@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * This module allows you to write on file .
+ * @module monolith-integration-cli/FileWriter
+ * @type {{fileProperties, writeFile}}
+ */
 const FileWriter = (function iife() {
     const fileProperties = {
         encoding: 'utf8',

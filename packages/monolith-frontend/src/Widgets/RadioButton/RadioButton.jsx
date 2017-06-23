@@ -3,7 +3,21 @@ import { PropTypes } from 'prop-types';
 
 import Image from '../Image/Image';
 
+/**
+ * @class RadioButton - Defines a radio button graphic element.
+ * @extends Component
+ * @property {Object} props
+ * @property {Object} props.onChangeCallback
+ * @property {Object} props.value
+ * @property {string} props.groupName
+ * @property {boolean} props.checked
+ * @property {string} props.label
+ */
 export default class RadioButton extends Component {
+    /**
+     * Create a radio button element.
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.value = props.value;
@@ -21,12 +35,19 @@ export default class RadioButton extends Component {
         }
     }
 
+    /**
+     * Manage change event.
+     */
     handleChange() {
         if (this.optional.onChangeCallback) {
             this.optional.onChangeCallback();
         }
     }
 
+    /**
+     * Render the radio button.
+     * @returns {XML}
+     */
     render() {
         return (
             <div>

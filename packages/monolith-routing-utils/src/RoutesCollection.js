@@ -1,13 +1,29 @@
+/**
+ * @class RouteObject - Class that defines a collection of route.
+ */
 class RoutesCollection {
+    /**
+     * Create route collection.
+     */
     constructor() {
         this.collection = [];
     }
 
+    /**
+     * Add a new route to collection.
+     * @param routeObject
+     * @returns {RoutesCollection}
+     */
     add(routeObject) {
         this.collection.push(routeObject);
         return this;
     }
 
+    /**
+     * Returns a route giving an index.
+     * @param index
+     * @returns {*}
+     */
     get(index) {
         if (index >= 0 && index < this.size()) {
             return this.collection[index];
@@ -15,6 +31,11 @@ class RoutesCollection {
         throw new Error('Invalid index argument.');
     }
 
+    /**
+     * Remove a route from collection giving the relative index.
+     * @param index
+     * @returns {RoutesCollection}
+     */
     remove(index) {
         if (index >= 0 && index < this.size()) {
             this.collection.splice(index, 1);
@@ -22,15 +43,27 @@ class RoutesCollection {
         return this;
     }
 
+    /**
+     * Clear an return the collection.
+     * @returns {RoutesCollection}
+     */
     clear() {
         this.collection.splice(0, this.size());
         return this;
     }
 
+    /**
+     * Returns size of collection.
+     * @returns {Number}
+     */
     size() {
         return this.collection.length;
     }
 
+    /**
+     * Transform route collection in string.
+     * @returns {string}
+     */
     serialize() {
         const serializedRoutes = this.collection.map(
           entry => entry.serialize('    ')

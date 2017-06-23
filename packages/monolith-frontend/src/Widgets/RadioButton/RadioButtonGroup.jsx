@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import RadioButton from './RadioButton';
 
+/**
+ * @class RadioButtonsGroup - Defines a group of radio buttons graphic element.
+ * @extends Component
+ * @property {Object} bottons
+ * @property {string} groupName
+ * @property {string} className
+ */
 export default class RadioButtonsGroup extends Component {
+    /**
+     * Create a group of radio buttons.
+     */
     constructor() {
         super();
         this.state = {
@@ -11,6 +21,9 @@ export default class RadioButtonsGroup extends Component {
         };
     }
 
+    /**
+     * Filters buttons that are checked.
+     */
     componentWillMount() {
         const checkedButtons = this.props.buttons.filter(
             ({ checked }) => checked === true);
@@ -18,10 +31,18 @@ export default class RadioButtonsGroup extends Component {
         this.setState({ selected });
     }
 
+    /**
+     * Manage check event.
+     * @param value
+     */
     onCheckedChange(value) {
         this.setState({ selected: value });
     }
 
+    /**
+     * Returns a group of buttons ordered in array.
+     * @returns {Array}
+     */
     processInput() {
         return this.props.buttons.map(
             ({ value, label, checked }) => (
@@ -41,6 +62,10 @@ export default class RadioButtonsGroup extends Component {
             ));
     }
 
+    /**
+     * Render a radio buttons group.
+     * @returns {XML}
+     */
     render() {
         const buttons = this.processInput();
         return (

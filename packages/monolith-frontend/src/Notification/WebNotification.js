@@ -1,10 +1,26 @@
+/**
+ * @class WebNotification - Class that allows you to use web notification.
+ * @property {string} title
+ * @property {string} body
+ * @property {string} iconUrl
+ */
 export default class WebNotification {
+    /**
+     * Defines an istance of web notification
+     * @param title
+     * @param body
+     * @param iconUrl
+     */
     constructor(title, body, iconUrl) {
         this.title = title;
         this.body = body;
         this.iconUrl = iconUrl;
     }
 
+    /**
+     *  Returns the web notification to render.
+     * @returns {Notification}
+     */
     createNotification() {
         return new Notification(
             this.title,
@@ -12,6 +28,10 @@ export default class WebNotification {
         );
     }
 
+    /**
+     * Manage the notification.
+     * @returns {Notification}
+     */
     notify() {
         if (Notification.permission !== 'granted') {
             Notification.requestPermission()
