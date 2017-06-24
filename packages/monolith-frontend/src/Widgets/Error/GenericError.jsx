@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 /**
  * Manage default error.
  * @module Error
- * @param props
- * @param props.className [monolith-error] {string}
- * @param props.errorMessage {string}
+ * @param props Properties of the component
+ * @param props.className [monolith-error] {string} Name of the class given to the <div> containing the error's message
+ * @param props.errorMessage {string} The error's message
  * @param props.input [undefined] {Array | Object}
  * @returns {React.Component}
  * @constructor

@@ -1,5 +1,5 @@
 /**
- * @class Class for representing action.
+ * @class Class used to represent an action.
  * @property type {string}
  * @property payload {Object}
  */
@@ -7,7 +7,7 @@ class Action {
     /**
      * Create an action.
      * @param type {string} Defines action's type.
-     * @param payload {Object} Data on which execute action.
+     * @param payload {Object} Data on which the action gets executed.
      */
     constructor({ type, payload }) {
         this.type = type;
@@ -15,7 +15,7 @@ class Action {
     }
 
     /**
-     * Return action as a plain object.
+     * Return an action as a plain object.
      */
     asPlainObject() {
         return {
@@ -27,7 +27,7 @@ class Action {
     /**
      * Simulate another simpler constructor
      * @param type {string} Action type
-     * @param payload {Object} Data on which execute action.
+     * @param payload {Object} Data on which the action gets executed.
      * @returns {Action}
      */
     static create(type, payload) {

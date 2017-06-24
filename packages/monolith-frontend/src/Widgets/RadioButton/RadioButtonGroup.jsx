@@ -6,9 +6,9 @@ import RadioButton from './RadioButton';
 /**
  * @class Defines a group of radio buttons graphic element.
  * @extends React.Component
- * @property buttons {Object}
- * @property groupName {string}
- * @property className {string}
+ * @property buttons {Object} Object containing the information needed to make the radio buttons
+ * @property groupName {string} Name of the group of radio buttons
+ * @property className {string} Name given to the class of the <ul> containing the radio buttons
  */
 export default class RadioButtonsGroup extends Component {
     /**

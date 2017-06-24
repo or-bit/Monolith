@@ -1,15 +1,15 @@
 /**
- * @class Class that allows you to use web notification.
- * @property title {string}
- * @property body {string}
- * @property iconUrl {string}
+ * @class Class that allows you to use a web notification.
+ * @property title {string} The notification's title
+ * @property body {string} The notification's body
+ * @property iconUrl {string} The URL where to find the notification's icon
  */
 export default class WebNotification {
     /**
      * Defines an instance of web notification
-     * @param title {string}
-     * @param body {string}
-     * @param iconUrl {string}
+     * @param title {string} The notification's title
+     * @param body {string} The notification's body
+     * @param iconUrl {string} The URL where to find the notification's icon
      */
     constructor(title, body, iconUrl) {
         this.title = title;

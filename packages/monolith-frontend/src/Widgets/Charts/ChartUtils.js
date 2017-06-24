@@ -5,7 +5,7 @@
  */
 const ChartUtils = (() => {
     /**
-     * Checks whether the items of a given array have a given type.
+     * Checks whether an array's items are of a given type.
      * @function isArrayOfType
      * @param array {Array} Array to validate
      * @param type {string} Type to check
@@ -17,14 +17,14 @@ const ChartUtils = (() => {
     );
 
     /**
-     * Checks whether the items of a given array have type string.
+     * Checks whether an array's items have type string.
      * @function isArrayOfStrings
      * @param array {Array} Array to validate
      */
     const isArrayOfStrings = array => isArrayOfType(array, 'string');
 
     /**
-     * Checks whether the items of a given array have type Object.
+     * Checks whether an array's items have type Object.
      * @function isArrayOfObjects
      * @param array {Array} Array to validate
      */

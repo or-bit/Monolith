@@ -1,5 +1,5 @@
 /**
- * @class Class that defines a collection of route.
+ * @class Class that defines a collection of routes.
  */
 class RoutesCollection {
     /**

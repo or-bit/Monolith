@@ -1,7 +1,7 @@
 const defaultRegExp = /(?:)/;
 
 /**
- * @class Class for representing regular expression.
+ * @class Class for representing regular expressions.
  * @extends RegExp
  * @property {Object} modifiers
  * @property {boolean} modifiers.caseInsensitive
@@ -11,11 +11,11 @@ const defaultRegExp = /(?:)/;
 class RegExWrapper extends RegExp {
     /**
      * Create a regular expression.
-     * @param {string | RegExp} [expr] - Regular expression as a RegExp or a string.
-     * If this parameter is an instance of RegExp, the following parameters are ignored.
-     * @param {boolean} [i] - Specify if the search is case insensitive.
-     * @param {boolean} [g] - Perform a global search (find all matches).
-     * @param {boolean} [m] - Perform multiline matching.
+     * @param {string | RegExp} [expr] - Regular expression as a RegExp or a string
+     * If this parameter is an instance of RegExp, the following parameters are ignored
+     * @param {boolean} [i] - Specify if the search is case insensitive
+     * @param {boolean} [g] - Perform a global search (find all matches)
+     * @param {boolean} [m] - Perform multiline matching
      */
     constructor(expr, { i = false, g = false, m = false } = {}) {
         if (expr instanceof RegExp) {
@@ -55,7 +55,7 @@ class RegExWrapper extends RegExp {
     }
 
     /**
-     * Escape the special characters in the string
+     * Escape the special characters in the string.
      * @param str {string} string to quote
      * @returns {string}
      */
@@ -64,15 +64,15 @@ class RegExWrapper extends RegExp {
     }
 
   /**
-   * Compose the regular expression from the parameters given.
-   * @param {string} string - The string to search or the array
-   * that contains a sequence of characters.
-   * @param {string} quantifier - The quantifier for the regular expression.
-   * @param {string} openBracket - A string with the firsts characters of the expression.
-   * @param {string} closeBracket - A string with the last characters of the expression.
-   * @param {string} regExp - The regular expression to update.
+   * Compose the regular expression from the given parameters.
+   * @param {string} string - The string to search or an array
+   * that contains a sequence of characters
+   * @param {string} quantifier - The quantifier for the regular expression
+   * @param {string} openBracket - A string with the first characters of the expression
+   * @param {string} closeBracket - A string with the last characters of the expression
+   * @param {string} regExp - The regular expression to update
    * @returns {string} - A concatenation of the elements that is the regular expression,
-   * like RegExp expected it to be.
+   * like RegExp expected it to be
    */
     static compose(string, quantifier, openBracket, closeBracket, regExp) {
         let re = regExp;
@@ -91,7 +91,7 @@ class RegExWrapper extends RegExp {
     }
 
     /**
-     * Get the string with the modifiers
+     * Get the string with the modifiers.
      * @return {string}
      */
     modifiersToString() {
@@ -143,9 +143,9 @@ class RegExWrapper extends RegExp {
 
     /**
      * Find any of the characters included in string.
-     * @param {string | string[]} string - The string or the array of sequence of
-     * characters to search.
-     * @param {string} quantifier - The quantifier for the regular expression.
+     * @param {string | string[]} string - The string or the array containing the sequence of
+     * characters to search
+     * @param {string} quantifier - The quantifier for the regular expression
      * @returns {RegExWrapper} - A matchRegularExpr
      */
     findAnyOf(string, quantifier) {
@@ -170,10 +170,10 @@ class RegExWrapper extends RegExp {
     }
 
     /**
-     * Find any of the characters not included in string
-     * @param {string | string[]} string - The string to search or the array that contains
-     * a sequence of characters.
-     * @param {string} quantifier - The quantifier for the regular expression.
+     * Find any of the characters not included in the string.
+     * @param {string | string[]} string - The string to search for or the array that contains
+     * a sequence of characters
+     * @param {string} quantifier - The quantifier for the regular expression
      * @returns {RegExWrapper}
      */
     findAnyNotOf(string, quantifier) {
@@ -198,10 +198,10 @@ class RegExWrapper extends RegExp {
     }
 
     /**
-     * Find any character included in the interval between from and to
-     * @param {string | number} from - The character from which digit the search starts.
-     * @param {string} to - The character to which digit the search ends.
-     * @param {string} quantifier - The quantifier for the regular expression.
+     * Find any character included in the interval between from and to.
+     * @param {string | number} from - The character from whose digit the search starts
+     * @param {string} to - The character to whose digit the search ends
+     * @param {string} quantifier - The quantifier for the regular expression
      * @returns {RegExWrapper}
      */
     findAnyBetween(from, to, quantifier) {
@@ -218,9 +218,9 @@ class RegExWrapper extends RegExp {
 
     /**
      * Find any character not included in the interval between from and to.
-     * @param {string | number} from - The character from which digit the search starts.
-     * @param {string | number } to - The character to which digit the search ends.
-     * @param {string} quantifier - The quantifier for the regular expression.
+     * @param {string | number} from - The character from whose digit the search starts
+     * @param {string | number } to - The character to whose digit the search ends
+     * @param {string} quantifier - The quantifier for the regular expression
      * @returns {RegExWrapper}
      */
     findAnyNotBetween(from, to, quantifier) {
@@ -237,8 +237,8 @@ class RegExWrapper extends RegExp {
 
     /**
      * Find any of the alternatives specified.
-     * @param {string[]} alternatives - An array with all the alternatives.
-     * @param {string} quantifier - The quantifier for the regular expression.
+     * @param {string[]} alternatives - An array with all the alternatives
+     * @param {string} quantifier - The quantifier for the regular expression
      * @returns {RegExWrapper}
      */
     findAnyAlternative(alternatives, quantifier) {
@@ -254,7 +254,7 @@ class RegExWrapper extends RegExp {
 
     /**
      * Find all the strings in order but not adjacent, at least one timeout each.
-     * @param {string | string[]} strings - The string(s) to search for.
+     * @param {string | string[]} strings - The string(s) to search for
      */
     findAllOf(strings) {
         if (Array.isArray(strings)) {
@@ -278,7 +278,7 @@ class RegExWrapper extends RegExp {
     }
 
     /**
-     * Return the regular expression as a string
+     * Return the regular expression as a string.
      * @returns {string}
      */
     toString() {
@@ -287,17 +287,17 @@ class RegExWrapper extends RegExp {
 
     /**
      * Test for a match in a string.
-     * @param {string} string - The string to be searched.
+     * @param {string} string - The string to be searched
      * @returns {Array|{index: number, input: string}} - An array containing the matched
-     * text if it finds a match, otherwise it returns null
+     * text if a match is found, otherwise it returns null
      */
     execMatch(string) {
         return new RegExp(this.regExp, this.modifiersToString()).exec(string);
     }
 
     /**
-     * Test for a match in a string
-     * @param {string} string - The string to be searched.
+     * Test for a match in a string.
+     * @param {string} string - The string to be searched
      * @returns {boolean} - Returns true if it finds a match, otherwise it returns false
      */
     testMatch(string) {
@@ -305,7 +305,7 @@ class RegExWrapper extends RegExp {
     }
 
     /**
-     * Clean the regular expression
+     * Clean the regular expression.
      */
     clean() {
         this.regExp = '';

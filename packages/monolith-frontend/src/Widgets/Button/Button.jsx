@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * This module creates instance of button.
+ * This module creates an instance of a button.
  * @module Button
- * @property props {Object}
+ * @property props {Object} the component's properties
  * @property props.callback [() => {}] {function} Callback to execute on click event
  * @property props.className [''] {string} Class for the component
  * @property props.text {string} Value of the button
- * @property props.url [undefined] {string} If defined, the url of the button.
+ * @property props.url [undefined] {string} If defined, the button's url
  * @constructor
  */
 const Button = props => (

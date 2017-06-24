@@ -19,17 +19,17 @@ import ChartUtils from '../ChartUtils';
  * @module BarChartFactory
  * @type {{validateColors, validateKeys, validateSize, validateData, createBarChart}}
  */
-// IIFE used as Revealing module pattern
+// IIFE used as a Revealing module pattern
 const BarChartFactory = (function iife() {
     /**
-     * Check if items of the array are objects
+     * Check if the array's items are objects.
      * @function validateData
-     * @param array {Array}
+     * @param array {Array} - the array containing the items
      */
     const validateData = array => ChartUtils.isArrayOfObjects(array);
 
     /**
-     * Check if width and height are numbers
+     * Check if width and height are numbers.
      * @function validateSize
      * @param width {Object}
      * @param height {Object}
@@ -39,7 +39,7 @@ const BarChartFactory = (function iife() {
     );
 
     /**
-     * Check if xAxisDataKey is a string and yAxisDataKeys is an array of strings
+     * Check if xAxisDataKey is a string and yAxisDataKeys is an array of strings.
      * @function validateKeys
      * @param xAxisDataKey {Object}
      * @param yAxisDataKeys {Array}
@@ -50,7 +50,7 @@ const BarChartFactory = (function iife() {
     );
 
     /**
-     * Check if colors is an array of strings
+     * Check if colors is an array of strings.
      * @function validateColors
      * @param colors {Array}
      */
@@ -60,7 +60,7 @@ const BarChartFactory = (function iife() {
      * Requires height to have been validated using validateSize().
      * @function getHeight
      * @param height {number}
-     * @returns {number} Height of the BarChart.
+     * @returns {number} Height of the BarChart
      */
      // eslint-disable-next-line arrow-body-style
     const getHeight = (height) => {
@@ -71,7 +71,7 @@ const BarChartFactory = (function iife() {
      * Requires width to have been validated using validateSize().
      * @function getWidth
      * @param width {number}
-     * @returns {number} Width of the BarChart.
+     * @returns {number} Width of the BarChart
      */
      // eslint-disable-next-line arrow-body-style
     const getWidth = (width) => {

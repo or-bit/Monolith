@@ -1,12 +1,12 @@
 /**
- * @class Class that defines in second bubble's lifetime.
+ * @class Class that defines the bubble's lifetime in seconds.
  * @property {Object} timer
  * @property {float} timeout
  */
 class LifeCycle {
     /**
      * Create a life cycle.
-     * @param {sec} - Time in seconds.
+     * @param {sec} - Time in seconds
      */
     constructor(sec = null) {
         this.tm = sec * 1000;

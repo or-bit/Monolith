@@ -6,12 +6,12 @@ import Image from '../Image/Image';
 /**
  * @class Defines a radio button graphic element.
  * @extends React.Component
- * @property props {Object}
- * @property props.onChangeCallback {function}
- * @property props.value {string | Image}
- * @property props.groupName {string}
- * @property props.checked {boolean}
- * @property props.label {string}
+ * @property props {Object} Properties of the component
+ * @property props.onChangeCallback {function} Function called on change
+ * @property props.value {string | Image} Value of the button
+ * @property props.groupName {string} Name of the group
+ * @property props.checked {boolean} State of the button
+ * @property props.label {string} Label of the button
  */
 export default class RadioButton extends Component {
     /**

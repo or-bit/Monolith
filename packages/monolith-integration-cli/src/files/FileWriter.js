@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 /**
- * This module allows you to write on file.
+ * This module allows you to write on a file.
  * @module FileWriter
  * @type {{fileProperties, writeFile}}
  */

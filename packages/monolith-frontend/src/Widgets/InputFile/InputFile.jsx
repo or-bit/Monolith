@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 /**
  * This module allows you to insert an InputFile.
  * @module InputFile
- * @param props {Object}
- * @param props.id {string}
+ * @param props {Object} Properties of the component
+ * @param props.id {string} The file's ID
  * @returns {React.Component}
  * @constructor
  */

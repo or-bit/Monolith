@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * This module allows you to create a widgets container.
  * @module WidgetsContainer
- * @param props {Object}
+ * @param props {Object} Properties of the component
  * @param props.classNames {string} Class for the elements
  * @param props.children {React.Component[]} Elements to be contained
  * @returns {React.Component}

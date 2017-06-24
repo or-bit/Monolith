@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * @class Defines a text edit element.
  * @extends Component
- * @property props {Object}
+ * @property props {Object} Properties of the component
  * @property props.name {string} Name of the component (necessary for the form)
  * @property props.value ['default-value'] {string} Value to display
  * @property props.label ['default-value'] {string} Label for the tag

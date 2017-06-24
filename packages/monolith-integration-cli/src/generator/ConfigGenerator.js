@@ -19,7 +19,7 @@ const configurationGenerator = (function iife() {
     };
 
     /**
-     * Generates a configuration for the routes
+     * Generates a configuration for the routes.
      * @function generateRoutesConfiguration
      * @param routesCollection
      * @param jsonConfiguration

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * This module allows you to create text view.
  * @module TextView
- * @param props {Object}
+ * @param props {Object} Properties of the component
  * @param props.class [''] {string} Class for the component
  * @param props.text [''] {string} Text to visualize
  * @returns {React.Component}

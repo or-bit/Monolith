@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 /**
  * This module allows you to insert images.
  * @module Image
- * @param caption {string} Description of
- * @param src {string}
+ * @param caption {string} Description of the image
+ * @param src {string} Specifies the url of the image
  * @returns {React.Component}
  * @constructor
  */

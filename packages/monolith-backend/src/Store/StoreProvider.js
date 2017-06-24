@@ -11,11 +11,11 @@ const StoreProvider = {
     defaultStoreCollection: 'store',
 
     /**
-     * Initializes the store with the given params.
+     * Initializes the store with the given parameters.
      * @function initStore
-     * @param reducers
-     * @param initialState
-     * @param db
+     * @param reducers - the store's reducers
+     * @param initialState - the store's initial state
+     * @param db - the database where to persist the store's state
      * @returns {Promise}
      */
     initStore(reducers, initialState, db) {
@@ -58,7 +58,7 @@ const StoreProvider = {
     /**
      * Update the database.
      * @function persistStateToDB
-     * @param db
+     * @param db - the databse where to persist the state
      */
     // TODO move to "private" namespace
     persistStateToDB(db) {
@@ -78,7 +78,7 @@ const StoreProvider = {
     /**
      * Recover state from the database.
      * @function fetchStateFromDB
-     * @param db
+     * @param db - the database from which the state is recovered from
      * @returns {Promise}
      */
     fetchStateFromDB(db) {

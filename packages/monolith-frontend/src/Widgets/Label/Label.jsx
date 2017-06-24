@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 /**
  * This module allows you to create labels.
  * @module Label
- * @param forId {string}
- * @param value {string}
+ * @param forId {string} ID of the label
+ * @param value {string} Value of the label
  * @returns {React.Component}
  * @constructor
  */

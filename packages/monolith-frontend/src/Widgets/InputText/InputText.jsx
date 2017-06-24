@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 /**
  * @class This class represent a text input field.
  * @extends React.Component
- * @property props {Object}
- * @property props.id {string}
- * @property props.value {string}
+ * @property props {Object} Properties of the component
+ * @property props.id {string} ID of the text input
+ * @property props.value {string} Text contained in the text input
  * @property props.onTextChange {Object}
  */
 export default class InputText extends React.Component {
