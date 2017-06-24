@@ -14,5 +14,8 @@ class PieChart extends PieRechart {
     }
 }
 
+PieChart.defaultWidth = 400;
+PieChart.defaultHeight = 300;
+
 export { PieChart, Pie };
 
