@@ -1,6 +1,6 @@
 {
   "name": "builder",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Builder module for the monolith framework.",
   "private": true,
   "author": "Or-Bit",

@@ -1,6 +1,6 @@
 {
   "name": "monolith-frontend",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "",
   "main": "dist/index.js",
   "author": "Or-Bit",
@@ -34,7 +34,7 @@
     "babel-cli": "^6.24.1",
     "babel-jest": "^19.0.0",
     "babel-preset-react": "^6.24.1",
-    "builder": "^0.2.0",
+    "builder": "^0.2.1",
     "can-fixture-socket": "^0.6.2",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
