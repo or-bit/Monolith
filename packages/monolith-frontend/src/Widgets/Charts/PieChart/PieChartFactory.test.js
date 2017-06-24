@@ -28,9 +28,6 @@ describe('PieChartFactory Test Suite', () => {
         expect(wrapper.find('.recharts-wrapper')).toBeDefined();
     });
 
-    it('renders 2 bars in a simple BarChart (without colors)', () => {
-    });
-
     describe('let\'s make it fail', () => {
         it('should render an Error component (data not an array)', () => {
             const wrapper = render(
@@ -106,22 +103,5 @@ describe('PieChartFactory Test Suite', () => {
 
             expect(wrapper.find('.recharts-wrapper').length).toEqual(1);
         });
-
-        //
-    //     it('should render an Error component (xAxisDataKey not a string)',
-    //         () => {
-    //             const wrapper = render(
-    //                 <div>
-    //                     {BarChartFactory.createBarChart(
-    //                         data,
-    //                         {},
-    //                         { xAxisDataKey: 2, yAxisDataKeys: ['uv', 'pv'] },
-    //                     )}
-    //                 </div>
-    //             );
-    //
-    //             expect(wrapper.find('.recharts-rectangle').length).toEqual(0);
-    //             expect(wrapper.find('.monolith-error').length).toEqual(1);
-    //         });
     });
 });
