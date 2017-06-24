@@ -1,13 +1,14 @@
 /**
- * @class User - Defines class user.
+ * Defines class user.
+ * @class
  * @property {string} username
  * @property {string} role
  */
 class User {
     /**
      * Create an user using username and role.
-     * @param username
-     * @param role
+     * @param username {string}
+     * @param role {string}
      */
     constructor(username, role) {
         this.userName = username;

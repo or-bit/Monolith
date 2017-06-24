@@ -6,7 +6,7 @@ const LifeCycle = require('../LifeCycle/LifeCycle');
 const consts = require('monolith-consts');
 
 /**
- * @class Server - Manage the app and the socket connection.
+ * @class Manage the app and the socket connection.
  * @property {Object} App
  * @property {Object} server
  * @property {Object} socket
@@ -112,7 +112,7 @@ class Server {
     }
 
     /**
-     * Return express app .
+     * Return express app.
      */
     getExpress() {
         return this.app;
@@ -126,7 +126,7 @@ class Server {
     }
 
     /**
-     * set server directory from path.
+     * Set server directory from path.
      * @param path
      * @param dir
      */

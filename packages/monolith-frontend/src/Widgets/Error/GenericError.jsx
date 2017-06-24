@@ -2,9 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * @module Error - Manage default error.
+ * Manage default error.
+ * @module Error
  * @param props
- * @returns {XML}
+ * @param props.className [monolith-error] {string}
+ * @param props.errorMessage {string}
+ * @param props.input [undefined] {Array | Object}
+ * @returns {React.Component}
  * @constructor
  */
 export default function Error(props) {

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import CheckBox from './CheckBox';
 
 /**
- * @class CheckBoxGroup - Defines a group of check box graphic element.
- * @extends Component
- * @property {Object} bottons
- * @property {string} className
+ * @class Defines a group of check box graphic element.
+ * @extends React.Component
+ * @property buttons {Object}
+ * @property className {string}
  */
 export default class CheckBoxGroup extends Component {
     // onCheckedChange(object) {
@@ -36,7 +36,7 @@ export default class CheckBoxGroup extends Component {
 
     /**
      * Render a check box group.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         const buttons = this.processInput();

@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb');
 
 /**
- * @class DataBase - Class that connects to the specified MongoDB Server instance.
+ * @class Class that connects to the specified MongoDB Server instance.
  * @property {string} mongoUrl
  */
 class DataBase {
@@ -14,7 +14,7 @@ class DataBase {
     }
 
     /**
-     *
+     * Connect to the url specified in the constructor
      * @returns {*}
      */
     connect() {
@@ -46,7 +46,7 @@ class DataBase {
      * Method that tries to insert an element inside the specified collection of the connected DataBase.
      * @param collectionName {string} Name of the collection to put the element in.
      * @param element {Object} Element to be inserted.
-     * @returns {Promise} A promise which will be resolved if the connection and the insertion have been successful,
+     * @returns {Promise} A promise which will be resolved if the connection and the insert have been successful,
      *  rejected otherwise.
      */
     insertOne(collectionName, element) {
@@ -63,6 +63,15 @@ class DataBase {
         });
     }
 
+    /**
+     * Update an element of a specified collection.
+     * @param collectionName {string} Name of the collection.
+     * @param element {Object} Element to update.
+     * @param newElement {Object} New element
+     * @param upsert {boolean} It specifies whether to perform an insert if the element to update is not present.
+     * @returns {Promise} A promise which will be resolved if the connection and the update success,
+     *  rejected otherwise.
+     */
     updateOne(collectionName, element, newElement, upsert) {
         return new Promise((resolve, reject) => {
             this.connect().then((db) => {

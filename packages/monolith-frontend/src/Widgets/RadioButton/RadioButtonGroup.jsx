@@ -4,11 +4,11 @@ import shortid from 'shortid';
 import RadioButton from './RadioButton';
 
 /**
- * @class RadioButtonsGroup - Defines a group of radio buttons graphic element.
- * @extends Component
- * @property {Object} bottons
- * @property {string} groupName
- * @property {string} className
+ * @class Defines a group of radio buttons graphic element.
+ * @extends React.Component
+ * @property buttons {Object}
+ * @property groupName {string}
+ * @property className {string}
  */
 export default class RadioButtonsGroup extends Component {
     /**
@@ -22,7 +22,7 @@ export default class RadioButtonsGroup extends Component {
     }
 
     /**
-     * Filters buttons that are checked.
+     * Mount the component
      */
     componentWillMount() {
         const checkedButtons = this.props.buttons.filter(
@@ -40,7 +40,7 @@ export default class RadioButtonsGroup extends Component {
     }
 
     /**
-     * Returns a group of buttons ordered in array.
+     * Returns a group of buttons as array.
      * @returns {Array}
      */
     processInput() {
@@ -64,7 +64,7 @@ export default class RadioButtonsGroup extends Component {
 
     /**
      * Render a radio buttons group.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         const buttons = this.processInput();

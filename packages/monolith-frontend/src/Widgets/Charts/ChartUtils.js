@@ -1,13 +1,33 @@
-
+/**
+ * Utils for the creation of charts.
+ * @module ChartUtils
+ * @type {{isArrayOfObjects, isArrayOfStrings, predefinedColors}}
+ */
 const ChartUtils = (() => {
+    /**
+     * Checks whether the items of a given array have a given type.
+     * @function isArrayOfType
+     * @param array {Array} Array to validate
+     * @param type {string} Type to check
+     */
     /* eslint-disable valid-typeof */
     const isArrayOfType = (array, type) => (
         Array.isArray(array) &&
         array.every(value => typeof value === type)
     );
 
+    /**
+     * Checks whether the items of a given array have type string.
+     * @function isArrayOfStrings
+     * @param array {Array} Array to validate
+     */
     const isArrayOfStrings = array => isArrayOfType(array, 'string');
 
+    /**
+     * Checks whether the items of a given array have type Object.
+     * @function isArrayOfObjects
+     * @param array {Array} Array to validate
+     */
     const isArrayOfObjects = array => isArrayOfType(array, 'object');
 
     return {

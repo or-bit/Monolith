@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * @class CheckBox - Defines a check box graphic element.
- * @extends Component
+ * @class Defines a check box graphic element.
+ * @extends React.Component
  * @property {Object} props
  * @property {string} props.name
  * @property {string} props.value
@@ -34,7 +34,7 @@ export default class CheckBox extends Component {
 
     /**
      * Render check box.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         return (

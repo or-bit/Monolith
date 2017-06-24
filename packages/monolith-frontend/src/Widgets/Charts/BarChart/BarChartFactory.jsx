@@ -15,29 +15,52 @@ import Error from '../../Error/GenericError';
 import ChartUtils from '../ChartUtils';
 
 /**
- * This module creates istances of bar chart.
- * @module monolith-frontend/Widgets/Charts/BarChart/BarChartFactory
+ * This module creates instances of bar chart.
+ * @module BarChartFactory
  * @type {{validateColors, validateKeys, validateSize, validateData, createBarChart}}
  */
 // IIFE used as Revealing module pattern
 const BarChartFactory = (function iife() {
+    /**
+     * Check if items of the array are objects
+     * @function validateData
+     * @param array {Array}
+     */
     const validateData = array => ChartUtils.isArrayOfObjects(array);
 
+    /**
+     * Check if width and height are numbers
+     * @function validateSize
+     * @param width {Object}
+     * @param height {Object}
+     */
     const validateSize = ({ width, height }) => (
       typeof width === 'number' && typeof height === 'number'
     );
 
+    /**
+     * Check if xAxisDataKey is a string and yAxisDataKeys is an array of strings
+     * @function validateKeys
+     * @param xAxisDataKey {Object}
+     * @param yAxisDataKeys {Array}
+     */
     const validateKeys = ({ xAxisDataKey, yAxisDataKeys }) => (
       typeof xAxisDataKey === 'string' &&
         ChartUtils.isArrayOfStrings(yAxisDataKeys)
     );
 
+    /**
+     * Check if colors is an array of strings
+     * @function validateColors
+     * @param colors {Array}
+     */
     const validateColors = colors => ChartUtils.isArrayOfStrings(colors);
 
     /**
      * Requires height to have been validated using validateSize().
-     * @param height
-     * @returns Height of the BarChart.
+     * @function getHeight
+     * @param height {number}
+     * @returns {number} Height of the BarChart.
      */
      // eslint-disable-next-line arrow-body-style
     const getHeight = (height) => {
@@ -46,14 +69,21 @@ const BarChartFactory = (function iife() {
 
     /**
      * Requires width to have been validated using validateSize().
-     * @param width
-     * @returns Width of the BarChart.
+     * @function getWidth
+     * @param width {number}
+     * @returns {number} Width of the BarChart.
      */
      // eslint-disable-next-line arrow-body-style
     const getWidth = (width) => {
         return width > 0 ? width : BarChart.defaultWidth;
     };
 
+    /**
+     * Create the bars with the given label and color.
+     * @function getBars
+     * @param yAxisDataKeys {Array} Labels
+     * @param colors {string} Colors
+     */
     const getBars = (yAxisDataKeys, colors) => (
       yAxisDataKeys.map((value, index) => (
           <Bar
@@ -64,6 +94,18 @@ const BarChartFactory = (function iife() {
         ))
       );
 
+    /**
+     * Create the chart.
+     * @function createBarChart
+     * @param data {number[]} Data to be processed
+     * @param width {number} Width of the chart
+     * @param height [number} Height of the chart
+     * @param xAxisDataKey {string} Label for the X axis
+     * @param yAxisDataKeys {string[]} Labels for the Y axis
+     * @param colors {string[]} Colors to use for different bars
+     * @return {React.Component}
+     * @see http://recharts.org/#/en-US/api/BarChart
+     */
     const createBarChart = (
       data,
       { width, height },

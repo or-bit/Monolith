@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 /**
  * This module allows you to create text view.
- * @module monolith-frontend/Widgets/TextView/TextView
- * @param props
- * @returns {XML}
+ * @module TextView
+ * @param props {Object}
+ * @param props.class [''] {string} Class for the component
+ * @param props.text [''] {string} Text to visualize
+ * @returns {React.Component}
  * @constructor
  */
 export default function TextView(props) {

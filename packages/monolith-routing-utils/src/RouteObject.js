@@ -1,15 +1,15 @@
 /**
- * @class RouteObject - Class that manage routing relative to user.
- * @property {string} user
- * @property {string} command
- * @property {string} route
+ * @class Class that manages routing relative to user.
+ * @property user {User}
+ * @property command {string}
+ * @property route {string}
  */
 class RouteObject {
     /**
      * Create route object.
-     * @param user
-     * @param command
-     * @param route
+     * @param user {User}
+     * @param command {string}
+     * @param route {string}
      */
     constructor({ user, command, route }) {
         this.user = user;
@@ -19,7 +19,7 @@ class RouteObject {
 
     /**
      * Returns user.
-     * @returns {user}
+     * @returns {User}
      */
     getUser() {
         return this.user;
@@ -27,7 +27,7 @@ class RouteObject {
 
     /**
      * Returns command
-     * @returns {command}
+     * @returns {string}
      */
     getCommand() {
         return this.command;
@@ -35,14 +35,14 @@ class RouteObject {
 
     /**
      * Returns route.
-     * @returns {route}
+     * @returns {string}
      */
     getRoute() {
         return this.route;
     }
 
     /**
-     * Transform route object in string.
+     * Transform route object in a string.
      * @param previousSpaces
      * @returns {string}
      */

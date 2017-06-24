@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: monolith-backend/src/RegEx/RegExWrapper.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: monolith-backend/src/RegEx/RegExWrapper.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const defaultRegExp = /(?:)/;
+
+/**
+ * @class Class for representing regular expression.
+ * @extends RegExp
+ * @property {Object} modifiers
+ * @property {boolean} modifiers.caseInsensitive
+ * @property {boolean} modifiers.global
+ * @property {boolean} modifiers.multiline
+ */
+class RegExWrapper extends RegExp {
+    /**
+     * Create a regular expression.
+     * @param {string | RegExp} [expr] - Regular expression as a RegExp or a string.
+     * If this parameter is an instance of RegExp, the following parameters are ignored.
+     * @param {boolean} [i] - Specify if the search is case insensitive.
+     * @param {boolean} [g] - Perform a global search (find all matches).
+     * @param {boolean} [m] - Perform multiline matching.
+     */
+    constructor(expr, { i = false, g = false, m = false } = {}) {
+        if (expr instanceof RegExp) {
+            super(expr);
+            const endIndex = expr.toString().length - expr.flags.length - 2;
+            this.regExp = expr.toString().substr(1, endIndex);
+            this.mod = {
+                i: expr.flags.includes('i'),
+                g: expr.flags.includes('g'),
+                m: expr.flags.includes('m'),
+            };
+        } else {
+            super(expr);
+            this.regExp = (expr !== undefined) ? expr : defaultRegExp;
+            this.mod = {
+                i,
+                g,
+                m,
+            };
+        }
+    }
+
+    static get suffixQuantifiers() {
+        return ['+', '*', '?', '$'];
+    }
+    static get prefixQuantifiers() {
+        return ['^', '?=', '?!'];
+    }
+
+    /**
+     * Default match string matches all characters.
+     * Literally: "match any number of characters that are either whitespace or non-whitespace".
+     * @returns {string}
+     */
+    static get defaultRegExp() {
+        return defaultRegExp;
+    }
+
+    /**
+     * Escape the special characters in the string
+     * @param str {string} string to quote
+     * @returns {string}
+     */
+    static quote(str) {
+        return (`${str}`).replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&amp;');
+    }
+
+  /**
+   * Compose the regular expression from the parameters given.
+   * @param {string} string - The string to search or the array
+   * that contains a sequence of characters.
+   * @param {string} quantifier - The quantifier for the regular expression.
+   * @param {string} openBracket - A string with the firsts characters of the expression.
+   * @param {string} closeBracket - A string with the last characters of the expression.
+   * @param {string} regExp - The regular expression to update.
+   * @returns {string} - A concatenation of the elements that is the regular expression,
+   * like RegExp expected it to be.
+   */
+    static compose(string, quantifier, openBracket, closeBracket, regExp) {
+        let re = regExp;
+        if (regExp === defaultRegExp) {
+            re = '';
+        }
+        let rExpr = `${re}${openBracket}${string}${closeBracket}`;
+        if (RegExWrapper.prefixQuantifiers.indexOf(quantifier) !== -1) {
+            rExpr = quantifier + rExpr;
+        } else if (
+            RegExWrapper.suffixQuantifiers.indexOf(quantifier) !== -1
+      || /{[1-9]+(,[1-9]*)?}/.test(quantifier)) {
+            rExpr += quantifier;
+        }
+        return rExpr;
+    }
+
+    /**
+     * Get the string with the modifiers
+     * @return {string}
+     */
+    modifiersToString() {
+        let mod = '';
+        if (this.mod.caseInsensitive) {
+            mod += 'i';
+        }
+        if (this.mod.global) {
+            mod += 'g';
+        }
+        if (this.mod.multiline) {
+            mod += 'm';
+        }
+        return mod;
+    }
+
+    /**
+     * Set the modifiers for the regular expression.
+     * @param {boolean} i - Case insensitive
+     * @param {boolean} g - Global
+     * @param {boolean} m - Multiline
+     */
+    set modifiers({ i = false, g = false, m = false }) {
+        if (i) {
+            this.modifiers.caseInsensitive = true;
+        } else {
+            this.modifiers.caseInsensitive = false;
+        }
+        if (g) {
+            this.modifiers.global = true;
+        } else {
+            this.modifiers.global = false;
+        }
+        if (m) {
+            this.modifiers.multiline = true;
+        } else {
+            this.modifiers.multiline = false;
+        }
+    }
+
+    /**
+     * Get the modifiers as an object.
+     * @returns {{i: boolean, g: boolean, m: boolean}}
+     */
+    get modifiers() {
+        return this.mod;
+    }
+
+
+    /**
+     * Find any of the characters included in string.
+     * @param {string | string[]} string - The string or the array of sequence of
+     * characters to search.
+     * @param {string} quantifier - The quantifier for the regular expression.
+     * @returns {RegExWrapper} - A matchRegularExpr
+     */
+    findAnyOf(string, quantifier) {
+        if (Array.isArray(string)) {
+            for (let i = 0; i &lt; string.length; i += 1) {
+                this.regExp = RegExWrapper.compose(
+                    RegExWrapper.quote(string[i]),
+                    quantifier,
+                    '[',
+                    ']',
+                    this.regExp);
+            }
+        } else {
+            this.regExp = RegExWrapper.compose(
+                RegExWrapper.quote(string),
+                quantifier,
+                '[',
+                ']',
+                this.regExp);
+        }
+        return this;
+    }
+
+    /**
+     * Find any of the characters not included in string
+     * @param {string | string[]} string - The string to search or the array that contains
+     * a sequence of characters.
+     * @param {string} quantifier - The quantifier for the regular expression.
+     * @returns {RegExWrapper}
+     */
+    findAnyNotOf(string, quantifier) {
+        if (Array.isArray(string)) {
+            for (let i = 0; i &lt; string.length; i += 1) {
+                this.regExp = RegExWrapper.compose(
+                    RegExWrapper.quote(string[i]),
+                    quantifier,
+                    '[^',
+                    ']',
+                    this.regExp);
+            }
+        } else {
+            this.regExp = RegExWrapper.compose(
+                RegExWrapper.quote(string),
+                quantifier,
+                '[^',
+                ']',
+                this.regExp);
+        }
+        return this;
+    }
+
+    /**
+     * Find any character included in the interval between from and to
+     * @param {string | number} from - The character from which digit the search starts.
+     * @param {string} to - The character to which digit the search ends.
+     * @param {string} quantifier - The quantifier for the regular expression.
+     * @returns {RegExWrapper}
+     */
+    findAnyBetween(from, to, quantifier) {
+        const fromRegEx = RegExWrapper.quote(from);
+        const toRegEx = RegExWrapper.quote(to);
+        this.regExp = RegExWrapper.compose(
+            `${fromRegEx}-${toRegEx}`,
+            quantifier,
+            '[',
+            ']',
+            this.regExp);
+        return this;
+    }
+
+    /**
+     * Find any character not included in the interval between from and to.
+     * @param {string | number} from - The character from which digit the search starts.
+     * @param {string | number } to - The character to which digit the search ends.
+     * @param {string} quantifier - The quantifier for the regular expression.
+     * @returns {RegExWrapper}
+     */
+    findAnyNotBetween(from, to, quantifier) {
+        const fromRegEx = RegExWrapper.quote(from);
+        const toRegEx = RegExWrapper.quote(to);
+        this.regExp = RegExWrapper.compose(
+            `${fromRegEx}-${toRegEx}`,
+            quantifier,
+            '[^',
+            ']',
+            this.regExp);
+        return this;
+    }
+
+    /**
+     * Find any of the alternatives specified.
+     * @param {string[]} alternatives - An array with all the alternatives.
+     * @param {string} quantifier - The quantifier for the regular expression.
+     * @returns {RegExWrapper}
+     */
+    findAnyAlternative(alternatives, quantifier) {
+        alternatives.every(item => RegExWrapper.quote(item));
+        this.regExp = RegExWrapper.compose(
+            alternatives.join('|'),
+            quantifier,
+            '(',
+            ')',
+            this.regExp);
+        return this;
+    }
+
+    /**
+     * Find all the strings in order but not adjacent, at least one timeout each.
+     * @param {string | string[]} strings - The string(s) to search for.
+     */
+    findAllOf(strings) {
+        if (Array.isArray(strings)) {
+            for (let i = 0; i &lt; strings.length; i += 1) {
+                this.regExp = RegExWrapper.compose(
+                    RegExWrapper.quote(strings[i]),
+                    '+',
+                    '(',
+                    ')',
+                    this.regExp);
+            }
+        } else {
+            this.regExp = RegExWrapper.compose(
+                RegExWrapper.quote(strings),
+                '+',
+                '(',
+                ')',
+                this.regExp);
+        }
+        return this;
+    }
+
+    /**
+     * Return the regular expression as a string
+     * @returns {string}
+     */
+    toString() {
+        return this.regExp.toString();
+    }
+
+    /**
+     * Test for a match in a string.
+     * @param {string} string - The string to be searched.
+     * @returns {Array|{index: number, input: string}} - An array containing the matched
+     * text if it finds a match, otherwise it returns null
+     */
+    execMatch(string) {
+        return new RegExp(this.regExp, this.modifiersToString()).exec(string);
+    }
+
+    /**
+     * Test for a match in a string
+     * @param {string} string - The string to be searched.
+     * @returns {boolean} - Returns true if it finds a match, otherwise it returns false
+     */
+    testMatch(string) {
+        return new RegExp(this.regExp, this.modifiersToString()).test(string);
+    }
+
+    /**
+     * Clean the regular expression
+     */
+    clean() {
+        this.regExp = '';
+    }
+}
+
+module.exports = RegExWrapper;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BarChartFactory.html">BarChartFactory</a></li><li><a href="module-ChartUtils.html">ChartUtils</a></li><li><a href="module-ConfigurationGenerator.html">ConfigurationGenerator</a></li><li><a href="module-FileWriter.html">FileWriter</a></li><li><a href="module-IDGenerator.html">IDGenerator</a></li><li><a href="module-PieChartFactory.html">PieChartFactory</a></li><li><a href="module-Questions.html">Questions</a></li><li><a href="module-StoreProvider.html">StoreProvider</a></li></ul><h3>Classes</h3><ul><li><a href="Action.html">Action</a></li><li><a href="BarChart.html">BarChart</a></li><li><a href="Button.html">Button</a></li><li><a href="CheckBox.html">CheckBox</a></li><li><a href="CheckBoxGroup.html">CheckBoxGroup</a></li><li><a href="DataBase.html">DataBase</a></li><li><a href="DropDownList.html">DropDownList</a></li><li><a href="Error.html">Error</a></li><li><a href="GenericBubble.html">GenericBubble</a></li><li><a href="Image.html">Image</a></li><li><a href="InputFile.html">InputFile</a></li><li><a href="InputText.html">InputText</a></li><li><a href="Label.html">Label</a></li><li><a href="LifeCycle.html">LifeCycle</a></li><li><a href="PieChart.html">PieChart</a></li><li><a href="RadioButton.html">RadioButton</a></li><li><a href="RadioButtonsGroup.html">RadioButtonsGroup</a></li><li><a href="RegExWrapper.html">RegExWrapper</a></li><li><a href="RestApi.html">RestApi</a></li><li><a href="RouteObject.html">RouteObject</a></li><li><a href="RoutesCollection.html">RoutesCollection</a></li><li><a href="Server.html">Server</a></li><li><a href="TextEdit.html">TextEdit</a></li><li><a href="TextView.html">TextView</a></li><li><a href="User.html">User</a></li><li><a href="WebNotification.html">WebNotification</a></li><li><a href="WidgetsContainer.html">WidgetsContainer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 24 2017 18:02:41 GMT+0200 (ora legale Europa occidentale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

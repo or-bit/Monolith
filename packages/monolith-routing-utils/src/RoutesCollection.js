@@ -1,9 +1,9 @@
 /**
- * @class RouteObject - Class that defines a collection of route.
+ * @class Class that defines a collection of route.
  */
 class RoutesCollection {
     /**
-     * Create route collection.
+     * Create an empty route collection.
      */
     constructor() {
         this.collection = [];
@@ -11,7 +11,7 @@ class RoutesCollection {
 
     /**
      * Add a new route to collection.
-     * @param routeObject
+     * @param routeObject {RouteObject}
      * @returns {RoutesCollection}
      */
     add(routeObject) {
@@ -21,8 +21,8 @@ class RoutesCollection {
 
     /**
      * Returns a route giving an index.
-     * @param index
-     * @returns {*}
+     * @param index {Object}
+     * @returns {RouteObject}
      */
     get(index) {
         if (index >= 0 && index < this.size()) {
@@ -32,8 +32,8 @@ class RoutesCollection {
     }
 
     /**
-     * Remove a route from collection giving the relative index.
-     * @param index
+     * Removes the route with the give index from the collection.
+     * @param index {Object}
      * @returns {RoutesCollection}
      */
     remove(index) {
@@ -54,14 +54,14 @@ class RoutesCollection {
 
     /**
      * Returns size of collection.
-     * @returns {Number}
+     * @returns {number}
      */
     size() {
         return this.collection.length;
     }
 
     /**
-     * Transform route collection in string.
+     * Transform route collection in a string.
      * @returns {string}
      */
     serialize() {

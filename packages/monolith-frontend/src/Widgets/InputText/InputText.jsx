@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * @class InputText -
- * @extends Component
- * @property {Object} props
- * @property {string} props.id
- * @property {string} props.value
- * @property {Object} props.onTextChange
+ * @class This class represent a text input field.
+ * @extends React.Component
+ * @property props {Object}
+ * @property props.id {string}
+ * @property props.value {string}
+ * @property props.onTextChange {Object}
  */
 export default class InputText extends React.Component {
     /**
@@ -23,7 +23,7 @@ export default class InputText extends React.Component {
 
     /**
      * Manage an input change value event.
-     * @param newValue
+     * @param newValue {string}
      */
     handleInputChange(newValue) {
         const newText = newValue.target.value;
@@ -33,7 +33,7 @@ export default class InputText extends React.Component {
 
     /**
      * Renders an input text.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         return (

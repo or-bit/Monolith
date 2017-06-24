@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 /**
  * This module creates instance of button.
- * @module monolith-frontend/Widgets/Button/Button
- * @property {Object} props
- * @property {function} props.callback
- * @property {string} props.className
- * @property {string} props.text
- * @property {string} props.url
+ * @module Button
+ * @property props {Object}
+ * @property props.callback [() => {}] {function} Callback to execute on click event
+ * @property props.className [''] {string} Class for the component
+ * @property props.text {string} Value of the button
+ * @property props.url [undefined] {string} If defined, the url of the button.
  * @constructor
  */
 const Button = props => (

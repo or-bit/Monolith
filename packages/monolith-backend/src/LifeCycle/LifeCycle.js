@@ -1,5 +1,5 @@
 /**
- * @class LifeCycle - Class that defines in second bubble's lifetime.
+ * @class Class that defines in second bubble's lifetime.
  * @property {Object} timer
  * @property {float} timeout
  */
@@ -40,6 +40,9 @@ class LifeCycle {
         this.tm = sec;
     }
 
+    /**
+     * Reset the timer and clear the timeout.
+     */
     clear() {
         clearTimeout(this.timer);
         this.timer = null;

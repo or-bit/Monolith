@@ -1,3 +1,8 @@
+/**
+ * Creates a generator for the configuration of bubbles.
+ * @module ConfigurationGenerator
+ * @type {{defaultJSONConfiguration, generateRoutesConfiguration, generateAllCode}}
+ */
 const configurationGenerator = (function iife() {
     const METEOR_CODE = data => [
         'Meteor.startup(() => {',
@@ -5,10 +10,20 @@ const configurationGenerator = (function iife() {
         '});',
     ].join('\n');
 
+    /**
+     * @member defaultJSONConfiguration {JSON}
+     * @type {{spaces: string}}
+     */
     const defaultJSONConfiguration = {
         spaces: '  ',
     };
 
+    /**
+     * Generates a configuration for the routes
+     * @function generateRoutesConfiguration
+     * @param routesCollection
+     * @param jsonConfiguration
+     */
     const generateRoutesConfiguration = (
       routesCollection,
       jsonConfiguration = defaultJSONConfiguration
@@ -24,6 +39,12 @@ const configurationGenerator = (function iife() {
         return resolve(routesCollection.serialize(jsonConfiguration));
     });
 
+    /**
+     * Generates a complete configuration.
+     * @function generateAllCode
+     * @param routesConfiguration
+     * @param jsonConfiguration
+     */
     const generateAllCode = (routesConfiguration, jsonConfiguration) => (
         new Promise((resolve, reject) => (
             generateRoutesConfiguration(

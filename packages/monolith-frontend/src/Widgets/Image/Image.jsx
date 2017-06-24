@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 /**
  * This module allows you to insert images.
- * @module monolith-frontend/Widgets/Image/Image
- * @param caption
- * @param src
- * @returns {XML}
+ * @module Image
+ * @param caption {string} Description of
+ * @param src {string}
+ * @returns {React.Component}
  * @constructor
  */
 export default function Image({ caption, src }) {

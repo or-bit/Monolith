@@ -1,7 +1,7 @@
 const defaultRegExp = /(?:)/;
 
 /**
- * @class RegExWrapper - Class for representing regular expression.
+ * @class Class for representing regular expression.
  * @extends RegExp
  * @property {Object} modifiers
  * @property {boolean} modifiers.caseInsensitive
@@ -54,6 +54,11 @@ class RegExWrapper extends RegExp {
         return defaultRegExp;
     }
 
+    /**
+     * Escape the special characters in the string
+     * @param str {string} string to quote
+     * @returns {string}
+     */
     static quote(str) {
         return (`${str}`).replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&');
     }
@@ -299,6 +304,9 @@ class RegExWrapper extends RegExp {
         return new RegExp(this.regExp, this.modifiersToString()).test(string);
     }
 
+    /**
+     * Clean the regular expression
+     */
     clean() {
         this.regExp = '';
     }

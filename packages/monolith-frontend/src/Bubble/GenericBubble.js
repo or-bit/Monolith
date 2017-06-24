@@ -4,9 +4,11 @@ const consts = require('monolith-consts');
 const io = require('socket.io-client');
 
 /**
- * @class GenericBubble - Defines an empty generic bubble.
+ * @class Defines an empty generic bubble.
  * @extends React.Component
- * @property {Object} props
+ * @property props {Object} Properties of the component.
+ * @property props.url {string} URL to reach the bubble.
+ * @property props.time {int} Lifetime in seconds.
  */
 class GenericBubble extends React.Component {
 
@@ -42,15 +44,25 @@ class GenericBubble extends React.Component {
         }
     }
 
+    /**
+     * Specifies what to render when the bubble is alive.
+     * @abstract
+     * @returns {React.Component}
+     */
     // eslint-disable-next-line class-methods-use-this
     aliveRender() {}
 
+    /**
+     * Specifies what to render when the bubbe is not alive.
+     * @abstract
+     * @returns {React.Component}
+     */
     // eslint-disable-next-line class-methods-use-this
     notAliveRender() {}
 
     /**
-     * Renders bubble if state is alive.
-     * @returns {*}
+     * Renders bubble
+     * @returns {React.Component}
      */
     render() {
         if (this.state.alive) {

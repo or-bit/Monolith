@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 /**
  * This module allows you to create labels.
- * @module monolith-frontend/Widgets/Label/Label
- * @param forId
- * @param value
- * @returns {XML}
+ * @module Label
+ * @param forId {string}
+ * @param value {string}
+ * @returns {React.Component}
  * @constructor
  */
 export default function Label({ forId, value }) {

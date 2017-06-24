@@ -4,14 +4,14 @@ import { PropTypes } from 'prop-types';
 import Image from '../Image/Image';
 
 /**
- * @class RadioButton - Defines a radio button graphic element.
- * @extends Component
- * @property {Object} props
- * @property {Object} props.onChangeCallback
- * @property {Object} props.value
- * @property {string} props.groupName
- * @property {boolean} props.checked
- * @property {string} props.label
+ * @class Defines a radio button graphic element.
+ * @extends React.Component
+ * @property props {Object}
+ * @property props.onChangeCallback {function}
+ * @property props.value {string | Image}
+ * @property props.groupName {string}
+ * @property props.checked {boolean}
+ * @property props.label {string}
  */
 export default class RadioButton extends Component {
     /**
@@ -46,7 +46,7 @@ export default class RadioButton extends Component {
 
     /**
      * Render the radio button.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         return (

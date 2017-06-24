@@ -1,14 +1,12 @@
 /**
  * This module creates unique ids based on the current machine and current timestamp.
  * It uses ObjectID from MongoDB in order to make it easy to use the generated ids when storing objects in a mongodb instance.
- * @module monolith-backend/IDGenerator
- */
-const ObjectID = require('mongodb').ObjectID;
-
-/**
+ * @module IDGenerator
  * @type[{createRandomId}, {createRandomIdAsString}]
  * @see https://mongodb.github.io/node-mongodb-native/api-bson-generated/objectid.html
  */
+const ObjectID = require('mongodb').ObjectID;
+
 const IDGenerator = (function idGenerator() {
     const createRandomId = () => new ObjectID();
 

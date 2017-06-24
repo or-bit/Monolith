@@ -9,8 +9,8 @@ import {
 } from 'recharts';
 
 /**
- * @class BarChart - Defines a bar chart graphic.
- * @extends BarReChart
+ * @class Defines a bar chart graphic.
+ * @extends Recharts.BarChart
  */
 class BarChart extends BarReChart {
     /**
