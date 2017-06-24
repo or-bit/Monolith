@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: Questions</title>
+    <title>JSDoc: Module: ConfigurationGenerator</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: Questions</h1>
+    <h1 class="page-title">Module: ConfigurationGenerator</h1>
 
     
 
@@ -38,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description">Questions for the bubbles configuration.</div>
+            <div class="description">Creates a generator for the configuration of bubbles.</div>
         
 
         
@@ -87,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="monolith-integration-cli_src_Questions.js.html">monolith-integration-cli/src/Questions.js</a>, <a href="monolith-integration-cli_src_Questions.js.html#line1">line 1</a>
+        <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html">monolith-integration-cli/src/generator/ConfigGenerator.js</a>, <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -132,7 +132,7 @@
 
         
             
-<h4 class="name" id="~addRouteQuestion"><span class="type-signature">(inner) </span>addRouteQuestion<span class="type-signature"> :Object</span></h4>
+<h4 class="name" id="~defaultJSONConfiguration"><span class="type-signature">(inner) </span>defaultJSONConfiguration<span class="type-signature"> :JSON</span></h4>
 
 
 
@@ -143,7 +143,7 @@
     <ul>
         <li>
             
-<span class="param-type">Object</span>
+<span class="param-type">JSON</span>
 
 
         </li>
@@ -182,7 +182,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="monolith-integration-cli_src_Questions.js.html">monolith-integration-cli/src/Questions.js</a>, <a href="monolith-integration-cli_src_Questions.js.html#line48">line 48</a>
+        <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html">monolith-integration-cli/src/generator/ConfigGenerator.js</a>, <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -199,23 +199,95 @@
 
 
         
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
             
-<h4 class="name" id="~commandQuestion"><span class="type-signature">(inner) </span>commandQuestion<span class="type-signature"> :Object</span></h4>
+
+    
+
+    <h4 class="name" id="~generateAllCode"><span class="type-signature">(inner) </span>generateAllCode<span class="signature">(routesConfiguration, jsonConfiguration)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Generates a complete configuration.
+</div>
 
 
 
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<span class="param-type">Object</span>
+                <td class="name"><code>routesConfiguration</code></td>
+            
 
+            <td class="type">
+            
+            </td>
 
-        </li>
-    </ul>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>jsonConfiguration</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
 
 
 
@@ -250,7 +322,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="monolith-integration-cli_src_Questions.js.html">monolith-integration-cli/src/Questions.js</a>, <a href="monolith-integration-cli_src_Questions.js.html#line16">line 16</a>
+        <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html">monolith-integration-cli/src/generator/ConfigGenerator.js</a>, <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -266,24 +338,100 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
         
             
-<h4 class="name" id="~defineUserQuestion"><span class="type-signature">(inner) </span>defineUserQuestion<span class="type-signature"> :Object</span></h4>
+
+    
+
+    <h4 class="name" id="~generateRoutesConfiguration"><span class="type-signature">(inner) </span>generateRoutesConfiguration<span class="signature">(routesCollection, jsonConfiguration)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Generates a configuration for the routes.
+</div>
 
 
 
 
 
 
-    <h5>Type:</h5>
-    <ul>
-        <li>
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<span class="param-type">Object</span>
+                <td class="name"><code>routesCollection</code></td>
+            
 
+            <td class="type">
+            
+            </td>
 
-        </li>
-    </ul>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>jsonConfiguration</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
 
 
 
@@ -318,7 +466,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="monolith-integration-cli_src_Questions.js.html">monolith-integration-cli/src/Questions.js</a>, <a href="monolith-integration-cli_src_Questions.js.html#line27">line 27</a>
+        <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html">monolith-integration-cli/src/generator/ConfigGenerator.js</a>, <a href="monolith-integration-cli_src_generator_ConfigGenerator.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -334,68 +482,10 @@
 
 
 
-        
-            
-<h4 class="name" id="~pathQuestion"><span class="type-signature">(inner) </span>pathQuestion<span class="type-signature"> :Object</span></h4>
 
 
 
 
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Object</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="monolith-integration-cli_src_Questions.js.html">monolith-integration-cli/src/Questions.js</a>, <a href="monolith-integration-cli_src_Questions.js.html#line58">line 58</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -403,144 +493,6 @@
 
 
         
-            
-<h4 class="name" id="~routeQuestion"><span class="type-signature">(inner) </span>routeQuestion<span class="type-signature"> :Object</span></h4>
-
-
-
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Object</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="monolith-integration-cli_src_Questions.js.html">monolith-integration-cli/src/Questions.js</a>, <a href="monolith-integration-cli_src_Questions.js.html#line6">line 6</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="~userRegexQuestion"><span class="type-signature">(inner) </span>userRegexQuestion<span class="type-signature"> :Object</span></h4>
-
-
-
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">Object</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="monolith-integration-cli_src_Questions.js.html">monolith-integration-cli/src/Questions.js</a>, <a href="monolith-integration-cli_src_Questions.js.html#line37">line 37</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
-
     
 
     
@@ -562,7 +514,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 24 2017 18:02:42 GMT+0200 (ora legale Europa occidentale)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 24 2017 23:26:19 GMT+0200 (ora legale Europa occidentale)
 </footer>
 
 <script> prettyPrint(); </script>
