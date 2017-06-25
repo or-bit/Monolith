@@ -1,6 +1,6 @@
 {
   "name": "monolith-backend",
-  "version": "0.8.1",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "author": "Or-Bit",
