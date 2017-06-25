@@ -20,7 +20,10 @@ The following paragraphs present the list of submodules that compose the framewo
 
 ### monolith-frontend
 
-### monolith-bubble-examples???
+### monolith-bubble-examples
+#### Bubble & eat
+Bubble & eat is an app for manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
+It can be found at https://github.com/or-bit/bubble-and-eat
 
 
 ## Dependencies
@@ -29,8 +32,8 @@ Dependency management is handled by npm. Using [lerna](<https://github.com/lerna
 2.   smaller memory footprint
 3.   version consistency between submodules
 
-### common
-dependencies  
+### Common dependencies  
+
 **lerna**: make lerna a local project dependency to use it in project-wide scripts.
 
 **babel-cli**: built-in CLI which can be used to compile files from the command line.
