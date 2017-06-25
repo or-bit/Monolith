@@ -23,7 +23,7 @@ The following paragraphs present the list of submodules that compose the framewo
 ### monolith-bubble-examples
 #### Bubble & eat
 Bubble & eat is an app for manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
-It can be found at https://github.com/or-bit/bubble-and-eat
+It can be found at https://github.com/or-bit/bubble-and-eat .
 
 
 ## Dependencies
@@ -61,31 +61,7 @@ Dependency management is handled by npm. Using [lerna](<https://github.com/lerna
 **json-loader**: needed for now (https://github.com/facebookincubator/create-react-app/issues/1895)
 
 
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
+### Lerna Markdown
 * [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
