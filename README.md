@@ -22,6 +22,10 @@ Contains all the useful classes for a bubble back-end. It comprehends the data p
 Comprehends the classes used for creating the gui and the notifications.  It consists of classes useful for creating a bubble front-end.
 
 ### Monolith-bubble-examples
+#### monolith-hello-world
+S simple bubble with monolith-frontend and monolith-backend.
+https://github.com/or-bit/monolith-hello-world
+
 #### Bubble & eat
 Bubble & eat is an app for manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
 It can be found at https://github.com/or-bit/bubble-and-eat .
