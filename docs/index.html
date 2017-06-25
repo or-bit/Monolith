@@ -43,45 +43,45 @@
 
 
     <section>
-        <article><h1>monolith</h1><p>This is the <a href="https://github.com/babel/babel/blob/master/doc/design/monorepo.md">monorepo</a> of the monolith framework developed by Or-Bit for the didactic-side of the Software Engineering course. For more info, check out the <a href="http://www.math.unipd.it/~tullio/IS-1/2016/">institutional link</a>.</p>
-<h2>Contributing</h2><ol>
+        <article><h1>Monolith</h1><p>This is the <a href="https://github.com/babel/babel/blob/master/doc/design/monorepo.md">monorepo</a> of the monolith framework developed by Or-Bit for the didactic-side of the Software Engineering course. For more info, check out the <a href="http://www.math.unipd.it/~tullio/IS-1/2016/">institutional link</a>.</p>
+<h2>Installing</h2><ol>
 <li>Install Node JS (TODO other deps)</li>
 <li>Clone this repo</li>
 <li><code>npm i</code></li>
 <li><code>npm run bootstrap</code> (should be done automatically after npm i, added here just in case)</li>
 <li><code>npm test</code></li>
 </ol>
-<h3>Project's commands</h3><h2>Packages</h2><p>The following paragraphs present the list of submodules that compose the framework.</p>
-<h3>builder</h3><h3>monolith-backend</h3><h3>monolith-frontend</h3><h3>monolith-bubble-examples???</h3><h2>Dependencies</h2><p>Dependency management is handled by npm. Using <a href="https://github.com/lerna/lerna">lerna</a> to split codebase into smaller npm modules we are able to share the common dependencies, resulting into:</p>
+<h2>Packages</h2><p>The following paragraphs present the list of submodules that compose the framework.</p>
+<h3>builder</h3><p>Source file compiler for pubblishing npm packages in ES5 formatting.</p>
+<h3>monolith-backend</h3><p>Contains all the useful classes for a bubble back-end. It comprehends the data persistence and bubble lyfecicle functionalities, server and user objects, and some hepful functionalities such as external api retrieval, random id generator for a MongoDB database istance, regular expressions management. </p>
+<h3>monolith-frontend</h3><p>Comprehends the classes used for creating the gui and the notifications.  It consists of classes useful for creating a bubble front-end.</p>
+<h3>Monolith-bubble-examples</h3><h4>monolith-hello-world</h4><p>Simple bubble with monolith-frontend and monolith-backend.
+It can be found at https://github.com/or-bit/monolith-hello-world .</p>
+<h4>monolith-todos</h4><p>To-do bubble implemented with Monolith.
+It can be found at https://github.com/or-bit/monolith-todos .</p>
+<h4>Bubble &amp; eat</h4><p>Bubble &amp; eat is an app for manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
+It can be found at https://github.com/or-bit/bubble-and-eat .</p>
+<h2>Dependencies</h2><p>Dependency management is handled by npm. Using <a href="https://github.com/lerna/lerna">lerna</a> to split codebase into smaller npm modules we are able to share the common dependencies, resulting into:</p>
 <ol>
 <li>faster starting operations</li>
 <li>smaller memory footprint</li>
 <li>version consistency between submodules</li>
 </ol>
-<h3>common</h3><p>dependencies<br><strong>lerna</strong>: make lerna a local project dependency to use it in project-wide scripts</p>
-<p><strong>babel-cli</strong>:<br><strong>babel-preset-es2015</strong>:<br><strong>chai</strong>:<br><strong>chai-as-promised</strong>:<br><strong>eslint</strong>:<br><strong>eslint-config-airbnb</strong>:<br><strong>eslint-plugin-import</strong>:<br><strong>eslint-plugin-jsx-a11y</strong>:<br><strong>eslint-plugin-react</strong>:<br><strong>gulp</strong>:<br><strong>gulp-babel</strong>:<br><strong>json-loader</strong>: needed for now (https://github.com/facebookincubator/create-react-app/issues/1895)</p>
-<p>This README would normally document whatever steps are necessary to get your application up and running.</p>
-<h3>What is this repository for?</h3><ul>
-<li>Quick summary</li>
-<li>Version</li>
+<h3>Common dependencies</h3><p><strong>lerna</strong>: make lerna a local project dependency to use it in project-wide scripts.</p>
+<p><strong>babel-cli</strong>: built-in CLI which can be used to compile files from the command line.</p>
+<p><strong>babel-preset-es2015</strong>:  this preset is used to enable ES2015 code compilation down to ES5.</p>
+<p><strong>chai</strong>:  is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework.</p>
+<p><strong>chai-as-promised</strong>:  extends Chai with a fluent language for asserting facts about promises.</p>
+<p><strong>eslint</strong>:  is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.</p>
+<p><strong>eslint-config-airbnb</strong>:  provides Airbnb's .eslintrc as an extensible shared config.</p>
+<p><strong>eslint-plugin-import</strong>:  this plugin intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names. </p>
+<p><strong>eslint-plugin-jsx-a11y</strong>: runtime-analysis tool, checks for accessibility rules on JSX elements.</p>
+<p><strong>eslint-plugin-react</strong>: get Eslint working  with React.js .</p>
+<p><strong>gulp</strong>:  gulp is a toolkit for automating painful or time-consuming tasks in the development workflow.</p>
+<p><strong>gulp-babel</strong>:  Gulp plugin for Babel.</p>
+<p><strong>json-loader</strong>: needed for now (https://github.com/facebookincubator/create-react-app/issues/1895)</p>
+<h3>Lerna Markdown</h3><ul>
 <li><a href="https://bitbucket.org/tutorials/markdowndemo">Learn Markdown</a></li>
-</ul>
-<h3>How do I get set up?</h3><ul>
-<li>Summary of set up</li>
-<li>Configuration</li>
-<li>Dependencies</li>
-<li>Database configuration</li>
-<li>How to run tests</li>
-<li>Deployment instructions</li>
-</ul>
-<h3>Contribution guidelines</h3><ul>
-<li>Writing tests</li>
-<li>Code review</li>
-<li>Other guidelines</li>
-</ul>
-<h3>Who do I talk to?</h3><ul>
-<li>Repo owner or admin</li>
-<li>Other community or team contact</li>
 </ul></article>
     </section>
 
@@ -99,7 +99,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 24 2017 23:26:18 GMT+0200 (ora legale Europa occidentale)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Jun 26 2017 00:46:14 GMT+0200 (ora legale Europa occidentale)
 </footer>
 
 <script> prettyPrint(); </script>

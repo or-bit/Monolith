@@ -5,7 +5,7 @@
   },
   "source": {
     "include": ["./packages"],
-    "exclude": "docs",
+    "exclude": ["docs","node_modules", "test"],
     "includePattern": ".+\\.js(doc|x)?$",
     "excludePattern": ".test."
   },
