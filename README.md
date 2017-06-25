@@ -17,10 +17,12 @@ The following paragraphs present the list of submodules that compose the framewo
 ### builder
 
 ### monolith-backend
+Contains all the useful classes for a bubble back-end. It comprehends the data persistence and bubble lyfecicle functionalities, server and user objects, and some hepful functionalities such as external api retrieval, random id generator for a MongoDB database istance, regular expressions management. 
 
 ### monolith-frontend
+Comprehends the classes used for creating the gui and the notifications.  It consists of classes useful for creating a bubble front-end.
 
-### monolith-bubble-examples
+### Monolith-bubble-examples
 #### Bubble & eat
 Bubble & eat is an app for manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
 It can be found at https://github.com/or-bit/bubble-and-eat .
