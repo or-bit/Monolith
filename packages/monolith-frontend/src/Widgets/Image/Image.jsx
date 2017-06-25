@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
  * @returns {React.Component}
  * @constructor
  */
-export default function Image({ caption, src }) {
+export default function Image({ caption, className, src }) {
     return (
-        <figure>
+        <figure className={className}>
             <img alt={caption} src={src} />
             <figcaption>{caption}</figcaption>
         </figure>
@@ -21,4 +21,9 @@ export default function Image({ caption, src }) {
 Image.propTypes = {
     src: PropTypes.string.isRequired,
     caption: PropTypes.string.isRequired,
+    className: PropTypes.string,
+};
+
+Image.defaultProps = {
+    className: '',
 };

@@ -38,7 +38,7 @@ export default class CheckBox extends Component {
      */
     render() {
         return (
-            <div>
+            <div className={this.props.className}>
                 <input
                   type="checkbox"
                   name={this.props.name}
@@ -56,6 +56,7 @@ export default class CheckBox extends Component {
 CheckBox.propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.string,
+    className: PropTypes.string,
     checked: PropTypes.bool,
     label: PropTypes.string,
 };
@@ -63,5 +64,6 @@ CheckBox.propTypes = {
 CheckBox.defaultProps = {
     value: 'Default value',
     label: 'Default value',
+    className: '',
     checked: false,
 };

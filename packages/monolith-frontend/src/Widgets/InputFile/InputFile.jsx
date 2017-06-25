@@ -10,9 +10,14 @@ import PropTypes from 'prop-types';
  * @constructor
  */
 export default function InputFile(props) {
-    return (<input type="file" id={props.id} />);
+    return (<input className={props.className} type="file" id={props.id} />);
 }
 
 InputFile.propTypes = {
+    className: PropTypes.string,
     id: PropTypes.string.isRequired,
+};
+
+InputFile.defaultProps = {
+    className: '',
 };

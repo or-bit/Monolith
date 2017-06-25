@@ -9,12 +9,16 @@ import PropTypes from 'prop-types';
  * @returns {React.Component}
  * @constructor
  */
-export default function Label({ forId, value }) {
-    return <label htmlFor={forId}>{value}</label>;
+export default function Label({ className, forId, value }) {
+    return <label className={className} htmlFor={forId}>{value}</label>;
 }
 
 Label.propTypes = {
+    className: PropTypes.string,
     forId: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
 };
 
+Label.defaultProps = {
+    className: '',
+};

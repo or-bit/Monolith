@@ -38,6 +38,7 @@ export default class InputText extends React.Component {
     render() {
         return (
             <input
+              className={this.props.className}
               type="text"
               id={this.props.id}
               value={this.state.text}
@@ -49,11 +50,13 @@ export default class InputText extends React.Component {
 
 InputText.propTypes = {
     id: PropTypes.string.isRequired,
+    className: PropTypes.string,
     value: PropTypes.string,
     onTextChange: PropTypes.func,
 };
 
 InputText.defaultProps = {
+    className: '',
     value: '',
     onTextChange: () => {},
 };

@@ -50,7 +50,7 @@ export default class RadioButton extends Component {
      */
     render() {
         return (
-            <div>
+            <div className={this.props.className}>
                 <input
                   type="radio"
                   value={this.value}
@@ -73,11 +73,13 @@ RadioButton.propTypes = {
     ]).isRequired,
     groupName: PropTypes.string.isRequired,
     checked: PropTypes.bool,
+    className: PropTypes.string,
     label: PropTypes.string.isRequired,
 };
 
 RadioButton.defaultProps = {
     checked: false,
+    className: '',
     onChangeCallback: undefined,
 };
 
