@@ -23,8 +23,12 @@ Comprehends the classes used for creating the gui and the notifications.  It con
 
 ### Monolith-bubble-examples
 #### monolith-hello-world
-S simple bubble with monolith-frontend and monolith-backend.
-https://github.com/or-bit/monolith-hello-world
+Simple bubble with monolith-frontend and monolith-backend.
+It can be found at https://github.com/or-bit/monolith-hello-world .
+
+#### monolith-todos
+To-do bubble implemented with Monolith.
+It can be found at https://github.com/or-bit/monolith-todos .
 
 #### Bubble & eat
 Bubble & eat is an app for manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
