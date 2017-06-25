@@ -31,19 +31,18 @@ Dependency management is handled by npm. Using [lerna](<https://github.com/lerna
 
 ### common
 dependencies  
-**lerna**: make lerna a local project dependency to use it in project-wide scripts
-
-**babel-cli**:  
-**babel-preset-es2015**:  
-**chai**:  
-**chai-as-promised**:  
-**eslint**:  
-**eslint-config-airbnb**:  
-**eslint-plugin-import**:  
-**eslint-plugin-jsx-a11y**:  
-**eslint-plugin-react**:  
-**gulp**:  
-**gulp-babel**:  
+**lerna**: make lerna a local project dependency to use it in project-wide scripts.
+**babel-cli**: built-in CLI which can be used to compile files from the command line.
+**babel-preset-es2015**:  this preset is used to enable ES2015 code compilation down to ES5.
+**chai**:  is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework.
+**chai-as-promised**:  extends Chai with a fluent language for asserting facts about promises.
+**eslint**:  is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code.
+**eslint-config-airbnb**:  provides Airbnb's .eslintrc as an extensible shared config.
+**eslint-plugin-import**:  this plugin intends to support linting of ES2015+ (ES6+) import/export syntax, and prevent issues with misspelling of file paths and import names. 
+**eslint-plugin-jsx-a11y**: runtime-analysis tool, checks for accessibility rules on JSX elements.
+**eslint-plugin-react**: get Eslint working  with React.js .
+**gulp**:  gulp is a toolkit for automating painful or time-consuming tasks in the development workflow.
+**gulp-babel**:  Gulp plugin for Babel.
 **json-loader**: needed for now (https://github.com/facebookincubator/create-react-app/issues/1895)
 
 
