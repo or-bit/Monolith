@@ -1,20 +1,19 @@
-# monolith
+# Monolith
 
 This is the [monorepo](<https://github.com/babel/babel/blob/master/doc/design/monorepo.md>) of the monolith framework developed by Or-Bit for the didactic-side of the Software Engineering course. For more info, check out the [institutional link](<http://www.math.unipd.it/~tullio/IS-1/2016/>).
 
-## Contributing
+## Installing
 0.  Install Node JS (TODO other deps)
 1.  Clone this repo
 2.  `npm i`
 3.  `npm run bootstrap` (should be done automatically after npm i, added here just in case)
 4.  `npm test`
 
-### Project's commands
-
 
 ## Packages
 The following paragraphs present the list of submodules that compose the framework.
 ### builder
+Source file compiler for pubblishing npm packages in ES5 formatting.
 
 ### monolith-backend
 Contains all the useful classes for a bubble back-end. It comprehends the data persistence and bubble lyfecicle functionalities, server and user objects, and some hepful functionalities such as external api retrieval, random id generator for a MongoDB database istance, regular expressions management. 
