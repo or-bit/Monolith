@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 /**
  * This module allows you to create a widgets container.
- * @module monolith-frontend/WidgetsContainer
- * @param props
- * @returns {XML}
+ * @module WidgetsContainer
+ * @param props {Object} Properties of the component
+ * @param props.classNames {string} Class for the elements
+ * @param props.children {React.Component[]} Elements to be contained
+ * @returns {React.Component}
  * @constructor
  */
 export default function WidgetsContainer(props) {

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: monolith-backend/src/DataBase/DataBase.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: monolith-backend/src/DataBase/DataBase.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const MongoClient = require('mongodb');
+
+/**
+ * @class Class that allows the connection to the specified MongoDB Server instance.
+ * @property {string} mongoUrl
+ */
+class DataBase {
+    /**
+     * Initialize the DataBase object with the specified url.
+     * @param mongoUrl {string} - the database's url
+     */
+    constructor(mongoUrl) {
+        this.mongourl = mongoUrl;
+    }
+
+    /**
+     * Connect to the url specified in the constructor.
+     * @returns {*}
+     */
+    connect() {
+        return MongoClient.connect(this.mongourl);
+    }
+
+    /**
+     * Method that tries to read from the specified collection of the connected DataBase.
+     * @param collectionName {string} Name of the collection to search in
+     * @param filter {Object} Query selection criteria {@link https://docs.mongodb.com/manual/reference/operator/query/}
+     * @returns {Promise} A promise which will be resolved if the connection has been successful and
+     *  if something has been found inside the specified collection, and will be rejected otherwise.
+     */
+    findOne(collectionName, filter) {
+        return new Promise((resolve, reject) => {
+            this.connect().then((db) => {
+                db.collection(collectionName).findOne(filter)
+                    .then(
+                        (doc) => {
+                            db.close();
+                            resolve(doc);
+                        })
+                    .catch(error => reject(error));
+            }).catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Method that tries to insert an element inside the specified collection of the connected DataBase.
+     * @param collectionName {string} Name of the collection to put the element in
+     * @param element {Object} Element to be inserted in the collection
+     * @returns {Promise} A promise which will be resolved if the connection and the insert have been successful, and
+     * will be rejected otherwise.
+     */
+    insertOne(collectionName, element) {
+        return new Promise((resolve, reject) => {
+            this.connect().then((db) => {
+                db.collection(collectionName).insertOne(element)
+                    .then(
+                        (data) => {
+                            db.close();
+                            resolve(data);
+                        })
+                  .catch(error => reject(error));
+            }).catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Update an element of a specified collection.
+     * @param collectionName {string} Name of the collection
+     * @param element {Object} Element to update
+     * @param newElement {Object} New element
+     * @param upsert {boolean} It specifies whether or not to perform an insert if the element to update is not present
+     * @returns {Promise} A promise which will be resolved if the connection and the update have been successful, and
+     * will be rejected otherwise
+     */
+    updateOne(collectionName, element, newElement, upsert) {
+        return new Promise((resolve, reject) => {
+            this.connect().then((db) => {
+                db.collection(collectionName).findOneAndUpdate(
+                    element,
+                    newElement,
+                    {
+                        returnOriginal: false,
+                        upsert,
+                        returnNewDocument: true,
+                    }
+                ).then(() => {
+                    db.close();
+                    resolve();
+                }).catch(error => reject(error));
+            }).catch(error => reject(error));
+        });
+    }
+}
+
+module.exports = DataBase;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BarChartFactory.html">BarChartFactory</a></li><li><a href="module-ChartUtils.html">ChartUtils</a></li><li><a href="module-ConfigurationGenerator.html">ConfigurationGenerator</a></li><li><a href="module-FileWriter.html">FileWriter</a></li><li><a href="module-IDGenerator.html">IDGenerator</a></li><li><a href="module-PieChartFactory.html">PieChartFactory</a></li><li><a href="module-Questions.html">Questions</a></li><li><a href="module-StoreProvider.html">StoreProvider</a></li></ul><h3>Classes</h3><ul><li><a href="Action.html">Action</a></li><li><a href="BarChart.html">BarChart</a></li><li><a href="Button.html">Button</a></li><li><a href="CheckBox.html">CheckBox</a></li><li><a href="CheckBoxGroup.html">CheckBoxGroup</a></li><li><a href="DataBase.html">DataBase</a></li><li><a href="DropDownList.html">DropDownList</a></li><li><a href="Error.html">Error</a></li><li><a href="GenericBubble.html">GenericBubble</a></li><li><a href="Image.html">Image</a></li><li><a href="InputFile.html">InputFile</a></li><li><a href="InputText.html">InputText</a></li><li><a href="Label.html">Label</a></li><li><a href="LifeCycle.html">LifeCycle</a></li><li><a href="PieChart.html">PieChart</a></li><li><a href="RadioButton.html">RadioButton</a></li><li><a href="RadioButtonsGroup.html">RadioButtonsGroup</a></li><li><a href="RegExWrapper.html">RegExWrapper</a></li><li><a href="RestApi.html">RestApi</a></li><li><a href="RouteObject.html">RouteObject</a></li><li><a href="RoutesCollection.html">RoutesCollection</a></li><li><a href="Server.html">Server</a></li><li><a href="TextEdit.html">TextEdit</a></li><li><a href="TextView.html">TextView</a></li><li><a href="User.html">User</a></li><li><a href="WebNotification.html">WebNotification</a></li><li><a href="WidgetsContainer.html">WidgetsContainer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 24 2017 23:26:18 GMT+0200 (ora legale Europa occidentale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

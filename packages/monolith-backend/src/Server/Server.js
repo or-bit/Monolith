@@ -6,7 +6,7 @@ const LifeCycle = require('../LifeCycle/LifeCycle');
 const consts = require('monolith-consts');
 
 /**
- * @class Server - Manage the app and the socket connection.
+ * @class Manage the app and the socket connection.
  * @property {Object} App
  * @property {Object} server
  * @property {Object} socket
@@ -14,9 +14,9 @@ const consts = require('monolith-consts');
 class Server {
     /**
      * Create a server.
-     * @property {Object} App - Create an express app.
-     * @property {Object} server - Create an http server associated with the express app.
-     * @property {Object} socket - Enable web socket request.
+     * @property {Object} App - Create an express app
+     * @property {Object} server - Create an http server associated with the express app
+     * @property {Object} socket - Enable web socket request
      */
     constructor() {
         this.app = express();
@@ -26,7 +26,7 @@ class Server {
 
     /**
      * Enable server function giving the assigned port.
-     * @param port - Server port.
+     * @param port - Server port
      */
     open(port) {
         this.server.listen(port);
@@ -71,8 +71,8 @@ class Server {
 
     /**
      * Manage the connection.
-     * @param functionToCall - Specify function to call in connection.
-     * @param functionArgs - Define argument of fanction.
+     * @param functionToCall - Specify the function to call in the connection
+     * @param functionArgs - Define the argument of the function
      */
     onConnection(functionToCall, functionArgs) {
         this.socket.on(
@@ -83,8 +83,8 @@ class Server {
 
     /**
      * Manage the disconnection.
-     * @param functionToCall - Specify function to call in disconnection.
-     * @param functionArgs - Define argument of fanction.
+     * @param functionToCall - Specify the function to call in the disconnection
+     * @param functionArgs - Define the argument of the function
      */
     onDisconnection(functionToCall, functionArgs) {
         this.socket.on('connection', (clientSocket) => {
@@ -112,7 +112,7 @@ class Server {
     }
 
     /**
-     * Return express app .
+     * Return express app.
      */
     getExpress() {
         return this.app;
@@ -126,7 +126,7 @@ class Server {
     }
 
     /**
-     * set server directory from path.
+     * Set server directory from path.
      * @param path
      * @param dir
      */

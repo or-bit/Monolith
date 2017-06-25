@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import Error from '../Error/GenericError';
 
 /**
- * @class DropDownList - Defines a drop down list.
- * @extends Component
- * @property {Object} props
- * @property {Object} props.values
- * @property {string} props.className
- * @property {string} props.errorClassName
- * @property {Object} props.onSelectionChange
+ * @class Defines a drop down list.
+ * @extends React.Component
+ * @property props {Object} - Properties of the component
+ * @property props.values {Object} - Values of the list entries
+ * @property props.className {string} - Name of the class give to the <select> that will contain the options
+ * @property props.errorClassName {string} - Name that will be given to the <Error> class if there are duplicate values
+ * @property props.onSelectionChange {function} - Action to execute when the selection changes
  */
 export default class DropDownList extends Component {
     // expected data: label and optionValue are required, selected is not required (default false)
@@ -83,7 +83,7 @@ export default class DropDownList extends Component {
 
     /**
      * Renders drop down list.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         const input = this.props.values;

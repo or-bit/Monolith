@@ -3,19 +3,19 @@ const UninitializedStoreError = require('./UninitializedStoreError');
 
 /**
  * This module creates store provider.
- * @module monolith-backend/StoreProvider
+ * It implements a singleton pattern like {@link http://2ality.com/2011/04/singleton-pattern-in-javascript-not.html}
+ * @module StoreProvider
  */
-
-// Singleton pattern alike: ref http://2ality.com/2011/04/singleton-pattern-in-javascript-not.html
 const StoreProvider = {
 
     defaultStoreCollection: 'store',
 
     /**
-     * Initializes store giving reducer and initial state and database
-     * @param reducers
-     * @param initialState
-     * @param db
+     * Initializes the store with the given parameters.
+     * @function initStore
+     * @param reducers - the store's reducers
+     * @param initialState - the store's initial state
+     * @param db - the database where to persist the store's state
      * @returns {Promise}
      */
     initStore(reducers, initialState, db) {
@@ -56,8 +56,9 @@ const StoreProvider = {
     },
 
     /**
-     * Update databases.
-     * @param db
+     * Update the database.
+     * @function persistStateToDB
+     * @param db - the databse where to persist the state
      */
     // TODO move to "private" namespace
     persistStateToDB(db) {
@@ -75,8 +76,9 @@ const StoreProvider = {
     },
 
     /**
-     * Recover state from Database.
-     * @param db
+     * Recover state from the database.
+     * @function fetchStateFromDB
+     * @param db - the database from which the state is recovered from
      * @returns {Promise}
      */
     fetchStateFromDB(db) {
@@ -92,7 +94,8 @@ const StoreProvider = {
     },
 
     /**
-     * Return store.
+     * Get the store
+     * @function getStore
      * @returns {store}
      */
     getStore() {
@@ -103,7 +106,8 @@ const StoreProvider = {
     },
 
     /**
-     * Reset Store.
+     * Reset the store.
+     * @function resetStore
      */
     resetStore() {
         this.store = null;

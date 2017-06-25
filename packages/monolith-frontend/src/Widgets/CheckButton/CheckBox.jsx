@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * @class CheckBox - Defines a check box graphic element.
- * @extends Component
- * @property {Object} props
- * @property {string} props.name
- * @property {string} props.value
- * @property {boolean} props.checked
- * @property {string} props.label
+ * @class Defines a check box graphic element.
+ * @extends React.Component
+ * @property {Object} props - Properties of the component
+ * @property {string} props.name - Name of the checkbox
+ * @property {string} props.value - Value of the checkbox
+ * @property {boolean} props.checked - State of the checkbox, can be checked (true) or unchecked (false)
+ * @property {string} props.label - Label of the checkbox
  */
 export default class CheckBox extends Component {
     /**
      *Create a check box element.
-     * @param props
+     * @param props - Properties of the component
      */
     constructor(props) {
         super(props);
@@ -34,7 +34,7 @@ export default class CheckBox extends Component {
 
     /**
      * Render check box.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         return (

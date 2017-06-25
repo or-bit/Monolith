@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: monolith-integration-cli/src/Questions.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: monolith-integration-cli/src/Questions.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Questions for the bubbles configuration.
+ * @module Questions
+ */
+const questions = (() => {
+    /**
+     * @member routeQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
+    const routeQuestion = {
+        type: 'input',
+        name: 'route',
+        message: 'What is the endpoint of the route? (example: \'admin\')',
+    };
+
+    /**
+     * @member commandQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
+    const commandQuestion = {
+        type: 'input',
+        name: 'command',
+        message: `What character sequence do you want to 
+        assign to this route? (example '$admin')`,
+    };
+
+    /**
+     * @member defineUserQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
+    const defineUserQuestion = {
+        type: 'confirm',
+        name: 'defineUser',
+        message: 'Do you want to assign the command to specific users?',
+    };
+
+    /**
+     * @member userRegexQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
+    const userRegexQuestion = {
+        type: 'input',
+        name: 'user',
+        message: 'Enter user\'s matching regex',
+        when: answers => answers.defineUser,
+    };
+
+    /**
+     * @member addRouteQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
+    const addRouteQuestion = {
+        type: 'confirm',
+        name: 'otherRoutes',
+        message: 'Do you want to add other routes?',
+    };
+
+    /**
+     * @member pathQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
+    const pathQuestion = {
+        type: 'string',
+        name: 'filePath',
+        message: 'Where do you want to save the file?',
+    };
+
+    return {
+        routeQuestion,
+        commandQuestion,
+        defineUserQuestion,
+        userRegexQuestion,
+        addRouteQuestion,
+        pathQuestion,
+        allQuestions: [
+            routeQuestion,
+            commandQuestion,
+            defineUserQuestion,
+            userRegexQuestion,
+            addRouteQuestion,
+        ],
+    };
+})();
+
+module.exports = questions;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BarChartFactory.html">BarChartFactory</a></li><li><a href="module-ChartUtils.html">ChartUtils</a></li><li><a href="module-ConfigurationGenerator.html">ConfigurationGenerator</a></li><li><a href="module-FileWriter.html">FileWriter</a></li><li><a href="module-IDGenerator.html">IDGenerator</a></li><li><a href="module-PieChartFactory.html">PieChartFactory</a></li><li><a href="module-Questions.html">Questions</a></li><li><a href="module-StoreProvider.html">StoreProvider</a></li></ul><h3>Classes</h3><ul><li><a href="Action.html">Action</a></li><li><a href="BarChart.html">BarChart</a></li><li><a href="Button.html">Button</a></li><li><a href="CheckBox.html">CheckBox</a></li><li><a href="CheckBoxGroup.html">CheckBoxGroup</a></li><li><a href="DataBase.html">DataBase</a></li><li><a href="DropDownList.html">DropDownList</a></li><li><a href="Error.html">Error</a></li><li><a href="GenericBubble.html">GenericBubble</a></li><li><a href="Image.html">Image</a></li><li><a href="InputFile.html">InputFile</a></li><li><a href="InputText.html">InputText</a></li><li><a href="Label.html">Label</a></li><li><a href="LifeCycle.html">LifeCycle</a></li><li><a href="PieChart.html">PieChart</a></li><li><a href="RadioButton.html">RadioButton</a></li><li><a href="RadioButtonsGroup.html">RadioButtonsGroup</a></li><li><a href="RegExWrapper.html">RegExWrapper</a></li><li><a href="RestApi.html">RestApi</a></li><li><a href="RouteObject.html">RouteObject</a></li><li><a href="RoutesCollection.html">RoutesCollection</a></li><li><a href="Server.html">Server</a></li><li><a href="TextEdit.html">TextEdit</a></li><li><a href="TextView.html">TextView</a></li><li><a href="User.html">User</a></li><li><a href="WebNotification.html">WebNotification</a></li><li><a href="WidgetsContainer.html">WidgetsContainer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 24 2017 23:26:18 GMT+0200 (ora legale Europa occidentale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

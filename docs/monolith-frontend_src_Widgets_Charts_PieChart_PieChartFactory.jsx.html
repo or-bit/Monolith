@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: monolith-frontend/src/Widgets/Charts/PieChart/PieChartFactory.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: monolith-frontend/src/Widgets/Charts/PieChart/PieChartFactory.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+
+import { Pie, PieChart } from './PieChart';
+import Error from '../../Error/GenericError';
+
+import ChartUtils from '../ChartUtils';
+
+// IIFE used as a Revealing module pattern
+/**
+ * This module creates an instance of a PieChart.
+ * @module PieChartFactory
+ * @type {{validateColor, validateCenterCoordinates, validateSize, validateRadii, validateData, createPieChart}}
+ */
+const PieChartFactory = (function iife() {
+    /**
+     * Check if the array's items are objects.
+     * @function validateData
+     * @param array {Array}
+     */
+    const validateData = array => ChartUtils.isArrayOfObjects(array);
+
+    /**
+     * Check if width and height are numbers.
+     * @function validateSize
+     * @param width {Object}
+     * @param height {Object}
+     */
+    const validateSize = ({ width, height }) => (
+        typeof width === 'number' &amp;&amp; typeof height === 'number'
+    );
+
+    /**
+     * Check if the dimensions are numbers greater than 0.
+     * @function validateCenterCoordinates
+     * @param widthX {*}
+     * @param widthY {*}
+     */
+    const validateCenterCoordinates = (widthX, widthY) => (
+        typeof widthX === 'number' &amp;&amp; widthX > 0 &amp;&amp;
+                typeof widthY === 'number' &amp;&amp; widthY > 0
+    );
+
+    /**
+     * Check if the given radius dimensions are numbers greater than 0.
+     * @param innerRadius {*}
+     * @param outerRadius {*}
+     */
+    const validateRadii = (innerRadius, outerRadius) => (
+        typeof innerRadius === 'number' &amp;&amp; innerRadius > 0 &amp;&amp;
+            typeof outerRadius === 'number' &amp;&amp; outerRadius > 0
+    );
+
+    /**
+     * Check if colors is an array of strings.
+     * @function validateColors
+     * @param colors {Array}
+     */
+    const validateColor = color => typeof color === 'string';
+
+    /**
+     * Requires height to have been validated using validateSize().
+     * @param height {number}
+     * @returns {number} Height of the PieChart
+     */
+    const getHeight = (height) => {
+        if (height > 0) {
+            return height;
+        }
+        return PieChart.defaultHeight;
+    };
+
+    /**
+     * Requires width to have been validated using validateSize().
+     * @param width {number}
+     * @returns {number} Width of the PieChart
+     */
+    const getWidth = (width) => {
+        if (width > 0) {
+            return width;
+        }
+        return PieChart.defaultWidth;
+    };
+
+    /**
+     * Create the pie chart.
+     * @param data {number[]} Data to be processed
+     * @param width {number} Width of the chart
+     * @param height {number} Height of the chart
+     * @param startAngle {number} The start angle of first sector
+     * @param endAngle {number} The end angle of last sector, which should be unequal to startAngle
+     * @param centerX {Percentage | number} The x-coordinate of center
+     * @param centerY {Percentage | number} The y-coordinate of center
+     * @param innerRadius {Percentage | number} Inner radius size
+     * @param outerRadius {Percentage | number} Outer radius size
+     * @param label {string} Label for the chart
+     * @param color {string} Color of the pie
+     * @return {React.Component}
+     * @see http://recharts.org/#/en-US/api/Pie
+     */
+    const createPieChart = (data,
+                            { width, height },
+                            { startAngle, endAngle },
+                            { centerX, centerY },
+                            { innerRadius, outerRadius },
+                            label,
+                            color
+    ) => {
+        // check for input errors first
+        // checking data
+        if (!validateData(data)) {
+            return (
+                &lt;Error
+                  errorMessage="\'data\' object is not an array.\
+                      Only array can be plotted in the chart."
+                  input={data}
+                />
+            );
+        }
+
+        if (!validateCenterCoordinates(centerX, centerY)) {
+            return (
+                &lt;Error
+                  errorMessage="Margins not valid.\
+                      They must be positive numbers."
+                  input={data}
+                />
+            );
+        }
+
+        if (!validateRadii(innerRadius, outerRadius)) {
+            return (
+                &lt;Error
+                  errorMessage="InnerRadius/OuterRadius not valid.\
+                      They must be positive numbers."
+                  input={data}
+                />
+            );
+        }
+
+        // now let's check chart size
+        if (!validateSize({ width, height })) {
+            console.warn(
+                'Check the object size: width and height are not numbers'
+            );
+        }
+
+        let colorToUse = color;
+
+        if (!validateColor(color)) {
+            // orange
+            colorToUse = ChartUtils.predefinedColors[2];
+        }
+
+        return (
+            &lt;PieChart width={getWidth(width)} height={getHeight(height)}>
+                &lt;Pie
+                  startAngle={startAngle}
+                  endAngle={endAngle}
+                  data={data}
+                  cx={centerX}
+                  cy={centerY}
+                  outerRadius={outerRadius}
+                  innerRadius={innerRadius}
+                  fill={colorToUse}
+                  label={label ? true : undefined}
+                />
+            &lt;/PieChart>
+        );
+    };
+
+    return {
+        validateColor,
+        validateCenterCoordinates,
+        validateSize,
+        validateRadii,
+        validateData,
+        createPieChart,
+    };
+}());
+
+export default PieChartFactory;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-BarChartFactory.html">BarChartFactory</a></li><li><a href="module-ChartUtils.html">ChartUtils</a></li><li><a href="module-ConfigurationGenerator.html">ConfigurationGenerator</a></li><li><a href="module-FileWriter.html">FileWriter</a></li><li><a href="module-IDGenerator.html">IDGenerator</a></li><li><a href="module-PieChartFactory.html">PieChartFactory</a></li><li><a href="module-Questions.html">Questions</a></li><li><a href="module-StoreProvider.html">StoreProvider</a></li></ul><h3>Classes</h3><ul><li><a href="Action.html">Action</a></li><li><a href="BarChart.html">BarChart</a></li><li><a href="Button.html">Button</a></li><li><a href="CheckBox.html">CheckBox</a></li><li><a href="CheckBoxGroup.html">CheckBoxGroup</a></li><li><a href="DataBase.html">DataBase</a></li><li><a href="DropDownList.html">DropDownList</a></li><li><a href="Error.html">Error</a></li><li><a href="GenericBubble.html">GenericBubble</a></li><li><a href="Image.html">Image</a></li><li><a href="InputFile.html">InputFile</a></li><li><a href="InputText.html">InputText</a></li><li><a href="Label.html">Label</a></li><li><a href="LifeCycle.html">LifeCycle</a></li><li><a href="PieChart.html">PieChart</a></li><li><a href="RadioButton.html">RadioButton</a></li><li><a href="RadioButtonsGroup.html">RadioButtonsGroup</a></li><li><a href="RegExWrapper.html">RegExWrapper</a></li><li><a href="RestApi.html">RestApi</a></li><li><a href="RouteObject.html">RouteObject</a></li><li><a href="RoutesCollection.html">RoutesCollection</a></li><li><a href="Server.html">Server</a></li><li><a href="TextEdit.html">TextEdit</a></li><li><a href="TextView.html">TextView</a></li><li><a href="User.html">User</a></li><li><a href="WebNotification.html">WebNotification</a></li><li><a href="WidgetsContainer.html">WidgetsContainer</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jun 24 2017 23:26:18 GMT+0200 (ora legale Europa occidentale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

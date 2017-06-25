@@ -5,8 +5,8 @@ import { PieChart as PieRechart, Pie } from 'recharts';
  */
 
 /**
- * @class PieChart - Defines a pie chart graphic.
- * @extends PieReChart
+ * @class Defines a pie chart graphic.
+ * @extends Recharts.PieChart
  */
 class PieChart extends PieRechart {
     render() {

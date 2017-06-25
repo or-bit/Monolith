@@ -1,10 +1,22 @@
+/**
+ * Questions for the bubbles configuration.
+ * @module Questions
+ */
 const questions = (() => {
+    /**
+     * @member routeQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
     const routeQuestion = {
         type: 'input',
         name: 'route',
         message: 'What is the endpoint of the route? (example: \'admin\')',
     };
 
+    /**
+     * @member commandQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
     const commandQuestion = {
         type: 'input',
         name: 'command',
@@ -12,12 +24,20 @@ const questions = (() => {
         assign to this route? (example '$admin')`,
     };
 
+    /**
+     * @member defineUserQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
     const defineUserQuestion = {
         type: 'confirm',
         name: 'defineUser',
         message: 'Do you want to assign the command to specific users?',
     };
 
+    /**
+     * @member userRegexQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
     const userRegexQuestion = {
         type: 'input',
         name: 'user',
@@ -25,12 +45,20 @@ const questions = (() => {
         when: answers => answers.defineUser,
     };
 
+    /**
+     * @member addRouteQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
     const addRouteQuestion = {
         type: 'confirm',
         name: 'otherRoutes',
         message: 'Do you want to add other routes?',
     };
 
+    /**
+     * @member pathQuestion
+     * @type {{type: string, name: string, message: string}}
+     */
     const pathQuestion = {
         type: 'string',
         name: 'filePath',

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * @class TextEdit - Defines a text edit element.
+ * @class Defines a text edit element.
  * @extends Component
- * @property {Object} props
- * @property {string} props.name
- * @property {string} props.value
- * @property {string} props.label
- * @property {Object} props.OnTextChange
- * @property {string} props.className
+ * @property props {Object} Properties of the component
+ * @property props.name {string} Name of the component (necessary for the form)
+ * @property props.value ['default-value'] {string} Value to display
+ * @property props.label ['default-value'] {string} Label for the tag
+ * @property props.OnTextChange [() => {}] {function} Action to perform on text change event
+ * @property props.className ['monolith-textedit'] {string} Class for the component
  */
 export default class TextEdit extends Component {
     /**
@@ -35,7 +35,7 @@ export default class TextEdit extends Component {
 
     /**
      * Renders a text edit element.
-     * @returns {XML}
+     * @returns {React.Component}
      */
     render() {
         return (
