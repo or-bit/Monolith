@@ -15,10 +15,10 @@ The following paragraphs present the list of submodules that compose the framewo
 Source file compiler for pubblishing npm packages in ES5 formatting.
 
 ### monolith-backend
-Contains all the useful classes for a bubble back-end. It comprehends the data persistence and bubble lyfecicle functionalities, server and user objects, and some hepful functionalities such as external api retrieval, random id generator for a MongoDB database istance, regular expressions management. 
+Contains all the useful classes for a bubble back-end. It comprehends the data persistence and bubble lifecycle functionalities, server and user objects, and some hepful functionalities such as external api retrieval, random id generator for a MongoDB database istance and regular expressions management. 
 
 ### monolith-frontend
-Comprehends the classes used for creating the gui and the notifications.  It consists of classes useful for creating a bubble front-end.
+Comprehends the classes used to create the gui and the notifications.  It consists of classes useful for creating a bubble front-end.
 
 ### Monolith-bubble-examples
 #### monolith-hello-world
@@ -30,7 +30,7 @@ To-do bubble implemented with Monolith.
 It can be found at https://github.com/or-bit/monolith-todos .
 
 #### Bubble & eat
-Bubble & eat is an app for manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
+Bubble & eat is an app to manage restaurant services in a simple and fast way, just like writing a message on your favourite chat-app.
 It can be found at https://github.com/or-bit/bubble-and-eat .
 
 
