@@ -3,11 +3,10 @@
 This is the [monorepo](<https://github.com/babel/babel/blob/master/doc/design/monorepo.md>) of the monolith framework developed by Or-Bit for the didactic-side of the Software Engineering course. For more info, check out the [institutional link](<http://www.math.unipd.it/~tullio/IS-1/2016/>).
 
 ## Installing
-0.  Install Node JS (TODO other deps)
-1.  Clone this repo
-2.  `npm i`
-3.  `npm run bootstrap` (should be done automatically after npm i, added here just in case)
-4.  `npm test`
+
+1.  Clone this repository
+2.  `npm i -S monolith-backend`
+3.  `npm i -S monolith-frontend` 
 
 
 ## Packages
