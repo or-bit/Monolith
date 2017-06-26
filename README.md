@@ -4,10 +4,15 @@ This is the [monorepo](<https://github.com/babel/babel/blob/master/doc/design/mo
 
 ## Installing
 
-Clone this repository.
-For the node server: `npm i -S monolith-backend` .
-For the frontend first create an app with `create-react-app myapp`, then `npm i -S monolith-frontend` .
-For further reference:https://github.com/facebookincubator/create-react-app .
+0) create project folder
+1) move in to the project folder
+2) `npm init` creates server project
+3) `npm i -g create-react-app`
+4) `create-react-app frontend`
+5) `cd frontend`
+6) `npm i -S monolith-frontend`
+
+For further reference: https://github.com/facebookincubator/create-react-app .
 
 
 ## Packages
